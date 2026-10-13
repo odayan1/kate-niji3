@@ -286,6 +286,21 @@ i{font-family:"Times New Roman",Georgia,serif;font-style:italic;font-size:1.1em;
 .lab-chk input{width:20px;height:20px;}
 #fres .sol-line{font-size:13.5px;}
 #shiryo .shiryo-box{text-align:center;}
+
+header{position:sticky;top:0;z-index:50;padding:10px 14px;}
+.home-btn{display:none;flex-shrink:0;background:#fff;color:#1491bd;border:none;border-radius:999px;padding:7px 12px;font-family:inherit;font-weight:900;font-size:13px;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.12);}
+body.inapp .home-btn{display:block;}
+body.inapp .brand-txt p{display:none;}
+.fin-fr{display:inline-flex;align-items:center;vertical-align:middle;gap:3px;margin:0 2px;}
+.fin-fr .fr>.fn,.fin-fr .fr>.fd{padding:2px 2px;}
+.fin-fr .fr>.fn{border-bottom:2.5px solid var(--ink);}
+.fin-fr .fin{width:54px;margin:1px;}
+.fin::placeholder{font-size:10px;color:#a9c4cf;font-weight:600;}
+.sgn{width:30px;height:30px;border-radius:50%;border:2px solid #9ed3ea;background:#fff;color:#1491bd;font-weight:900;font-size:16px;cursor:pointer;font-family:inherit;padding:0;}
+.sgn.on{background:var(--red);border-color:var(--red);color:#fff;}
+.sgn.ok{border-color:var(--green);} .sgn.ng{border-color:var(--red);}
+.fr-note{font-size:12px;color:#48616d;background:#fffbe8;border-radius:8px;padding:6px 9px;margin:4px 0 6px;}
+.tpl-line{line-height:2.6;}
 </style>
 </head>
 <body>
@@ -296,6 +311,7 @@ i{font-family:"Times New Roman",Georgia,serif;font-style:italic;font-size:1.1em;
       <h1>2次方程式マスター（中3）</h1>
       <p>3章 2次方程式｜8 解き方・9 解の公式と因数分解・10 利用｜つまずきを、プラスに。</p>
     </div>
+    <button class="home-btn" onclick="goHomeBtn()">🏠 ホーム</button>
   </div>
 </header>
 
@@ -517,7 +533,7 @@ function fill(o){
   o.blanks.forEach(b=>{if(!b.miss)return;const ans=b.g?gs[b.g]:[b.a];const m={};
     Object.keys(b.miss).forEach(k=>{if(!ans.some(v=>Math.abs(v-parseFloat(k))<1e-9))m[k]=b.miss[k];});b.miss=m;});
   return {kind:"fill",q:o.q,sh:o.sh||"",eq:o.eq||"",tpl:o.tpl,blanks:o.blanks,e:o.e,sol:o.sol||[]};}
-function B(v,miss,g){const val=typeof v==="object"?fv(v):v;return {a:val,h:typeof v==="object"?frH(v):N(v),g:g||null,miss:miss||null};}
+function B(v,miss,g){const val=typeof v==="object"?fv(v):v;return {a:val,h:typeof v==="object"?frH(v):N(v),g:g||null,miss:miss||null,fr:!Number.isInteger(val)};}
 function parts(o){
   const sk=t=>t[0].replace(/<[^>]+>/g,"");const seenT=new Set();
   const uniq=a=>a.filter(t=>{const k=sk(t);if(seenT.has(k))return false;seenT.add(k);return true;});
@@ -598,48 +614,39 @@ function g81_which(){
     e:"移項して整理したとき<b>（2次式）＝0</b>の形になるものが2次方程式。<b>両辺の "+X+"² が打ち消し合わないか</b>を必ず確かめる。",
     sol:[M_(corr.h),"　"+M_(corr.s)+"　→ "+X+"² が残るので<b>2次方程式</b>","ほかの選択肢は、整理すると "+X+"² が消えて1次方程式になる。"]});
 }
-function roots3(){let r1=ri(-3,3),r2=ri(-3,3);while(r2===r1)r2=ri(-3,3);return [Math.min(r1,r2),Math.max(r1,r2)];}
+function roots3(){let r1=rnz(-6,6),r2=rnz(-6,6);while(r2===r1)r2=rnz(-6,6);return [Math.min(r1,r2),Math.max(r1,r2)];}
 function setH(arr){return arr.slice().sort((a,b)=>a-b).map(N).join(" と ");}
+function sub81(b,c,v){return M_(par(v)+"²"+(b?(b>0?" + ":" − ")+(Math.abs(b)===1?par(v):Math.abs(b)+" × "+par(v)):"")+(c?(c>0?" + "+c:" − "+(-c)):"")+" = "+N(v*v+b*v+c));}
+function roots81(){let r1=rnz(-6,6),r2=rnz(-6,6);while(r2===r1)r2=rnz(-6,6);return [Math.min(r1,r2),Math.max(r1,r2)];}
 function g81_sols(){
-  const [r1,r2]=roots3(),b=-(r1+r2),c=r1*r2;
-  const non=[-3,-2,-1,0,1,2,3].filter(v=>v!==r1&&v!==r2);
-  const val=v=>v*v+b*v+c;
-  const k=pick(non);
-  const neg=[-r1,-r2].sort((a,b)=>a-b);
-  const negBad=neg.find(v=>v!==r1&&v!==r2);
-  const ds=[
-    negBad!==undefined?{h:setH(neg),k:"s:"+neg,w:"符号が逆。"+X+" = "+N(negBad)+" を代入すると、左辺は "+N(val(negBad))+" になり 0 にならない。"}:null,
-    {h:setH([r1]),k:"s:"+r1,w:X+" = "+N(r2)+" を代入しても左辺は 0 になる。<b>解はすべて</b>答える。"},
-    {h:setH([r2]),k:"s:"+r2,w:X+" = "+N(r1)+" を代入しても左辺は 0 になる。<b>解はすべて</b>答える。"},
-    {h:setH([r1,k]),k:"s:"+[r1,k].sort((a,b)=>a-b),w:X+" = "+N(k)+" を代入すると、左辺は "+N(val(k))+" になり 0 にならない。"},
-    {h:setH([k,r2]),k:"s:"+[k,r2].sort((a,b)=>a-b),w:X+" = "+N(k)+" を代入すると、左辺は "+N(val(k))+" になり 0 にならない。"},
-  ];
+  const [r1,r2]=roots81(),b=-(r1+r2),c=r1*r2;const val=v=>v*v+b*v+c;
+  const r=pick([r1,r2]);
+  const cand=shuffle([-r,r+1,r-1,-(r1+r2),r+2,r-2,0].filter((v,i,a)=>a.indexOf(v)===i&&v!==r1&&v!==r2));
+  const ds=cand.map(v=>({h:M_(X+" = "+N(v)),k:"v"+v,w:X+" = "+N(v)+" を代入すると、左辺は "+sub81(b,c,v)+"。<b>0 にならない</b>ので解ではない。"+(v===-r?"（解と<b>符号が逆</b>）":"")}));
   const eq=P2(1,b,c)+" = 0";
-  return mc({q:"−3、−2、−1、0、1、2、3 のうち、2次方程式 "+M_(eq)+" の解になっているものを<b>すべて</b>選んだのはどれ？",
-    ans:{h:setH([r1,r2]),k:"s:"+[r1,r2]},ds:shuffle(ds),
-    e:"1つずつ代入して、<b>左辺が 0 になるもの</b>が解。2次方程式の解は2つあることが多いので、最後まで調べる。",
-    sol:[-3,-2,-1,0,1,2,3].map(v=>M_(X+" = "+N(v)+"： "+par(v)+"²"+(b?(b>0?" + ":" − ")+(Math.abs(b)===1?"":Math.abs(b))+(Math.abs(b)===1?par(v):" × "+par(v)):"")+(c?(c>0?" + "+c:" − "+(-c)):"")+" = "+N(val(v)))+(val(v)===0?" ← <b>解</b>":"")).concat(["<b>答 "+setH([r1,r2])+"</b>"])});
+  return mc({q:"次のうち、2次方程式 "+M_(eq)+" の解の1つであるものはどれ？",
+    ans:{h:M_(X+" = "+N(r)),k:"v"+r},ds,
+    e:"解は、方程式に<b>代入すると左辺が 0 になる値</b>。1つずつ代入して確かめる。",
+    sol:[M_(X+" = "+N(r))+" を代入すると　"+sub81(b,c,r)+" ← <b>0 になるので解</b>","（ちなみにもう1つの解は "+M_(X+" = "+N(r===r1?r2:r1))+"）","<b>答 "+M_(X+" = "+N(r))+"</b>"]});
 }
 function g81_50(){return Math.random()<0.5?g81_which():g81_sols();}
 function g81_70(){
-  const [r1,r2]=roots3(),b=-(r1+r2),c=r1*r2;
-  const non=[-3,-2,-1,1,2,3].filter(v=>v!==r1&&v!==r2);
-  const negs=non.filter(v=>v<0);const k=negs.length&&Math.random()<0.7?pick(negs):pick(non);
-  const v=k*k+b*k+c;
-  const miss={};
-  const w1=-k*k+b*k+c;if(w1!==v)miss[String(w1)]=par(k)+"² は <b>"+(k*k)+"</b>（マイナスどうしの積はプラス）。";
-  const w2=k*k-b*k+c;if(w2!==v&&w2!==w1)miss[String(w2)]=X+" の項の符号に注意。"+N(b)+" × "+par(k)+" = "+N(b*k)+"。";
-  const gm={};[-r1,-r2].forEach(n=>{if(n!==r1&&n!==r2)gm[String(n)]="符号が逆。"+X+" = "+N(n)+" を代入すると左辺は "+N(n*n+b*n+c)+"（0にならない）。";});
-  return fill({q:"2次方程式 "+M_(P2(1,b,c)+" = 0")+" について答えなさい。",
-    tpl:[X+" = "+N(k)+" を代入すると　左辺 = {0}","−3〜3 の整数のうち、解は　"+X+" = {1}、"+X+" = {2}"],
-    blanks:[B(v,miss),B(r1,gm,"r"),B(r2,gm,"r")],
-    e:"代入して<b>左辺が 0 になる値</b>が解。負の数を代入するときはかっこをつけて計算する。",
-    sol:[M_(par(k)+"² "+(b>=0?"+ ":"− ")+Math.abs(b)+" × "+par(k)+(c>=0?" + "+c:" − "+(-c))+" = "+N(v))+(v===0?"（解）":"（0でないので解ではない）"),
-      M_(X+" = "+N(r1))+"、"+M_(X+" = "+N(r2))+" を代入すると、どちらも左辺が 0 になる。","<b>答 "+M_(X+" = "+N(r1)+"、"+X+" = "+N(r2))+"</b>"]});
+  const [r1,r2]=roots81(),b=-(r1+r2),c=r1*r2;
+  const r=pick([r1,r2]);
+  let k;do{k=rnz(-6,6);}while(k===r1||k===r2);
+  const mk=v=>{const m={};const w1=-v*v+b*v+c;if(w1!==v*v+b*v+c)m[String(w1)]=par(v)+"² は <b>"+(v*v)+"</b>（2乗は必ず 0 以上。マイナスどうしの積はプラス）。";
+    const w2=v*v-b*v+c;if(w2!==v*v+b*v+c&&w2!==w1)m[String(w2)]=X+" の項の符号に注意。"+N(b)+" × "+par(v)+" = "+N(b*v)+"。";return m;};
+  const lines=shuffle([r,k]);
+  const tpl=lines.map((v,i)=>X+" = "+N(v)+" を代入すると　左辺 = {"+i+"}");
+  const bl=lines.map(v=>B(v*v+b*v+c,mk(v)));
+  return fill({q:"2次方程式 "+M_(P2(1,b,c)+" = 0")+" に、次の値を代入して左辺の値を求めなさい。左辺が 0 になる方が、この方程式の解です。",
+    tpl,blanks:bl,
+    e:"代入して<b>左辺が 0 になる値</b>が解。負の数を代入するときは<b>かっこ</b>をつけて計算する。",
+    sol:lines.map(v=>M_(X+" = "+N(v)+"：　"+sub81(b,c,v))+(v===r?" ← <b>0 なので解</b>":" ← 0 でないので解ではない")).concat(["<b>"+M_(X+" = "+N(r))+" が解</b>（もう1つの解は "+M_(X+" = "+N(r===r1?r2:r1))+"）"])});
 }
 function g81_90(){
   const [r1,r2]=roots3(),b=-(r1+r2),c=r1*r2;
-  const non=shuffle([-3,-2,-1,0,1,2,3].filter(v=>v!==r1&&v!==r2));
+  const non=shuffle([-r1,-r2,r1+1,r2-1,0,r1-1,r2+1].filter((v,i,a)=>a.indexOf(v)===i&&v!==r1&&v!==r2));
   const val=v=>v*v+b*v+c;
   const eq=P2(1,b,c)+" = 0";
   return parts({q:"2次方程式 "+M_(eq)+" について、<b>正しい</b>説明の部品を【すべて】選びなさい。",
@@ -705,7 +712,7 @@ function g82_70(){
   const off=bl.length;
   const r2=tplRoots(R,off,null);
   tpl.push(M_(r2.t));
-  return fill({q:"2次方程式 "+M_(eq)+" を解きなさい。（分数は 5/4 のように入力）",tpl,blanks:bl.concat(r2.b),
+  return fill({q:"2次方程式 "+M_(eq)+" を解きなさい。",tpl,blanks:bl.concat(r2.b),
     e:"① "+M_(X+"² = k")+" の形にする → ② "+M_(X+" = ±"+sqH("k"))+" → ③ √の中を簡単に、分母に√を残さない。",sol:sol82(a,c,R)});
 }
 function g82_90(){
@@ -820,7 +827,7 @@ function g84_70(){
   const nm={};nm[String(q)]="右辺にも "+h*h+" を加える。"+N(q)+" + "+h*h+" = "+n+"。";if(form===1)nm[String(-q+h*h)]="定数項を移項すると符号が変わる。";
   tpl.push(M_("("+X+" + {1})² = {2}"));bl.push(B(h,hm),B(n,nm));
   const r=tplRoots(R,3,null);tpl.push(M_(r.t));
-  return fill({q:"2次方程式 "+M_(eq)+" を、"+M_("("+X+" + ▲)² = ●")+" の形に変形して解きなさい。（▲が負なら −3 のように入力）",tpl,blanks:bl.concat(r.b),
+  return fill({q:"2次方程式 "+M_(eq)+" を、"+M_("("+X+" + ▲)² = ●")+" の形に変形して解きなさい。",tpl,blanks:bl.concat(r.b),
     e:"両辺に<b>"+X+" の係数の半分の2乗</b>を加える："+M_(P2(1,p,0)+" + "+par(h)+"² = "+xm(h)+"²")+"。",sol:sol84(h,p,n,q,form,R)});
 }
 function g84_90(){
@@ -880,7 +887,7 @@ function gF70(pk){
   const r=tplRoots(R,4,(j,v)=>{if(R.t==="irr"&&j===0){const o={};o[String(b)]="分子は <b>−b</b>。";return o;}if(R.t==="irr"&&j===bl.length){return null;}return null;});
   if(R.t==="irr"&&R.Q!==1){const qb=r.b[r.b.length-1];qb.miss=Object.assign({},qb.miss||{});qb.miss[String(a)]="分母は <b>2a</b>。";}
   tpl.push(M_(r.t));
-  return fill({q:"2次方程式 "+M_(P2(a,b,c)+" = 0")+" を解の公式で解きなさい。（負の数は −3、分数は 1/2 のように入力）",tpl,blanks:bl.concat(r.b),
+  return fill({q:"2次方程式 "+M_(P2(a,b,c)+" = 0")+" を解の公式で解きなさい。",tpl,blanks:bl.concat(r.b),
     e:"① a, b, c を符号ごと読む → ② b² − 4ac を先に計算 → ③ 公式に入れて、√の簡約・約分。",sol:solFormula(a,b,c)});
 }
 function gF90(pk){
@@ -948,7 +955,7 @@ function g93_70(){
   const rm={};R.v.forEach(f=>{const n=Fr(-f.n,f.d);if(!R.v.some(g=>g.n===n.n&&g.d===n.d))rm[String(fv(n))]="符号が逆。かっこの中を 0 にする値を考える。";});
   if(P.ty==="f3")rm[String(-P.q)]=P.p+" で<b>わり忘れ</b>。";
   const r=tplRoots(R,bl.length,()=>rm);tpl.push(M_(r.t));
-  return fill({q:"2次方程式 "+M_(P.eq)+" を因数分解を利用して解きなさい。（分数は 5/2 のように入力）",tpl,blanks:bl.concat(r.b),
+  return fill({q:"2次方程式 "+M_(P.eq)+" を因数分解を利用して解きなさい。",tpl,blanks:bl.concat(r.b),
     e:"左辺を因数分解 → <b>A = 0 または B = 0</b>。かっこの中の数と解は符号が逆になる。",sol:P.sol});
 }
 function g93_90(){
@@ -1029,7 +1036,7 @@ function g94_70(){
   }
   const rm={};if(P.ty==="d6"){[P.note.al,P.note.be].forEach(v=>{if(!R.v||!R.v.some(f=>fv(f)===v))rm[String(v)]="A を "+X+" にもどす（"+X+" = A − "+par(P.note.k)+"）。";});}
   const r=tplRoots(R,bl.length,()=>rm);tpl.push(M_(r.t));
-  return fill({q:"2次方程式 "+M_(P.eq)+" を解きなさい。（負の数は −3 のように入力。係数が 0 なら 0）",tpl,blanks:bl.concat(r.b),
+  return fill({q:"2次方程式 "+M_(P.eq)+" を解きなさい。（係数が 0 なら 0 を入れる）",tpl,blanks:bl.concat(r.b),
     e:"展開・移項して（2次式）＝0 → 因数分解 or 解の公式。"+(P.ty==="d6"?"同じかたまりは <b>A とおく</b>とラク。":""),sol:sol94(P)});
 }
 function g94_90(){
@@ -1192,7 +1199,7 @@ function wq70(W){
   const r=tplRoots(W.R,2,null);tpl.push("解は　"+M_(r.t));bl.push(...r.b);
   if(W.ansNum!==null){const am={};W.rejVals&&W.rejVals.forEach(v=>{am[String(v)]="その解は問題に適さない。"+W.rej;});
     tpl.push(W.ansLbl+"　{"+bl.length+"} "+(W.unit||""));bl.push(B(W.ansNum,am));}
-  return fill({q:W.q+"<br><small>（"+W.def+"として方程式をつくる。負の数は −3 のように入力）</small>",sh:W.sh,tpl,blanks:bl,
+  return fill({q:W.q+"<br><small>（"+W.def+"として方程式をつくる）</small>",sh:W.sh,tpl,blanks:bl,
     e:"文章題は<b>「文字を決める → 立式 → 解く → 吟味」</b>の4ステップ。",sol:wSol(W)});
 }
 function wq90(W){
@@ -1501,7 +1508,7 @@ const COURSE_INFO={
 const NQ=10;const LS="niji3-best-";
 let S=null,curCourse=null;
 function el(id){return document.getElementById(id);}
-function show(id){el(id).classList.remove("hidden");}
+function show(id){el(id).classList.remove("hidden");if(typeof syncHomeBtn==="function"&&el("home"))syncHomeBtn();}
 function hide(id){el(id).classList.add("hidden");}
 
 function buildQs(units){
@@ -1590,21 +1597,43 @@ function renderParts(q){
 /* ---- 穴うめ ---- */
 let lastInp=null;
 function tplHTML(q,fn){return q.tpl.map(line=>'<div class="tpl-line">'+line.replace(/\{(\d+)\}/g,(m,i)=>fn(+i))+'</div>').join("");}
+function finHTML(q,i){
+  if(!q.blanks[i].fr)return '<input class="fin" id="fin'+i+'" inputmode="numeric" autocomplete="off">';
+  return '<span class="fin-fr"><button type="button" class="sgn" id="sgn'+i+'" title="マイナスをつける／はずす"></button>'+
+    '<span class="fr"><span class="fn"><input class="fin" id="finN'+i+'" inputmode="numeric" autocomplete="off" placeholder="分子"></span>'+
+    '<span class="fd"><input class="fin" id="finD'+i+'" inputmode="numeric" autocomplete="off" placeholder="分母"></span></span></span>';
+}
 function renderFill(q){
   const box=el("choices");box.innerHTML="";
   const w=document.createElement("div");w.className="tpl-box";
-  w.innerHTML=tplHTML(q,i=>'<input class="fin" id="fin'+i+'" autocomplete="off" autocapitalize="off" spellcheck="false">');
+  w.innerHTML=tplHTML(q,i=>finHTML(q,i));
   box.appendChild(w);
   const kp=document.createElement("div");kp.className="keypad";
-  kp.innerHTML='<span class="kp-l">入力補助：</span><button type="button" data-k="−">−（マイナス）</button><button type="button" data-k="/">／（分数）</button><button type="button" data-k="BS">⌫</button>';
+  kp.innerHTML='<span class="kp-l">入力補助：</span><button type="button" data-k="−">−（マイナス）</button><button type="button" data-k="BS">⌫ 1文字消す</button>';
   box.appendChild(kp);
+  if(q.blanks.some(b=>b.fr)){const n=document.createElement("div");n.className="fr-note";n.innerHTML='💡 分数の□は<b>上に分子・下に分母</b>を入れる（約分した形で）。マイナスのときは分数の左の <b>±</b> ボタンをタップ。';box.appendChild(n);}
   const d=document.createElement("button");d.id="decide-btn";d.textContent="答える！";d.disabled=true;d.onclick=judgeFill;box.appendChild(d);
   const inps=[...w.querySelectorAll("input")];lastInp=inps[0];
   const upd=()=>{d.disabled=inps.some(x=>x.value.trim()==="");};
   inps.forEach((inp,k)=>{inp.addEventListener("focus",()=>{lastInp=inp;});inp.addEventListener("input",upd);
     inp.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();if(k<inps.length-1)inps[k+1].focus();else if(!d.disabled)judgeFill();}});});
+  w.querySelectorAll(".sgn").forEach(sb=>{sb.textContent="±";sb.dataset.neg="0";sb.onclick=()=>{const ng=sb.dataset.neg!=="1";sb.dataset.neg=ng?"1":"0";sb.textContent=ng?"−":"±";sb.classList.toggle("on",ng);};});
   kp.querySelectorAll("button").forEach(b=>{b.addEventListener("mousedown",e=>e.preventDefault());b.onclick=()=>{if(!lastInp||lastInp.disabled)return;
     if(b.dataset.k==="BS")lastInp.value=lastInp.value.slice(0,-1);else lastInp.value+=b.dataset.k;upd();lastInp.focus();};});
+}
+/* 入力値を文字列で取り出す（分数は "−3/4" 形式で内部保存） */
+function readFill(q){return q.blanks.map((b,i)=>{
+  if(!b.fr)return el("fin"+i).value;
+  let n=el("finN"+i).value.trim().replace(/[−ー－‐―]/g,"-"),dd=el("finD"+i).value.trim().replace(/[−ー－‐―]/g,"-");let neg=el("sgn"+i).dataset.neg==="1";
+  if(n.startsWith("-")){neg=!neg;n=n.slice(1);}if(dd.startsWith("-")){neg=!neg;dd=dd.slice(1);}
+  return (neg?"−":"")+n+"/"+dd;});}
+function lockFill(q,res){q.blanks.forEach((b,i)=>{const ids=b.fr?["finN"+i,"finD"+i,"sgn"+i]:["fin"+i];ids.forEach(id=>{const x=el(id);x.disabled=true;x.classList.add(res[i]?"ok":"ng");});});}
+/* ユーザーの答えを普通の分数で表示 */
+function showVal(raw){
+  const s=String(raw||"").replace(/[−ー－‐―]/g,"-").replace(/\s/g,"");
+  const m=s.match(/^(-?)(-?\d*)\/(\d*)$/);
+  if(m){let neg=(m[1]==="-")!==(m[2].startsWith("-"));const n=m[2].replace("-","");return (neg?"−":"")+fracH(n||"?",m[3]||"?");}
+  return s?s.replace(/-/g,"−"):"（空）";
 }
 function parseVal(s){
   s=String(s).replace(/[０-９]/g,c=>String.fromCharCode(c.charCodeAt(0)-0xFEE0)).replace(/[−ー－‐―]/g,"-").replace(/[＋]/g,"+").replace(/[／÷]/g,"/").replace(/[．。]/g,".").replace(/\s/g,"");
@@ -1612,26 +1641,29 @@ function parseVal(s){
   const v=m[2]?parseFloat(m[1])/parseFloat(m[2]):parseFloat(m[1]);return isFinite(v)?v:NaN;
 }
 const EQ=(a,b)=>Math.abs(a-b)<1e-9;
+function reducedOK(raw){const m=String(raw).replace(/[−ー－‐―]/g,"-").match(/(\d+)\/(\d+)/);if(!m)return true;return gcd(+m[1],+m[2])===1&&+m[2]>1;}
 function gradeFill(q,vals){
   const res=q.blanks.map(()=>false);const used={};
   q.blanks.forEach((b,i)=>{
     const v=parseVal(vals[i]);if(isNaN(v))return;
+    if(b.fr&&!reducedOK(vals[i]))return;
     if(b.g){const cand=q.blanks.map((c,j)=>j).filter(j=>q.blanks[j].g===b.g&&!(used[j])&&EQ(q.blanks[j].a,v));
       if(cand.length){used[cand[0]]=true;res[i]=true;}}
     else res[i]=EQ(b.a,v);
   });
   return res;
 }
-function missWhy(b,raw){const v=parseVal(raw);if(isNaN(v))return "数として読めない入力。分数は 5/4、負の数は −3 のように。";
+function missWhy(b,raw){const v=parseVal(raw);if(isNaN(v))return "数として読めない入力。数字を入れよう（分数は分子と分母の両方）。";
+  if(b.fr&&EQ(v,b.a)&&!reducedOK(raw))return "値は合っているけど、<b>約分</b>できる。分数はいちばん簡単な形で答える。";
   if(!b.miss)return "";const k=Object.keys(b.miss).find(k=>EQ(parseFloat(k),v));return k?b.miss[k]:"";}
 function judgeFill(){
-  const q=S.qs[S.idx];const inps=q.blanks.map((b,i)=>el("fin"+i));const vals=inps.map(x=>x.value);
+  const q=S.qs[S.idx];const vals=readFill(q);
   const res=gradeFill(q,vals);const allOk=res.every(x=>x);
-  inps.forEach((x,i)=>{x.disabled=true;x.classList.add(res[i]?"ok":"ng");});
+  lockFill(q,res);
   el("decide-btn").remove();const kp=el("choices").querySelector(".keypad");if(kp)kp.remove();
   const lines=[];
   q.blanks.forEach((b,i)=>{if(res[i])return;const why=missWhy(b,vals[i]);
-    lines.push('<div class="fb-item">❌ 第'+(i+1)+'の□：あなた <b>'+(vals[i]||"（空）")+'</b>'+(why?'<div class="rv-why">🤔 '+why+'</div>':'')+'</div>');});
+    lines.push('<div class="fb-item">❌ 第'+(i+1)+'の□：あなた <b>'+showVal(vals[i])+'</b>'+(why?'<div class="rv-why">🤔 '+why+'</div>':'')+'</div>');});
   const right='<div class="fb-item"><b>⭕ 正しくは</b>'+tplHTML(q,i=>'<span class="ansfill">'+q.blanks[i].h+'</span>')+'</div>';
   finish(allOk,{vals},(allOk?"":lines.join("")+right)+'<div style="margin-top:6px;">💡 '+q.e+'</div>');
 }
@@ -1720,7 +1752,7 @@ function reviewCard(w){
     if(others.length)h+='<details class="rv-more"><summary>🔍 ほかの選択肢もチェック（ミス対策）</summary>'+others.map(i=>'<div class="rv-line"><b>'+q.c[i]+'</b><div class="rv-why">→ '+q.w[i]+'</div></div>').join("")+'</details>';
   }else if(q.kind==="fill"){
     const res=gradeFill(q,w.vals);
-    h+='<div class="rv-sec rv-you"><div class="rv-lbl">❌ あなたの答え</div>'+tplHTML(q,i=>'<span class="ansfill '+(res[i]?"ok":"ng")+'">'+(w.vals[i]||"空")+'</span>')+
+    h+='<div class="rv-sec rv-you"><div class="rv-lbl">❌ あなたの答え</div>'+tplHTML(q,i=>'<span class="ansfill '+(res[i]?"ok":"ng")+'">'+showVal(w.vals[i])+'</span>')+
       q.blanks.map((b,i)=>{if(res[i])return "";const why=missWhy(b,w.vals[i]);return why?'<div class="rv-why">🤔 第'+(i+1)+'の□：'+why+'</div>':"";}).join("")+'</div>';
     h+='<div class="rv-sec rv-right"><div class="rv-lbl">⭕ 正しくは</div>'+tplHTML(q,i=>'<span class="ansfill">'+q.blanks[i].h+'</span>')+'<div class="rv-why">💡 '+q.e+'</div></div>';
   }else if(q.kind==="order"){
@@ -1736,6 +1768,12 @@ function reviewCard(w){
   if(q.kind!=="parts")h+=solBox(q);
   return h+'</div>';
 }
+function goHomeBtn(){
+  const inQuiz=!el("quiz").classList.contains("hidden")&&S&&S.idx<NQ;
+  if(inQuiz&&!confirm("途中でやめてホームにもどりますか？\n（この回のスコアは記録されません）"))return;
+  goHome();
+}
+function syncHomeBtn(){const atHome=!el("home").classList.contains("hidden")||!el("welcome").classList.contains("hidden");document.body.classList.toggle("inapp",!atHome);}
 function closeWelcome(){hide("welcome");show("home");window.scrollTo(0,0);}
 function openWelcome(){hide("home");show("welcome");window.scrollTo(0,0);}
 function retry(){startSet(S.set);}
