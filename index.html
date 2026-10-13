@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2次方程式マスター（中3）| KATE APP</title>
+<style>
+:root{
+  --blue:#2fbdea;
+  --green:#8dc63f;
+  --yellow:#f7d000;
+  --ink:#1c3a47;
+  --bg:#f2fafd;
+  --red:#e05d5d;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+header{background:linear-gradient(135deg,var(--blue),#1ea5d4);color:#fff;padding:14px 16px;box-shadow:0 2px 8px rgba(31,120,150,.25);}
+.brand{display:flex;align-items:center;gap:10px;max-width:760px;margin:0 auto;}
+.logo{background:#fff;color:var(--blue);font-weight:800;border-radius:10px;padding:4px 10px;font-size:15px;letter-spacing:.5px;white-space:nowrap;}
+.logo span{color:var(--green);}
+.brand-txt{flex:1;min-width:0;}
+.brand-txt h1{font-size:17px;line-height:1.3;}
+.brand-txt p{font-size:11px;opacity:.92;}
+main{max-width:760px;margin:0 auto;padding:16px 14px 50px;}
+.hidden{display:none !important;}
+
+/* ===== home ===== */
+.lead{background:#fff;border-radius:14px;padding:14px 16px;margin-bottom:14px;box-shadow:0 2px 6px rgba(31,120,150,.08);font-size:13.5px;}
+.lead b{color:#1491bd;}
+.course-grid{display:grid;grid-template-columns:1fr;gap:12px;}
+.course{background:#fff;border-radius:16px;padding:16px;border:2px solid transparent;cursor:pointer;box-shadow:0 2px 8px rgba(31,120,150,.10);transition:transform .12s;position:relative;overflow:hidden;text-align:left;width:100%;font:inherit;color:inherit;}
+.course:active{transform:scale(.98);}
+.course .pt{font-size:30px;font-weight:900;line-height:1;}
+.course .pt small{font-size:14px;font-weight:700;}
+.course h2{font-size:16px;margin:6px 0 4px;}
+.course p{font-size:12.5px;color:#48616d;}
+.course .best{display:inline-block;margin-top:8px;font-size:11.5px;background:#eef7fb;border-radius:999px;padding:2px 10px;color:#1491bd;font-weight:700;}
+.course .stripe{position:absolute;top:0;left:0;width:8px;height:100%;}
+.c50 .stripe{background:var(--green);} .c50 .pt{color:var(--green);}
+.c70 .stripe{background:var(--blue);} .c70 .pt{color:var(--blue);}
+.c90 .stripe{background:var(--yellow);} .c90 .pt{color:#d4a900;}
+.badge{display:inline-block;font-size:11px;font-weight:800;color:#fff;border-radius:999px;padding:2px 10px;margin-bottom:2px;}
+.c50 .badge{background:var(--green);} .c70 .badge{background:var(--blue);} .c90 .badge{background:#d4a900;}
+.range-note{margin-top:14px;font-size:11.5px;color:#64808c;text-align:center;}
+
+/* ===== welcome（0ページ目） ===== */
+.wl-card{background:#fff;border-radius:16px;padding:18px 16px;box-shadow:0 2px 8px rgba(31,120,150,.10);border-top:6px solid var(--blue);}
+.wl-card h2{font-size:17px;color:#1491bd;margin-bottom:8px;}
+.wl-card>p{font-size:14px;margin-bottom:10px;}
+.wl-alert{background:#fdeeee;border:2px solid var(--red);border-radius:12px;padding:11px 13px;font-size:13.5px;line-height:1.75;margin-bottom:14px;}
+.wl-alert b{color:#c0392b;}
+.wl-steps{display:flex;flex-direction:column;gap:2px;margin-bottom:14px;}
+.wl-step{border-radius:12px;padding:10px 13px;border-left:7px solid;}
+.wl-step.s50{background:#f3f9ea;border-color:var(--green);}
+.wl-step.s70{background:#eaf7fc;border-color:var(--blue);}
+.wl-step.s90{background:#fffbe8;border-color:var(--yellow);}
+.wl-pt{font-size:12px;font-weight:900;}
+.s50 .wl-pt{color:#5f9a1d;} .s70 .wl-pt{color:#1491bd;} .s90 .wl-pt{color:#9c7c00;}
+.wl-h{font-size:15px;font-weight:900;margin:1px 0 2px;}
+.wl-d{font-size:12.5px;color:#48616d;}
+.wl-arrow{text-align:center;color:#8aa0ab;font-weight:900;font-size:13px;line-height:1.2;}
+.wl-note{background:#eef7fb;border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.75;margin-bottom:14px;}
+.wl-lab{background:linear-gradient(135deg,#f3eefe,#eaf7fd);border:2px solid #c9b8f2;border-radius:12px;padding:11px 13px;margin-bottom:14px;font-size:12.5px;line-height:1.7;}
+.wl-lab .wl-pt{color:#6a4fc4;}
+.wl-lab ul{list-style:none;margin:5px 0;}
+.wl-lab li{background:#fff;border-radius:8px;padding:4px 9px;margin:3px 0;font-size:12.5px;}
+.wl-lab li b{color:#6a4fc4;}
+.wl-lab .when{background:#fffbe8;border-radius:8px;padding:6px 9px;margin-top:5px;}
+.wl-link{display:block;margin:14px auto 0;background:none;border:none;color:#1491bd;font:inherit;font-size:13px;font-weight:800;text-decoration:underline;cursor:pointer;}
+
+/* ===== set picker ===== */
+.set-grid{display:grid;gap:10px;}
+.setbtn{background:#fff;border:2px solid #d7e9f1;border-radius:14px;padding:13px 15px;text-align:left;cursor:pointer;font:inherit;color:inherit;box-shadow:0 2px 6px rgba(31,120,150,.08);display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;}
+.setbtn:active{transform:scale(.98);}
+.setbtn .sn{font-size:14.5px;font-weight:800;}
+.setbtn .sd{font-size:11.5px;color:#64808c;margin-top:2px;}
+.setbtn .sb{font-size:11.5px;font-weight:800;color:#1491bd;background:#eef7fb;border-radius:999px;padding:3px 10px;white-space:nowrap;flex-shrink:0;}
+.blank{color:var(--red);font-weight:900;}
+
+/* ===== quiz ===== */
+#quiz-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;flex-wrap:wrap;}
+#course-tag{font-size:12px;font-weight:800;color:#fff;border-radius:999px;padding:3px 12px;}
+#course-tag.c50{background:var(--green);} #course-tag.c70{background:var(--blue);} #course-tag.c90{background:#d4a900;}
+#score-box{font-size:13px;font-weight:800;color:#1491bd;background:#fff;border-radius:999px;padding:3px 12px;box-shadow:0 1px 4px rgba(31,120,150,.12);}
+#dots{display:flex;gap:5px;margin-bottom:12px;}
+.dot{flex:1;height:7px;border-radius:99px;background:#d7e9f1;}
+.dot.done{background:var(--green);}
+.dot.now{background:var(--blue);}
+.dot.miss{background:#f0b4b4;}
+.qcard{background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 8px rgba(31,120,150,.10);}
+#q-num{font-size:12px;font-weight:800;color:#1491bd;margin-bottom:4px;}
+#q-type{display:inline-block;font-size:11px;font-weight:800;background:#fdf3cc;color:#9c7c00;border-radius:6px;padding:1px 8px;margin-left:6px;}
+#shiryo{margin:10px 0;}
+#shiryo .shiryo-box{border:1.5px solid #cfe6f0;border-radius:12px;padding:10px;background:#fbfeff;}
+#shiryo .shiryo-title{font-size:12px;font-weight:800;color:#1491bd;margin-bottom:6px;}
+#shiryo svg{width:100%;height:auto;display:block;}
+#q-text{font-size:15px;font-weight:700;margin:8px 0 12px;white-space:pre-wrap;}
+#q-text .wrong-word{color:var(--red);}
+#choices{display:grid;gap:9px;}
+.choice{width:100%;text-align:left;background:#f4fafd;border:2px solid #d7e9f1;border-radius:12px;padding:11px 13px;font-size:14px;font-family:inherit;color:var(--ink);cursor:pointer;display:flex;gap:9px;align-items:flex-start;transition:background .1s;}
+.choice:active{background:#e5f3f9;}
+.choice .mark{font-weight:900;color:var(--blue);flex-shrink:0;}
+.choice.correct{background:#f0f8e2;border-color:var(--green);}
+.choice.wrongpick{background:#fdeaea;border-color:var(--red);}
+.choice.dim{opacity:.5;}
+.choice:disabled{cursor:default;}
+.choice.sel{background:#dff4fc;border-color:var(--blue);box-shadow:0 0 0 2px rgba(47,189,234,.25);}
+.choice.sel .mark::after{content:" ✔";color:var(--blue);}
+.choice.missed{background:#fffbe8;border-color:var(--yellow);}
+#decide-btn{margin-top:4px;width:100%;background:var(--green);color:#fff;border:none;border-radius:12px;padding:13px;font-size:16px;font-weight:800;font-family:inherit;cursor:pointer;box-shadow:0 3px 0 #74a82c;}
+#decide-btn:disabled{opacity:.45;cursor:default;box-shadow:none;}
+#decide-btn:not(:disabled):active{transform:translateY(2px);box-shadow:none;}
+.verdict.part{color:#e08a00;}
+.fb-title{font-size:12.5px;font-weight:900;color:#1491bd;margin-bottom:6px;}
+.fb-item{background:#fff;border:1.5px solid #d7e9f1;border-radius:10px;padding:8px 11px;font-size:12.5px;margin-bottom:7px;line-height:1.65;}
+.fb-item b{color:#1c5a72;}
+
+/* 90点コース導入画面 */
+.intro-card{background:#fff;border-radius:16px;padding:18px 16px;box-shadow:0 2px 8px rgba(31,120,150,.10);border-top:6px solid var(--yellow);}
+.intro-card h2{font-size:17px;color:#9c7c00;margin-bottom:10px;}
+.intro-card p{font-size:13.5px;margin-bottom:10px;}
+.intro-steps{display:grid;gap:8px;margin:12px 0;}
+.intro-step{background:#fffbe8;border-radius:10px;padding:9px 12px;font-size:13px;display:flex;gap:9px;align-items:flex-start;}
+.intro-step .no{background:#d4a900;color:#fff;font-weight:900;border-radius:999px;min-width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;}
+.intro-note{background:#eef7fb;border-radius:10px;padding:9px 12px;font-size:12.5px;margin-bottom:14px;}
+
+/* feedback */
+#feedback{margin-top:14px;}
+.verdict{font-size:19px;font-weight:900;margin-bottom:6px;}
+.verdict.ok{color:var(--green);}
+.verdict.ng{color:var(--red);}
+.gotpt{font-size:12.5px;font-weight:800;color:#d4a900;margin-bottom:8px;}
+.expl{background:#eef7fb;border-radius:12px;padding:11px 13px;font-size:13.5px;}
+.expl b{color:#1491bd;}
+.model-box{margin-top:10px;background:#fffbe8;border:2px solid var(--yellow);border-radius:12px;padding:11px 13px;}
+.model-box .mb-title{font-size:12px;font-weight:900;color:#9c7c00;margin-bottom:4px;}
+.model-box .mb-text{font-size:14px;font-weight:700;line-height:1.75;}
+.ondoku{margin-top:10px;background:linear-gradient(135deg,#8dc63f,#6fae23);color:#fff;border-radius:12px;padding:10px 13px;font-size:14px;font-weight:800;display:flex;align-items:center;gap:8px;}
+.ondoku .spk{font-size:20px;}
+#next-btn{margin-top:14px;width:100%;background:var(--blue);color:#fff;border:none;border-radius:12px;padding:13px;font-size:16px;font-weight:800;font-family:inherit;cursor:pointer;box-shadow:0 3px 0 #1a97c2;}
+#next-btn:active{transform:translateY(2px);box-shadow:none;}
+
+/* ===== result ===== */
+.result-card{background:#fff;border-radius:16px;padding:22px 14px;text-align:center;box-shadow:0 2px 8px rgba(31,120,150,.10);}
+#rank{font-size:56px;font-weight:900;line-height:1;}
+#rank.S{color:#d4a900;} #rank.A{color:var(--blue);} #rank.B{color:var(--green);} #rank.C{color:#8aa0ab;}
+#stars{font-size:26px;letter-spacing:4px;margin:6px 0;}
+#result-msg{font-size:15px;font-weight:800;margin-bottom:4px;}
+#result-score{font-size:13.5px;color:#48616d;margin-bottom:6px;}
+#result-best{font-size:12px;color:#1491bd;font-weight:700;margin-bottom:12px;}
+.review{margin-top:16px;text-align:left;}
+.review h3{font-size:13.5px;color:#1491bd;margin-bottom:8px;}
+.review-item{background:#fdf6f6;border-left:4px solid var(--red);border-radius:8px;padding:9px 11px;font-size:12.5px;margin-bottom:8px;}
+.review-item b{color:#2a7a12;}
+.rv-lead{font-size:12px;color:#64808c;margin-bottom:10px;}
+.rv-perfect{background:#f0f8e2;border-radius:12px;padding:12px;font-size:13.5px;font-weight:800;color:#4d7d17;text-align:center;}
+.rv-card{background:#fff;border:1.5px solid #d7e9f1;border-left:5px solid var(--red);border-radius:12px;padding:12px 13px;margin-bottom:14px;box-shadow:0 1px 5px rgba(31,120,150,.08);}
+.rv-no{display:inline-block;font-size:11px;font-weight:900;color:#fff;background:var(--red);border-radius:999px;padding:1px 10px;margin-bottom:5px;}
+.rv-q{font-size:13.5px;font-weight:700;margin-bottom:8px;line-height:1.6;}
+.rv-sec{border-radius:10px;padding:9px 11px;margin-top:8px;font-size:13px;line-height:1.7;}
+.rv-lbl{font-size:11.5px;font-weight:900;margin-bottom:3px;}
+.rv-line{margin:3px 0;}
+.rv-why{font-size:12.5px;color:#34505c;margin-top:2px;}
+.rv-why b{color:#1c5a72;}
+.rv-you{background:#fdeeee;} .rv-you .rv-lbl{color:#c0392b;}
+.rv-right{background:#f0f8e2;} .rv-right .rv-lbl{color:#4d7d17;}
+.rv-good{background:#f0f8e2;} .rv-good .rv-lbl{color:#4d7d17;}
+.rv-miss{background:#fffbe8;} .rv-miss .rv-lbl{color:#9c7c00;}
+.rv-model{background:#fffbe8;border:1.5px solid var(--yellow);} .rv-model .rv-lbl{color:#9c7c00;}
+.rv-mtext{font-weight:700;}
+.rv-sh,.rv-more{margin-top:8px;font-size:12.5px;}
+.rv-sh summary,.rv-more summary{cursor:pointer;font-weight:800;color:#1491bd;padding:4px 0;}
+.rv-more{background:#f4fafd;border-radius:10px;padding:6px 11px;}
+.btn-row{display:grid;gap:10px;margin-top:18px;}
+.btn{width:100%;border:none;border-radius:12px;padding:13px;font-size:15px;font-weight:800;font-family:inherit;cursor:pointer;}
+.btn.retry{background:var(--green);color:#fff;box-shadow:0 3px 0 #74a82c;}
+.btn.home{background:#e4eef3;color:var(--ink);box-shadow:0 3px 0 #c3d4dc;}
+.btn:active{transform:translateY(2px);box-shadow:none;}
+
+/* shiryo tables & flow */
+.shiryo-table{width:100%;border-collapse:collapse;font-size:12.5px;}
+.shiryo-table th,.shiryo-table td{border:1px solid #cfe6f0;padding:5px 7px;}
+.shiryo-table th{background:#e5f3f9;color:#1c5a72;font-size:12px;}
+.shiryo-table .blank{color:var(--red);font-weight:900;}
+.flow{display:flex;flex-direction:column;align-items:stretch;gap:2px;}
+.flow .fbox{background:#e5f3f9;border:1.5px solid #9ed3ea;border-radius:10px;padding:7px 10px;font-size:12.5px;text-align:center;font-weight:700;}
+.flow .fbox .blank{color:var(--red);font-weight:900;}
+.flow .farrow{text-align:center;color:#1491bd;font-weight:900;font-size:14px;line-height:1.1;}
+footer{text-align:center;font-size:11.5px;color:#7a95a1;padding:18px 10px 26px;}
+footer b{color:var(--blue);}
+@media(min-width:560px){
+  .course-grid{grid-template-columns:repeat(3,1fr);}
+  .brand-txt h1{font-size:19px;}
+}
+#choices>*{min-width:0;}
+.num-row{display:flex;align-items:center;gap:8px;background:#f4fafd;border:2px solid #d7e9f1;border-radius:12px;padding:8px 12px;}
+.num-row .nl{font-weight:900;color:var(--red);min-width:22px;font-size:16px;}
+.num-row input{flex:1;min-width:0;font-size:20px;font-weight:800;padding:8px 10px;border:2px solid #9ed3ea;border-radius:10px;font-family:inherit;text-align:right;color:var(--ink);background:#fff;}
+.num-row .nu{font-weight:800;font-size:15px;}
+.num-row.nok{background:#f0f8e2;border-color:var(--green);}
+.num-row.nng{background:#fdeaea;border-color:var(--red);}
+.ord-item .ono{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#fff;border:2px dashed #9ed3ea;font-weight:900;color:#fff;}
+.ord-item.sel .ono{background:var(--blue);border:2px solid var(--blue);}
+.ord-item.sel .mark::after{content:"";}
+.ord-btns{text-align:right;}
+.ord-reset{background:#fff;border:1.5px solid #9ed3ea;color:#1491bd;border-radius:999px;padding:5px 14px;font-weight:700;font-family:inherit;font-size:13px;cursor:pointer;}
+/* ===== lab ===== */
+.lab-entry{display:flex;align-items:center;gap:12px;width:100%;margin-top:12px;background:linear-gradient(135deg,#f3eefe,#eaf7fd);border:2px solid #c9b8f2;border-radius:16px;padding:14px 16px;text-align:left;font:inherit;color:var(--ink);cursor:pointer;box-shadow:0 2px 8px rgba(110,80,200,.12);}
+.lab-entry .le-ic{font-size:30px;}
+.lab-entry b{font-size:16px;color:#6a4fc4;}
+.lab-entry small{font-size:11.5px;color:#48616d;}
+.lab-entry .le-go{margin-left:auto;color:#6a4fc4;font-weight:900;}
+.lab-head{font-size:17px;font-weight:900;color:#6a4fc4;margin:2px 0 10px;}
+.lab-card{background:#fff;border-radius:16px;padding:14px;box-shadow:0 2px 8px rgba(31,120,150,.10);}
+.lab-lbl{font-size:12px;font-weight:800;color:#1491bd;margin:10px 0 4px;}
+.lab-note{font-size:12px;color:#48616d;margin:6px 0;}
+.seg{display:flex;flex-wrap:wrap;gap:6px;}
+.segbtn{flex:1;min-width:64px;background:#f4fafd;border:2px solid #d7e9f1;border-radius:999px;padding:8px 10px;font:inherit;font-size:13.5px;font-weight:800;color:var(--ink);cursor:pointer;}
+.segbtn.on{background:var(--blue);border-color:var(--blue);color:#fff;}
+.segbtn:disabled{opacity:.4;cursor:default;}
+.lab-pun{border-collapse:separate;border-spacing:5px;margin:8px auto;}
+.lab-pun th{background:#e5f3f9;border-radius:8px;padding:6px 14px;font-size:15px;color:#1c5a72;}
+.lab-pun th.corner{font-size:10px;padding:4px;background:none;color:#7a95a1;}
+.lab-pun td{border-radius:10px;padding:7px 18px;text-align:center;font-size:17px;}
+.lab-pun td small{font-size:11px;font-weight:700;}
+.lab-pun td.dom{background:#e3f0ff;border:2px solid #9cc4f0;}
+.lab-pun td.rec{background:#fdeaea;border:2px solid #f1a9a9;}
+.lab-res{background:#eef7fb;border-radius:12px;padding:10px 12px;font-size:13.5px;margin:8px 0;line-height:1.7;}
+.lab-res small{font-size:11.5px;color:#48616d;}
+.lab-bar{display:flex;height:22px;border-radius:999px;overflow:hidden;margin:6px 0 2px;background:#e1edf2;}
+.lab-bar span{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;white-space:nowrap;overflow:hidden;transition:width .3s;}
+.b-dom{background:#2f84d0;} .b-rec{background:#e05d5d;}
+.lab-tip{background:#fffbe8;border:1.5px solid #f2dc7a;border-radius:12px;padding:9px 12px;font-size:12.5px;margin-top:8px;line-height:1.7;}
+.lab-svg{width:100%;height:auto;display:block;margin:6px 0;}
+.lab-ctrl{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;}
+.lab-steps{display:flex;justify-content:center;gap:6px;}
+.lab-steps span{width:26px;height:26px;border-radius:50%;background:#e1edf2;color:#7a95a1;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;}
+.lab-steps span.done{background:#cfe8b0;color:#4f7a1e;} .lab-steps span.on{background:var(--blue);color:#fff;}
+.lab-big{font-size:22px;font-weight:900;text-align:center;color:#1c3a47;}
+.lab-big small{font-size:13px;color:#5b7884;margin-left:4px;}
+.lab-range{width:100%;margin:8px 0;accent-color:#6a4fc4;height:28px;}
+.ms-flow{margin:10px 0;}
+.ms-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:4px 0;}
+.ms-arr{font-size:11px;font-weight:800;color:#1491bd;text-align:center;line-height:1.2;}
+.ms-arr.big{font-size:13px;margin:2px 0;}
+.lab-cell{text-align:center;}
+.lab-cell .lc-in{width:84px;height:84px;border:2.5px solid #9ed3ea;border-radius:50%;background:#fff;display:flex;align-items:flex-end;justify-content:center;padding-bottom:22px;margin:0 auto;}
+.lab-cell.small .lc-in{width:66px;height:66px;padding-bottom:16px;}
+.lab-cell.kid .lc-in{border-color:#8dc63f;background:#f7fcef;}
+.lab-cell .lc-l{font-size:11px;font-weight:800;margin-top:2px;}
+.cbar{display:inline-block;width:8px;border-radius:4px;margin:0 2px;}
+i{font-family:"Times New Roman",Georgia,serif;font-style:italic;font-size:1.1em;padding:0 1px;}
+.mx{white-space:normal;}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 2px;line-height:1.25;}
+.fr>.fn{border-bottom:1.5px solid currentColor;padding:0 3px 1px;}
+.fr>.fd{padding:1px 3px 0;}
+.sq{white-space:nowrap;}
+.rad{border-top:1.5px solid currentColor;padding:0 2px;margin-left:1px;display:inline-block;line-height:1.3;}
+#q-unit{margin-bottom:4px;}
+.unit-chip{display:inline-block;font-size:11.5px;font-weight:800;color:#1c5a72;background:#e5f3f9;border-radius:6px;padding:1px 8px;}
+.ch-head{display:flex;align-items:center;gap:8px;margin:16px 0 8px;}
+.ch-head .ch-no{background:#1c5a72;color:#fff;font-weight:900;border-radius:8px;padding:2px 10px;font-size:15px;}
+.ch-head .ch-no.all{background:#d4a900;}
+.ch-head .ch-nm{font-weight:900;font-size:15.5px;color:#1c3a47;}
+.ch-head .ch-pg{font-size:11px;color:#7a95a1;margin-left:auto;}
+#set-list .setbtn{margin-bottom:8px;}
+.setbtn.mix{background:#fffbe8;border-color:#f2dc7a;}
+.tpl-box{background:#f4fafd;border:2px solid #d7e9f1;border-radius:12px;padding:10px 12px;}
+.tpl-line{font-size:16px;margin:8px 0;line-height:2.3;}
+.fin{width:62px;font-size:17px;font-weight:800;padding:4px 6px;border:2px solid #9ed3ea;border-radius:8px;text-align:center;font-family:inherit;color:var(--ink);background:#fff;vertical-align:middle;margin:2px;}
+.fr .fin{width:54px;}
+.fin.ok{background:#f0f8e2;border-color:var(--green);} .fin.ng{background:#fdeaea;border-color:var(--red);}
+.keypad{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:8px 0 4px;}
+.keypad .kp-l{font-size:11.5px;color:#64808c;}
+.keypad button{background:#fff;border:1.5px solid #9ed3ea;color:#1491bd;border-radius:999px;padding:5px 12px;font-weight:800;font-family:inherit;font-size:13px;cursor:pointer;}
+.ansfill{display:inline-block;min-width:26px;text-align:center;font-weight:900;color:#2a7a12;background:#f0f8e2;border-radius:6px;padding:0 5px;margin:0 2px;}
+.ansfill.ng{color:#c0392b;background:#fdeeee;}
+.fb-item .tpl-line,.rv-sec .tpl-line{font-size:14px;margin:4px 0;line-height:2.1;}
+.sol-box{margin-top:10px;background:#fbfeff;border:2px solid #9ed3ea;border-radius:12px;padding:10px 13px;}
+.sol-title{font-size:12.5px;font-weight:900;color:#1491bd;margin-bottom:4px;}
+.sol-line{font-size:14px;line-height:2.1;border-bottom:1px dashed #e1edf2;padding:1px 0;}
+.sol-line:last-child{border-bottom:none;}
+.choice{font-size:15px;align-items:center;}
+.lab-chk{display:flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;margin:8px 0;}
+.lab-chk input{width:20px;height:20px;}
+#fres .sol-line{font-size:13.5px;}
+#shiryo .shiryo-box{text-align:center;}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="logo">KATE <span>APP</span></div>
+    <div class="brand-txt">
+      <h1>2次方程式マスター（中3）</h1>
+      <p>3章 2次方程式｜8 解き方・9 解の公式と因数分解・10 利用｜つまずきを、プラスに。</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ========== WELCOME ========== -->
+  <section id="welcome">
+    <div class="wl-card">
+      <h2>👋 はじめに ― このアプリの使い方</h2>
+      <p>このアプリには <b>50点・70点・90点</b> の3つのコースがあるよ。どのコースも、プリントの<b>単元名（ポイント）ごと</b>に選んで練習できる。</p>
+      <div class="wl-alert">
+        ⚠️ <b>いきなり90点コースからはやらないで！</b><br>
+        90点コースは「解き方の説明」を組み立てる問題。50点で<b>答えを出す力</b>、70点で<b>途中式を書く力</b>をつけてから挑戦しよう。<br>
+        <b>50点 → 70点 → 90点</b> の順に積み重ねていこう！
+      </div>
+      <div class="wl-steps">
+        <div class="wl-step s50"><div class="wl-pt">STEP 1｜50点コース</div><div class="wl-h">答えを選ぶ（4択）</div>
+          <div class="wl-d">基本の計算問題。まちがいの選択肢は「よくあるミス」でできているから、<b>なぜ違うのか</b>を読むと同じミスをしなくなる。</div></div>
+        <div class="wl-arrow">▼</div>
+        <div class="wl-step s70"><div class="wl-pt">STEP 2｜70点コース</div><div class="wl-h">途中式を自分で書く（数値入力）</div>
+          <div class="wl-d">プリントの「解き方」と同じ流れの<b>途中式の □ をうめる</b>。手順の<b>並べ替え</b>もあるよ。答えだけでなく、式を書ける力をつける。</div></div>
+        <div class="wl-arrow">▼</div>
+        <div class="wl-step s90"><div class="wl-pt">STEP 3｜90点コース</div><div class="wl-h">解き方を説明できる（部品をすべて選ぶ）</div>
+          <div class="wl-d">正しい説明の部品を全部選ぶと、<b>解き方の模範解答</b>が完成。文章題では<b>立式と吟味（解が問題に合うか）</b>まで説明する。</div></div>
+      </div>
+      <div class="wl-lab">
+        <div class="wl-pt">🧪 おまけ｜インタラクティブ教材</div>
+        <div class="wl-h">さわって・動かして、しくみを理解する</div>
+        ホーム画面の<b>紫色のボタン</b>から開けるよ。点数はつかないので何度でもOK！
+        <ul><li><b>平方完成タイル</b>：「半分の2乗を加える」と正方形が完成する理由が目で見える</li>
+        <li><b>解の公式マシン</b>：a, b, c を動かすと、代入の式と解が一瞬で出る</li>
+        <li><b>点の移動と面積</b>：点を動かすと面積が変わり、解が2つある理由が分かる</li>
+        <li><b>道の幅シミュレーター</b>：道を太くすると畑がどう変わるか、吟味の意味が分かる</li></ul>
+        <div class="when">💡 <b>こんなときに使おう</b>：①公式の意味がピンとこないとき ②文章題で「解が2つ」「片方は不適」が分からないとき</div>
+      </div>
+      <div class="wl-note">📱 1プレイは10問。数字は毎回変わるので<b>何度でも新しい問題</b>で練習できる。<br>📒 結果画面で、まちがえた問題の<b>解き方（途中式）</b>を全部見られる。<b>ここを読むのが一番伸びる！</b></div>
+      <button class="btn retry" onclick="closeWelcome()">わかった！コースを選ぶ ▶</button>
+    </div>
+  </section>
+
+  <!-- ========== HOME ========== -->
+  <section id="home" class="hidden">
+    <div class="lead">目指す点数のコースを選ぼう！そのあと<b>プリントの単元名</b>から練習したい単元を選べるよ。1プレイ10問。</div>
+    <div class="course-grid">
+      <button class="course c50" id="btn-c50" onclick="startCourse('50')"><div class="stripe"></div><span class="badge">まずはここから</span>
+        <div class="pt">50<small>点コース</small></div><h2>答えを選ぶ</h2><p>基本の計算を4択で。まちがい選択肢は「よくあるミス」。</p><span class="best">14単元＋章ミックス</span></button>
+      <button class="course c70" id="btn-c70" onclick="startCourse('70')"><div class="stripe"></div><span class="badge">差がつく</span>
+        <div class="pt">70<small>点コース</small></div><h2>途中式を書く</h2><p>プリントの解き方どおりに □ をうめる数値入力＋並べ替え。</p><span class="best">14単元＋章ミックス</span></button>
+      <button class="course c90" id="btn-c90" onclick="startCourse('90')"><div class="stripe"></div><span class="badge">説明できたら本物</span>
+        <div class="pt">90<small>点コース</small></div><h2>解き方を説明する</h2><p>正しい部品をすべて選ぶと模範解答が完成。立式・吟味まで。</p><span class="best">14単元＋章ミックス</span></button>
+    </div>
+    <button class="lab-entry" onclick="openLab()"><span class="le-ic">🧪</span>
+      <span><b>インタラクティブ教材</b><br><small>平方完成タイル・解の公式マシン・点の移動・道の幅｜動かして理解！</small></span><span class="le-go">▶</span></button>
+    <button class="wl-link" onclick="openWelcome()">📖 はじめに（使い方）をもう一度読む</button>
+    <p class="range-note">出題範囲：中3数学 3章「2次方程式」（8 2次方程式とその解き方／9 2次方程式の解き方／10 2次方程式の利用）<br>※問題はすべて KATE APP がその場で作るオリジナル問題です。</p>
+  </section>
+
+  <section id="lab" class="hidden"><div id="lab-body"></div></section>
+
+  <!-- ========== SET PICKER（単元選択） ========== -->
+  <section id="sets" class="hidden">
+    <div class="lead" id="sets-lead"></div>
+    <div id="set-list"></div>
+    <div class="btn-row"><button class="btn home" onclick="goHome()">コース選択にもどる</button></div>
+  </section>
+
+  <section id="intro90" class="hidden">
+    <div class="intro-card">
+      <h2>🏆 90点コースの遊び方（ここ大事！）</h2>
+      <p>数学の「説明」は、<b>どんな手順で・なぜそうするか</b>を順に言えること。このコースでは、その部品を見分ける練習をするよ。</p>
+      <div class="intro-steps">
+        <div class="intro-step"><span class="no">1</span><span>方程式や文章題が出る</span></div>
+        <div class="intro-step"><span class="no">2</span><span>解き方の説明として<b>正しい部品をすべて</b>選ぶ（いくつ正解があるかはヒミツ！）</span></div>
+        <div class="intro-step"><span class="no">3</span><span>正しい部品をつなげると、<b>解き方の模範解答</b>が完成する</span></div>
+        <div class="intro-step"><span class="no">4</span><span>模範解答をノートに<b>写して</b>、自分でも書けるようにする</span></div>
+      </div>
+      <div class="intro-note">💡 まちがいの部品は「よくある勘違い」。解説を<b>全部読む</b>とミスが直る。採点は部分点あり：正しい部品 +7pt／誤りを選ぶと −4pt／完答でボーナス！</div>
+      <button class="btn retry" onclick="ackIntro90()">了解しました！単元を選ぶ</button>
+    </div>
+  </section>
+
+  <!-- ========== QUIZ ========== -->
+  <section id="quiz" class="hidden">
+    <div id="quiz-top"><span id="course-tag"></span><span id="score-box">スコア 0</span></div>
+    <div id="dots"></div>
+    <div class="qcard">
+      <div id="q-num"></div>
+      <div id="q-unit"></div>
+      <div id="shiryo"></div>
+      <div id="q-text"></div>
+      <div id="choices"></div>
+      <div id="feedback" class="hidden">
+        <div id="verdict" class="verdict"></div>
+        <div id="gotpt" class="gotpt"></div>
+        <div id="expl" class="expl"></div>
+        <div id="model-wrap"></div>
+        <button id="next-btn" onclick="nextQ()">次へ ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RESULT ========== -->
+  <section id="result" class="hidden">
+    <div class="result-card">
+      <div id="rank"></div><div id="stars"></div>
+      <div id="result-msg"></div><div id="result-score"></div><div id="result-best"></div>
+      <div id="review" class="review"></div>
+      <div class="btn-row">
+        <button class="btn retry" id="retry-btn" onclick="retry()">同じ単元をもう一度（新しい問題）</button>
+        <button class="btn home" onclick="backToSets()">単元選択にもどる</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><b>KATE APP</b>（カテアプ）｜つまずきを、プラスに。<br>2次方程式マスター（中3）｜問題はすべてオリジナル（自動生成）です</footer>
+
+<script>
+"use strict";
+/* ================================================================
+   2次方程式マスター（中3）  数式コア＋単元別ジェネレーター
+   ================================================================ */
+/* ---------- 基本 ---------- */
+function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){const t=a%b;a=b;b=t;}return a;}
+function ri(lo,hi){return lo+Math.floor(Math.random()*(hi-lo+1));}
+function rnz(lo,hi){let v=0;while(v===0)v=ri(lo,hi);return v;}
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+function shuffle(arr){const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function isSq(n){if(n<0)return false;const r=Math.round(Math.sqrt(n));return r*r===n;}
+function sqSimp(n){let k=1,m=n;for(let f=2;f*f<=m;f++){while(m%(f*f)===0){m/=f*f;k*=f;}}return [k,m];}
+
+/* ---------- 表示 ---------- */
+const X='<i>x</i>';
+let VX=X;
+function N(n){n=n+0;return n<0?"−"+(-n):String(n);}
+function par(n){return n<0?"("+N(n)+")":String(n);}
+function Fr(n,d){if(d<0){n=-n;d=-d;}const g=gcd(n,d)||1;return {n:n/g+0,d:d/g};}
+function fv(f){return f.n/f.d;}
+function fracH(t,b){return '<span class="fr"><span class="fn">'+t+'</span><span class="fd">'+b+'</span></span>';}
+function frH(f){if(f.d===1)return N(f.n);return (f.n<0?"−":"")+fracH(Math.abs(f.n),f.d);}
+function sqH(m){return '<span class="sq">√<span class="rad">'+m+'</span></span>';}
+function ksq(K,M){return (K===1?"":K)+sqH(M);}
+function M_(s){return '<span class="mx">'+s+'</span>';}
+function term(c,v,first){
+  if(c===0)return "";
+  const a=Math.abs(c);
+  let s=c<0?(first?"−":" − "):(first?"":" + ");
+  return s+((v&&a===1)?v:(a+v));
+}
+function poly(cs){let o="",f=true;for(const [c,v] of cs){if(c===0)continue;o+=term(c,v,f);f=false;}return o||"0";}
+function P2(a,b,c,v){v=v||X;return poly([[a,v+"²"],[b,v],[c,""]]);}
+function L1(b,c){return poly([[b,X],[c,""]]);}
+function xm(m){return "("+X+(m>0?" + "+m:" − "+(-m))+")";}           /* (x+m) */
+function fac(r){return r===0?X:xm(-r);}                                /* 解 r に対応する因数 (x−r) */
+
+/* ---------- 解の表現 ---------- */
+function ratR(arr){const vs=[];arr.forEach(f=>{if(!vs.some(g=>g.n===f.n&&g.d===f.d))vs.push(f);});vs.sort((p,q)=>fv(p)-fv(q));return {t:"rat",v:vs};}
+function irrR(P,K,M,Q){const g=gcd(gcd(P,K),Q)||1;P/=g;K=Math.abs(K/g);Q/=g;if(Q<0){P=-P;Q=-Q;}return {t:"irr",P:P+0,K,M,Q};}
+/* (B ± √Dv)/den */
+function rootsFrom(B,Dv,den){
+  if(Dv<0||den===0)return null;
+  if(isSq(Dv)){const s=Math.round(Math.sqrt(Dv));return ratR([Fr(B-s,den),Fr(B+s,den)]);}
+  const [k,m]=sqSimp(Dv);return irrR(B,k,m,den);
+}
+function solveQ(a,b,c){return rootsFrom(-b,b*b-4*a*c,2*a);}
+function irrH(R,sign){
+  const s=ksq(R.K,R.M);
+  if(R.Q===1)return R.P===0?(sign==="+"?"":sign)+s:N(R.P)+" "+sign+" "+s;
+  if(R.P===0)return (sign==="+"?"":sign)+fracH(s,R.Q);
+  return fracH(N(R.P)+" "+sign+" "+s,R.Q);
+}
+function rH(R){
+  if(R.t==="irr")return VX+" = "+irrH(R,"±");
+  const v=R.v;
+  if(v.length===2&&v[0].n===-v[1].n&&v[0].d===v[1].d)return VX+" = ±"+frH(v[1]);
+  return v.map(f=>VX+" = "+frH(f)).join("、");
+}
+function rKey(R){return R.t==="irr"?"i:"+[R.P,R.K,R.M,R.Q].join(","):"r:"+R.v.map(f=>f.n+"/"+f.d).join(",");}
+function rAns(R){return {h:M_(rH(R)),k:rKey(R)};}
+function rVals(R){return R.t==="irr"?[(R.P-R.K*Math.sqrt(R.M))/R.Q,(R.P+R.K*Math.sqrt(R.M))/R.Q]:R.v.map(fv);}
+/* 片方だけ（＋側）の解 */
+function onePos(R){
+  if(R.t==="irr")return {h:M_(VX+" = "+irrH(R,"+")),k:"one:"+rKey(R)};
+  const f=R.v[R.v.length-1];return {h:M_(VX+" = "+frH(f)),k:"one:"+f.n+"/"+f.d};
+}
+function ansOf(R,w){if(!R)return null;const a=rAns(R);a.w=w;return a;}
+/* 有理数での代入値 a x^2 + b x + c */
+function evalQ(a,b,c,f){return Fr(a*f.n*f.n+b*f.n*f.d+c*f.d*f.d,f.d*f.d);}
+/* ずらした誤答（計算ミス） */
+function perturb(R){
+  if(R.t==="irr"){
+    const t=ri(0,2);let P=R.P,K=R.K,M=R.M;
+    if(t===0)P=R.P+pick([-2,-1,1,2]);else if(t===1){P=-R.P;if(P===R.P)P=R.P+1;}else{M=R.M+pick([-1,1,2]);if(M<2||isSq(M))M=R.M+3;if(isSq(M))M++;}
+    const [k2,m2]=sqSimp(M);return irrR(P,K*k2,m2,R.Q);
+  }
+  const v=R.v.map(f=>Fr(f.n+pick([-2,-1,1,2])*f.d,f.d));
+  if(R.v.length===2&&Math.random()<0.5)v[0]=R.v[0];
+  return ratR(v);
+}
+const W_CALC="計算ミスの答え。下の<b>「解き方」</b>で途中式を1行ずつ確認しよう。";
+function wSub(a,b,c,R){
+  if(R&&R.t==="rat"){for(const f of R.v){const v=evalQ(a,b,c,f);if(v.n!==0)return X+" = "+frH(f)+" を代入すると、左辺は "+frH(v)+" になり 0 にならない（解ではない）。";}}
+  return W_CALC;
+}
+
+/* ---------- 問題ビルダー ---------- */
+function mc(o){
+  const seen=new Set([o.ans.k,"H:"+o.ans.h]);const ds=[];
+  const okd=d=>d&&!seen.has(d.k)&&!seen.has("H:"+d.h);
+  for(const d of o.ds){if(!okd(d))continue;seen.add(d.k);seen.add("H:"+d.h);ds.push(d);if(ds.length===3)break;}
+  let g=0;while(ds.length<3&&o.fill&&g++<300){const d=o.fill();if(okd(d)){seen.add(d.k);seen.add("H:"+d.h);ds.push(d);}}
+  if(ds.length<3)throw new Error("mc fill");
+  const all=shuffle([{h:o.ans.h,w:null,ok:true}].concat(ds.map(d=>({h:d.h,w:d.w||W_CALC}))));
+  return {kind:"mc",q:o.q,sh:o.sh||"",eq:o.eq||"",c:all.map(x=>x.h),a:all.findIndex(x=>x.ok),w:all.map(x=>x.w),e:o.e,sol:o.sol||[]};
+}
+function rootFill(R,a,b,c){return ()=>{const P=perturb(R);if(!P)return null;const x=rAns(P);x.w=(a!==undefined)?wSub(a,b,c,P):W_CALC;return x;};}
+/* 穴うめ：tpl 内の {i} を入力欄に。blanks[i]={a:数値, h:表示, g:グループ, miss:{値:解説}} */
+function fill(o){
+  const gs={};o.blanks.forEach(b=>{if(b.g)(gs[b.g]=gs[b.g]||[]).push(b.a);});
+  o.blanks.forEach(b=>{if(!b.miss)return;const ans=b.g?gs[b.g]:[b.a];const m={};
+    Object.keys(b.miss).forEach(k=>{if(!ans.some(v=>Math.abs(v-parseFloat(k))<1e-9))m[k]=b.miss[k];});b.miss=m;});
+  return {kind:"fill",q:o.q,sh:o.sh||"",eq:o.eq||"",tpl:o.tpl,blanks:o.blanks,e:o.e,sol:o.sol||[]};}
+function B(v,miss,g){const val=typeof v==="object"?fv(v):v;return {a:val,h:typeof v==="object"?frH(v):N(v),g:g||null,miss:miss||null};}
+function parts(o){
+  const sk=t=>t[0].replace(/<[^>]+>/g,"");const seenT=new Set();
+  const uniq=a=>a.filter(t=>{const k=sk(t);if(seenT.has(k))return false;seenT.add(k);return true;});
+  const ok=shuffle(uniq(o.ok)),ng=shuffle(uniq(o.ng));
+  if(ok.length<1||ng.length<1||ok.length+ng.length<4)throw new Error("parts few");
+  let nOk=Math.min(ok.length,ri(2,3));const nNg=Math.min(ng.length,5-nOk);if(nOk+nNg<4)nOk=Math.min(ok.length,5-nNg);
+  const c=shuffle(ok.slice(0,nOk).map(t=>({t:t[0],ok:true,fb:t[1]})).concat(ng.slice(0,nNg).map(t=>({t:t[0],ok:false,fb:t[1]}))));
+  return {kind:"parts",q:o.q,sh:o.sh||"",eq:o.eq||"",c,m:o.m,e:o.e||"",sol:o.sol||[]};
+}
+function order(o){return {kind:"order",q:o.q,sh:o.sh||"",eq:o.eq||"",items:o.items,e:o.e,w:o.w,sol:o.sol||[]};}
+
+/* 答えの入力テンプレート */
+function tplRoots(R,i0,missFn){
+  const bl=[];let t;
+  const mk=(v,g)=>{const b=B(v,missFn?missFn(bl.length,v):null,g);bl.push(b);return "{"+(i0+bl.length-1)+"}";};
+  if(R.t==="irr"){
+    const pre=R.P!==0?mk(R.P)+" ± ":"";
+    const kk=R.K!==1?mk(R.K):"";
+    const rad='<span class="sq">√<span class="rad">'+mk(R.M)+'</span></span>';
+    const mIdx=bl.length-1;
+    bl[mIdx].miss=Object.assign({},bl[mIdx].miss||{});
+    if(R.K>1)bl[mIdx].miss[String(R.M*R.K*R.K)]="√の中は<b>できるだけ小さい自然数</b>にする（"+sqH(R.M*R.K*R.K)+" = "+ksq(R.K,R.M)+"）。";
+    if(R.Q===1)t=VX+" = "+(R.P!==0?pre+kk+rad:"±"+kk+rad);
+    else t=VX+" = "+(R.P!==0?fracH(pre+kk+rad,mk(R.Q)):"±"+fracH(kk+rad,mk(R.Q)));
+  }else{
+    const v=R.v;
+    if(v.length===2&&v[0].n===-v[1].n&&v[0].d===v[1].d)t=VX+" = ±"+mk(v[1]);
+    else if(v.length===2)t=VX+" = "+mk(v[0],"r")+"、"+VX+" = "+mk(v[1],"r");
+    else t=VX+" = "+mk(v[0]);
+  }
+  return {t,b:bl};
+}
+/* 解き方：解の公式 */
+function solFormula(a,b,c){
+  const D=b*b-4*a*c,R=solveQ(a,b,c),L=[];
+  L.push("解の公式に a = "+N(a)+"、b = "+N(b)+"、c = "+N(c)+" を代入すると、");
+  L.push(X+" = "+fracH(N(-b)+" ± "+sqH(par(b)+"² − 4 × "+par(a)+" × "+par(c)),"2 × "+par(a)));
+  L.push("　= "+fracH(N(-b)+" ± "+sqH(D),2*a));
+  if(isSq(D)){
+    const s=Math.sqrt(D);
+    if(s!==0)L.push("　= "+fracH(N(-b)+" ± "+s,2*a));
+    if(s===0)L.push(X+" = "+frH(Fr(-b,2*a))+"（解は1つ）");
+    else L.push(X+" = "+fracH(N(-b)+" + "+s,2*a)+" = "+frH(Fr(-b+s,2*a))+"、"+X+" = "+fracH(N(-b)+" − "+s,2*a)+" = "+frH(Fr(-b-s,2*a)));
+  }else{
+    const [k,m]=sqSimp(D);
+    if(k>1)L.push("　= "+fracH(N(-b)+" ± "+ksq(k,m),2*a)+"　（"+sqH(D)+" = "+ksq(k,m)+"）");
+    if(R.Q!==2*a)L.push("　= "+irrH(R,"±")+"　（分子・分母を "+(2*a/R.Q)+" でわって約分）");
+  }
+  L.push('<b>答 '+rH(R)+'</b>');
+  return L;
+}
+function solFactor2(r1,r2){ /* x^2 -(r1+r2)x + r1r2 = 0 */
+  const L=[];
+  if(r1===r2){L.push(fac(r1)+"² = 0");L.push(X+" = "+N(r1));L.push("<b>答 "+X+" = "+N(r1)+"</b>（解は1つ）");return L;}
+  L.push(fac(r1)+fac(r2)+" = 0");
+  L.push(X+(r1===0?"":(r1>0?" − "+r1:" + "+(-r1)))+" = 0　または　"+X+(r2===0?"":(r2>0?" − "+r2:" + "+(-r2)))+" = 0");
+  const R=ratR([Fr(r1,1),Fr(r2,1)]);
+  L.push("<b>答 "+rH(R)+"</b>");
+  return L;
+}
+
+/* =================== 8 2次方程式とその解き方 =================== */
+/* ---- 8-1 2次方程式とその解 ---- */
+function g81_which(){
+  const corr=pick([
+    ()=>{const b=rnz(-6,6),c=rnz(-9,9);return {h:P2(1,b,c)+" = 0",s:P2(1,b,c)+" = 0　→ もともと（2次式）= 0 の形"};},
+    ()=>{const p=ri(1,6),q=ri(2,9);return {h:xm(-p)+"² = "+q,s:"展開して整理すると "+P2(1,-2*p,p*p-q)+" = 0"};},
+    ()=>{const b=ri(1,5),d=ri(-5,-1),c=rnz(-8,8);return {h:P2(1,b,c)+" = "+L1(d,0),s:"移項して整理すると "+P2(1,b-d,c)+" = 0"};},
+    ()=>{const p=ri(1,7),q=ri(2,12);return {h:X+xm(p)+" = "+q,s:"展開して整理すると "+P2(1,p,-q)+" = 0"};},
+  ])();
+  const dTypes=shuffle([
+    ()=>{let b=rnz(-6,6),d=rnz(-6,6);if(b===d)d=b+2;const c=rnz(-9,9);return {h:M_(P2(1,b,c)+" = "+P2(1,d,0)),k:"d1",w:"両辺の "+X+"² が打ち消し合い、"+L1(b-d,c)+" = 0 という<b>1次方程式</b>になる。"};},
+    ()=>{const p=ri(1,6);let q=ri(1,6);if(p===q)q++;const r=rnz(-9,9);return {h:M_(xm(p)+xm(-q)+" = "+P2(1,0,r)),k:"d2",w:"左辺を展開すると "+P2(1,p-q,-p*q)+"。右辺の "+X+"² と打ち消し合い、"+L1(p-q,-p*q-r)+" = 0 という<b>1次方程式</b>になる。"};},
+    ()=>{const p=ri(1,7),q=rnz(-9,9);return {h:M_(X+xm(-p)+" = "+P2(1,0,q)),k:"d3",w:"展開すると "+P2(1,-p,0)+" = "+P2(1,0,q)+"。"+X+"² が消えて "+L1(-p,-q)+" = 0 という<b>1次方程式</b>になる。"};},
+    ()=>{let b=ri(2,7),d=ri(-5,1);const c=rnz(-9,9);return {h:M_(L1(b,c)+" = "+L1(d,0)),k:"d4",w:"もともと "+X+"² の項がない<b>1次方程式</b>。"};},
+  ]).slice(0,3).map(f=>f());
+  return mc({q:"次の方程式のうち、<b>2次方程式</b>であるものはどれ？",ans:{h:M_(corr.h),k:"ok"},ds:dTypes,
+    e:"移項して整理したとき<b>（2次式）＝0</b>の形になるものが2次方程式。<b>両辺の "+X+"² が打ち消し合わないか</b>を必ず確かめる。",
+    sol:[M_(corr.h),"　"+M_(corr.s)+"　→ "+X+"² が残るので<b>2次方程式</b>","ほかの選択肢は、整理すると "+X+"² が消えて1次方程式になる。"]});
+}
+function roots3(){let r1=ri(-3,3),r2=ri(-3,3);while(r2===r1)r2=ri(-3,3);return [Math.min(r1,r2),Math.max(r1,r2)];}
+function setH(arr){return arr.slice().sort((a,b)=>a-b).map(N).join(" と ");}
+function g81_sols(){
+  const [r1,r2]=roots3(),b=-(r1+r2),c=r1*r2;
+  const non=[-3,-2,-1,0,1,2,3].filter(v=>v!==r1&&v!==r2);
+  const val=v=>v*v+b*v+c;
+  const k=pick(non);
+  const neg=[-r1,-r2].sort((a,b)=>a-b);
+  const negBad=neg.find(v=>v!==r1&&v!==r2);
+  const ds=[
+    negBad!==undefined?{h:setH(neg),k:"s:"+neg,w:"符号が逆。"+X+" = "+N(negBad)+" を代入すると、左辺は "+N(val(negBad))+" になり 0 にならない。"}:null,
+    {h:setH([r1]),k:"s:"+r1,w:X+" = "+N(r2)+" を代入しても左辺は 0 になる。<b>解はすべて</b>答える。"},
+    {h:setH([r2]),k:"s:"+r2,w:X+" = "+N(r1)+" を代入しても左辺は 0 になる。<b>解はすべて</b>答える。"},
+    {h:setH([r1,k]),k:"s:"+[r1,k].sort((a,b)=>a-b),w:X+" = "+N(k)+" を代入すると、左辺は "+N(val(k))+" になり 0 にならない。"},
+    {h:setH([k,r2]),k:"s:"+[k,r2].sort((a,b)=>a-b),w:X+" = "+N(k)+" を代入すると、左辺は "+N(val(k))+" になり 0 にならない。"},
+  ];
+  const eq=P2(1,b,c)+" = 0";
+  return mc({q:"−3、−2、−1、0、1、2、3 のうち、2次方程式 "+M_(eq)+" の解になっているものを<b>すべて</b>選んだのはどれ？",
+    ans:{h:setH([r1,r2]),k:"s:"+[r1,r2]},ds:shuffle(ds),
+    e:"1つずつ代入して、<b>左辺が 0 になるもの</b>が解。2次方程式の解は2つあることが多いので、最後まで調べる。",
+    sol:[-3,-2,-1,0,1,2,3].map(v=>M_(X+" = "+N(v)+"： "+par(v)+"²"+(b?(b>0?" + ":" − ")+(Math.abs(b)===1?"":Math.abs(b))+(Math.abs(b)===1?par(v):" × "+par(v)):"")+(c?(c>0?" + "+c:" − "+(-c)):"")+" = "+N(val(v)))+(val(v)===0?" ← <b>解</b>":"")).concat(["<b>答 "+setH([r1,r2])+"</b>"])});
+}
+function g81_50(){return Math.random()<0.5?g81_which():g81_sols();}
+function g81_70(){
+  const [r1,r2]=roots3(),b=-(r1+r2),c=r1*r2;
+  const non=[-3,-2,-1,1,2,3].filter(v=>v!==r1&&v!==r2);
+  const negs=non.filter(v=>v<0);const k=negs.length&&Math.random()<0.7?pick(negs):pick(non);
+  const v=k*k+b*k+c;
+  const miss={};
+  const w1=-k*k+b*k+c;if(w1!==v)miss[String(w1)]=par(k)+"² は <b>"+(k*k)+"</b>（マイナスどうしの積はプラス）。";
+  const w2=k*k-b*k+c;if(w2!==v&&w2!==w1)miss[String(w2)]=X+" の項の符号に注意。"+N(b)+" × "+par(k)+" = "+N(b*k)+"。";
+  const gm={};[-r1,-r2].forEach(n=>{if(n!==r1&&n!==r2)gm[String(n)]="符号が逆。"+X+" = "+N(n)+" を代入すると左辺は "+N(n*n+b*n+c)+"（0にならない）。";});
+  return fill({q:"2次方程式 "+M_(P2(1,b,c)+" = 0")+" について答えなさい。",
+    tpl:[X+" = "+N(k)+" を代入すると　左辺 = {0}","−3〜3 の整数のうち、解は　"+X+" = {1}、"+X+" = {2}"],
+    blanks:[B(v,miss),B(r1,gm,"r"),B(r2,gm,"r")],
+    e:"代入して<b>左辺が 0 になる値</b>が解。負の数を代入するときはかっこをつけて計算する。",
+    sol:[M_(par(k)+"² "+(b>=0?"+ ":"− ")+Math.abs(b)+" × "+par(k)+(c>=0?" + "+c:" − "+(-c))+" = "+N(v))+(v===0?"（解）":"（0でないので解ではない）"),
+      M_(X+" = "+N(r1))+"、"+M_(X+" = "+N(r2))+" を代入すると、どちらも左辺が 0 になる。","<b>答 "+M_(X+" = "+N(r1)+"、"+X+" = "+N(r2))+"</b>"]});
+}
+function g81_90(){
+  const [r1,r2]=roots3(),b=-(r1+r2),c=r1*r2;
+  const non=shuffle([-3,-2,-1,0,1,2,3].filter(v=>v!==r1&&v!==r2));
+  const val=v=>v*v+b*v+c;
+  const eq=P2(1,b,c)+" = 0";
+  return parts({q:"2次方程式 "+M_(eq)+" について、<b>正しい</b>説明の部品を【すべて】選びなさい。",
+    ok:[[X+" = "+N(r1)+" を代入すると左辺が 0 になるので、"+X+" = "+N(r1)+" は解である","代入して<b>左辺＝0</b>になれば解。"],
+        [X+" = "+N(r2)+" を代入すると左辺が 0 になるので、"+X+" = "+N(r2)+" も解である","解は1つとは限らない。2つめも代入して確かめる。"],
+        [X+" = "+N(non[0])+" を代入すると左辺は "+N(val(non[0]))+" になるので、"+X+" = "+N(non[0])+" は解ではない","0 にならないので解ではない。正しい判断。"],
+        ["解をすべて求めることを、その2次方程式を「解く」という","教科書の定義どおり。"]],
+    ng:[[X+" = "+N(non[1])+" も解である",X+" = "+N(non[1])+" を代入すると左辺は <b>"+N(val(non[1]))+"</b>。0 にならないので解ではない。"],
+        ["解を1つ見つけたら、それで「解いた」ことになる","「解く」とは解を<b>すべて</b>求めること。この方程式は解が2つある。"],
+        ["2次方程式の解は、いつも正の数である","この方程式でも "+(Math.min(r1,r2)<0?"負の数 "+N(Math.min(r1,r2))+" が解":"0 や負の数が解になる方程式はたくさんある")+"。解の符号は決まっていない。"],
+        [M_(eq)+" は "+X+"² の係数が 1 なので 1次方程式である","係数が 1 でも "+X+"² の項がある。（2次式）= 0 の形なので<b>2次方程式</b>。"]],
+    m:"2次方程式を成り立たせる文字の値を解という。"+M_(X+" = "+N(r1))+"、"+M_(X+" = "+N(r2))+" はどちらも代入すると左辺が 0 になるので解であり、それ以外の値（例："+M_(X+" = "+N(non[0]))+"）は 0 にならないので解ではない。解をすべて求めることを「解く」という。",
+    sol:[]});
+}
+
+/* ---- 8-2 ax²+c=0 ---- */
+function pick82(){
+  for(let t=0;t<200;t++){
+    const ty=pick(["sq","kq","irr","irrS","frac","fracS","rat"]);let a,c;
+    if(ty==="sq"){a=1;c=ri(2,9)**2;}
+    else if(ty==="kq"){a=ri(2,6);c=a*ri(2,5)**2;}
+    else if(ty==="irr"){a=1;c=pick([2,3,5,6,7,10,11,13,14,15]);}
+    else if(ty==="irrS"){a=pick([1,2,3]);c=a*pick([8,12,18,20,24,27,28,32,45,48,50]);}
+    else if(ty==="frac"){a=pick([4,9,16,25,36]);c=pick([2,3,5,7]);}
+    else if(ty==="fracS"){const d=pick([4,9,16]),k=pick([2,3]);a=d*k;c=pick([3,5,7])*k;}
+    else {a=pick([2,3,5,7]);c=pick([1,2,3,4,6]);if(c%a===0)continue;}
+    const R=solveQ(a,0,-c);if(R.t==="irr"&&(R.M>60||R.Q>12))continue;
+    return {a,c,R};
+  }
+}
+function eq82(a,c){return Math.random()<0.5?P2(a,0,-c)+" = 0":P2(a,0,0)+" = "+c;}
+function sol82(a,c,R){
+  const f=Fr(c,a),L=[];
+  if(a!==1)L.push(M_(P2(a,0,0)+" = "+c)+"　→ 両辺を "+a+" でわる");
+  L.push(M_(X+"² = "+frH(f)));
+  L.push(M_(X+" = ±"+sqH(frH(f))));
+  if(R.t==="rat")L.push(M_(X+" = ±"+frH(R.v[1])));
+  else{
+    if(f.d!==1&&!isSq(f.d))L.push("　分母に√を残さない："+M_(sqH(frH(f))+" = "+fracH(sqH(f.n)+" × "+sqH(f.d),sqH(f.d)+" × "+sqH(f.d))+" = "+fracH(sqH(f.n*f.d),f.d)));
+    L.push(M_(X+" = "+irrH(R,"±")));
+  }
+  L.push("<b>答 "+M_(rH(R))+"</b>");return L;
+}
+function g82_50(){
+  const {a,c,R}=pick82();const eq=eq82(a,c);
+  const ds=[
+    Object.assign(onePos(R),{w:"<b>−の解を忘れている</b>。2乗して "+frH(Fr(c,a))+" になる数は、正と負の2つある。"}),
+    {h:M_(X+" = ±"+frH(Fr(c,a))),k:"ns",w:M_(X+"² = "+frH(Fr(c,a)))+" のあと<b>√をつけ忘れ</b>。"+X+" は "+frH(Fr(c,a))+" の<b>平方根</b>。"},
+    a>1?ansOf(solveQ(1,0,-c*a),"両辺を "+a+" で<b>わる</b>ところを、"+a+" を<b>かけて</b>しまっている。"):null,
+    a>1?(()=>{const [k,m]=sqSimp(c);const r=m===1?ratR([Fr(-k,a),Fr(k,a)]):irrR(0,k,m,a);return ansOf(r,"分母の "+a+" にも√が必要。"+sqH(frH(Fr(c,a)))+" の分母は "+sqH(a)+"（"+a+" ではない）。");})():null,
+    R.t==="irr"&&R.K>1?ansOf(irrR(0,R.K+1,R.M,R.Q),"√の外に出す数のまちがい。"+sqH(R.K*R.K*R.M)+" = "+ksq(R.K,R.M)+"（"+R.K+"² = "+R.K*R.K+" が中から出る）。"):null,
+  ];
+  return mc({q:"2次方程式 "+M_(eq)+" を解きなさい。",ans:rAns(R),ds:shuffle(ds),fill:rootFill(R),
+    e:M_(X+"² = k")+" の形にすると、"+X+" は k の平方根 → "+M_(X+" = ±"+sqH("k"))+"。<b>±を忘れない</b>。",sol:sol82(a,c,R)});
+}
+function g82_70(){
+  const {a,c,R}=pick82();const eq=eq82(a,c);const f=Fr(c,a);
+  const m0={};m0[String(c*a)]="両辺を "+a+" で<b>わる</b>。かけてはいけない。";m0[String(-c/a)]="移項すると符号が変わる。"+M_(X+"²")+" は正の数になる。";
+  const r=tplRoots(R,1,null);
+  const tpl=[];const bl=[];
+  if(a!==1||eq.indexOf("= 0")>0){tpl.push(M_(X+"² = {0}"));bl.push(B(f,m0));}
+  else {tpl.push(M_(X+"² = "+c));}
+  const off=bl.length;
+  const r2=tplRoots(R,off,null);
+  tpl.push(M_(r2.t));
+  return fill({q:"2次方程式 "+M_(eq)+" を解きなさい。（分数は 5/4 のように入力）",tpl,blanks:bl.concat(r2.b),
+    e:"① "+M_(X+"² = k")+" の形にする → ② "+M_(X+" = ±"+sqH("k"))+" → ③ √の中を簡単に、分母に√を残さない。",sol:sol82(a,c,R)});
+}
+function g82_90(){
+  const {a,c,R}=pick82();const eq=eq82(a,c);const f=Fr(c,a);
+  const ok=[["x² = "+frH(f)+" の形に変形する",(a!==1?"両辺を "+a+" でわる。":"移項するだけ。")+"まず "+M_(X+"² = k")+" の形に。"],
+            [X+" は "+frH(f)+" の平方根だから "+M_(X+" = ±"+sqH(frH(f))),"2乗して "+frH(f)+" になる数＝平方根。<b>正と負の2つ</b>。"],
+            ["答えは "+M_(rH(R)),R.t==="irr"?"√の中を簡単にし、分母に√を残さない形が最終形。":"平方根がきれいな整数（分数）になる。"]];
+  const ng=[["解は "+onePos(R).h+" の1つだけ","負の数も2乗すれば正になるので、<b>−の解</b>もある。"],
+            [M_(X+" = ±"+frH(f))+" になる","√をつけ忘れている。"+X+" は "+frH(f)+" そのものではなく、その<b>平方根</b>。"]];
+  if(a>1)ng.push(["両辺に "+a+" をかけて "+M_(X+"² = "+c*a)+" にする",X+"² の係数 "+a+" を消すには、両辺を "+a+" で<b>わる</b>。"]);
+  if(R.t==="irr"&&R.K>1)ng.push(["答えは "+M_(X+" = "+irrH(irrR(0,R.K+1,R.M,R.Q),"±")),"√の外に出す数がちがう。"+sqH(R.K*R.K*R.M)+" = "+ksq(R.K,R.M)+"。"]);
+  return parts({q:"2次方程式 "+M_(eq)+" の解き方として<b>正しい</b>説明の部品を【すべて】選びなさい。",ok,ng,
+    m:(a!==1?"両辺を "+a+" でわると ":"移項すると ")+M_(X+"² = "+frH(f))+"。"+X+" は "+frH(f)+" の平方根だから "+M_(X+" = ±"+sqH(frH(f)))+"。よって "+M_(rH(R))+"。",sol:sol82(a,c,R)});
+}
+
+/* ---- 8-3 (x+m)²=n ---- */
+function pick83(){
+  const m=rnz(-7,7);const sq=Math.random()<0.45;
+  const n=sq?pick([1,4,9,16,25,36,49]):pick([2,3,5,6,7,10,11,12,13,15,18,20,24,27,28,32,40,48]);
+  return {m,n,R:solveQ(1,2*m,m*m-n),form:Math.random()<0.5?0:1};
+}
+function eq83(m,n,form){return form===0?xm(m)+"² = "+n:xm(m)+"² − "+n+" = 0";}
+function sqrtStr(n){if(isSq(n))return String(Math.sqrt(n));const [k,mm]=sqSimp(n);return ksq(k,mm);}
+function sol83(m,n,form,R){
+  const L=[];if(form===1)L.push(M_(xm(m)+"² = "+n)+"　（"+n+" を移項）");
+  L.push(M_(X+(m>0?" + "+m:" − "+(-m))+" = ±"+sqrtStr(n))+"　← "+X+(m>0?" + "+m:" − "+(-m))+" をひとまとまりとみる");
+  if(R.t==="rat"){const s=Math.sqrt(n);
+    L.push("すなわち "+M_(X+(m>0?" + "+m:" − "+(-m))+" = "+s)+"、"+M_(X+(m>0?" + "+m:" − "+(-m))+" = −"+s));}
+  L.push("<b>答 "+M_(rH(R))+"</b>");return L;
+}
+function g83_50(){
+  const {m,n,R,form}=pick83();const eq=eq83(m,n,form);
+  const ds=[
+    ansOf(solveQ(1,-2*m,m*m-n),"符号のまちがい。"+X+(m>0?" + "+m:" − "+(-m))+" = ±"+sqrtStr(n)+" の "+N(m)+" を移項すると <b>"+N(-m)+"</b> になる。"),
+    !isSq(n)?{h:M_(X+" = "+N(-m)+" ± "+n),k:"nsq",w:"<b>√のつけ忘れ</b>。2乗して "+n+" になる数は ±"+sqrtStr(n)+"。"}:ansOf(ratR([Fr(-m-n,1),Fr(-m+n,1)]),"<b>√のつけ忘れ</b>。2乗して "+n+" になる数は ±"+Math.sqrt(n)+"。"),
+    Object.assign(onePos(R),{w:"<b>−の方を忘れている</b>。"+X+(m>0?" + "+m:" − "+(-m))+" = −"+sqrtStr(n)+" の場合もある。"}),
+  ];
+  return mc({q:"2次方程式 "+M_(eq)+" を解きなさい。",ans:rAns(R),ds:shuffle(ds),fill:rootFill(R),
+    e:"かっこの中をひとまとまり（A）とみて、"+M_("A² = n → A = ±"+sqH("n"))+"。そのあと移項して "+X+" を求める。",sol:sol83(m,n,form,R)});
+}
+function g83_70(){
+  const {m,n,R,form}=pick83();const eq=eq83(m,n,form);
+  const tpl=[],bl=[];let i=0;
+  const lhs=X+(m>0?" + "+m:" − "+(-m));
+  if(form===1){tpl.push(M_(xm(m)+"² = {0}"));const ms={};ms[String(-n)]="移項すると符号が変わる。−"+n+" を右辺へ → <b>+"+n+"</b>。";bl.push(B(n,ms));i=1;}
+  if(isSq(n)){tpl.push(M_(lhs+" = ±{"+i+"}"));const ms={};ms[String(n)]="√をとる。2乗して "+n+" になる数は <b>"+Math.sqrt(n)+"</b>。";bl.push(B(Math.sqrt(n),ms));i++;}
+  else{const [k,mm]=sqSimp(n);
+    if(k>1){tpl.push(M_(lhs+" = ±{"+i+"}"+'<span class="sq">√<span class="rad">{'+(i+1)+'}</span></span>'));const ms={};ms[String(n)]="√の中をできるだけ小さく（"+sqH(n)+" = "+ksq(k,mm)+"）。";bl.push(B(k),B(mm,ms));i+=2;}
+    else{tpl.push(M_(lhs+" = ±"+'<span class="sq">√<span class="rad">{'+i+'}</span></span>'));bl.push(B(n));i++;}}
+  const sg={};sg[String(m)]="符号のまちがい。"+N(m)+" を移項すると <b>"+N(-m)+"</b>。";
+  const r=tplRoots(R,i,(j,v)=>{if(R.t==="irr"&&j===0)return sg;return null;});
+  if(R.t==="rat"){const s=Math.sqrt(n);const ms={};[m-s,m+s].forEach(v=>{if(!R.v.some(f=>Math.abs(fv(f)-v)<1e-9))ms[String(v)]="符号のまちがい。"+N(m)+" を移項すると <b>"+N(-m)+"</b>。";});r.b.forEach(b=>b.miss=ms);}
+  tpl.push(M_(r.t));
+  return fill({q:"2次方程式 "+M_(eq)+" を解きなさい。",tpl,blanks:bl.concat(r.b),
+    e:"かっこの中をひとまとまりとみて平方根をとる → 移項。",sol:sol83(m,n,form,R)});
+}
+function g83_90(){
+  const {m,n,R,form}=pick83();const eq=eq83(m,n,form);const lhs=X+(m>0?" + "+m:" − "+(-m));
+  const ok=[[lhs+" をひとまとまり（A）とみて、"+M_("A² = "+n)+" と考える","かっこの中を1つの文字のように扱うのがポイント。"],
+            [M_(lhs+" = ±"+sqrtStr(n)),"平方根は<b>正と負の2つ</b>。"],
+            ["答えは "+M_(rH(R)),N(m)+" を移項して "+X+" を求めた。"]];
+  if(form===1)ok.push(["まず "+n+" を右辺に移項して "+M_(xm(m)+"² = "+n),M_(xm(m)+"² = n")+" の形にしてから平方根をとる。"]);
+  const ng=[[M_(lhs+" = "+sqrtStr(n))+" だけを考えればよい","<b>−"+sqrtStr(n)+" の場合</b>を忘れている。解が1つ消えてしまう。"],
+            ["答えは "+M_(X+" = "+(R.t==="irr"?N(m)+" ± "+sqrtStr(n):N(m-Math.sqrt(n))+"、"+X+" = "+N(m+Math.sqrt(n)))),"符号のまちがい。"+N(m)+" を移項すると <b>"+N(-m)+"</b>。"],
+            [M_(lhs+" = ±"+n),"√のつけ忘れ。2乗して "+n+" になるのは ±"+sqrtStr(n)+"。"]];
+  return parts({q:"2次方程式 "+M_(eq)+" の解き方として<b>正しい</b>説明の部品を【すべて】選びなさい。",ok,ng,
+    m:(form===1?n+" を移項して "+M_(xm(m)+"² = "+n)+"。":"")+lhs+" をひとまとまりとみると、"+M_(lhs+" = ±"+sqrtStr(n))+"。"+N(m)+" を移項して "+M_(rH(R))+"。",sol:sol83(m,n,form,R)});
+}
+
+/* ---- 8-4 (x+m)²=n の形に変形する ---- */
+function pick84(){
+  for(let t=0;t<200;t++){
+    const h=rnz(-6,6),p=2*h;const sq=Math.random()<0.35;
+    const n=sq?pick([1,4,9,16,25,36]):pick([2,3,5,6,7,8,10,11,12,13,14,15,17,18,19,20,21,22,23,24,27,28]);
+    const q=n-h*h;if(q===0)continue;
+    return {h,p,n,q,R:solveQ(1,p,-q),form:Math.random()<0.5?0:1};
+  }
+}
+function eq84(p,q,form){return form===0?P2(1,p,0)+" = "+N(q):P2(1,p,-q)+" = 0";}
+function sol84(h,p,n,q,form,R){
+  const L=[];
+  if(form===1)L.push(M_(P2(1,p,0)+" = "+N(q))+"　← "+N(-q)+" を移項");
+  L.push(M_(P2(1,p,0)+" + "+par(h)+"² = "+N(q)+" + "+par(h)+"²")+"　← "+X+" の係数 "+N(p)+" の半分 "+N(h)+" の2乗を両辺に加える");
+  L.push(M_(xm(h)+"² = "+n)+"　← 左辺を因数分解");
+  L.push(M_(X+(h>0?" + "+h:" − "+(-h))+" = ±"+sqrtStr(n)));
+  L.push("<b>答 "+M_(rH(R))+"</b>");return L;
+}
+function g84_50(){
+  const {h,p,n,q,R,form}=pick84();const eq=eq84(p,q,form);
+  const ds=[
+    q+p>0?ansOf(rootsFrom(-2*h,4*(q+p),2),"両辺に "+X+" の係数 "+N(p)+" をそのまま加えている。加えるのは<b>半分の2乗</b> "+par(h)+"² = "+h*h+"。"):null,
+    q+h>0&&h!==1?ansOf(rootsFrom(-2*h,4*(q+h),2),"半分にしただけで<b>2乗していない</b>。加えるのは "+par(h)+"² = "+h*h+"。"):null,
+    q>0?ansOf(rootsFrom(-2*h,4*q,2),"左辺だけに加えて、<b>右辺に加え忘れ</b>。等式なので両辺に同じ数を加える。"):null,
+    ansOf(rootsFrom(2*h,4*n,2),"符号のまちがい。"+M_(xm(h)+"² = "+n)+" なので "+M_(X+" = "+N(-h)+" ± …")+"。"),
+  ];
+  return mc({q:"2次方程式 "+M_(eq)+" を、"+M_("("+X+" + ▲)² = ●")+" の形に変形して解きなさい。",ans:rAns(R),ds:shuffle(ds),fill:rootFill(R),
+    e:"<b>"+X+" の係数の半分の2乗</b>を両辺に加えると、左辺が "+M_("("+X+" + ▲)²")+" になる。",sol:sol84(h,p,n,q,form,R)});
+}
+function g84_70(){
+  if(Math.random()<0.25){
+    const {h,p,n,q,R,form}=pick84();const eq=eq84(p,q,form);
+    return order({q:"2次方程式 "+M_(P2(1,p,-q)+" = 0")+" を "+M_("("+X+" + ▲)² = ●")+" の形に変形して解く。正しい手順の順にタップして並べなさい。",
+      items:["定数項を右辺に移項する",X+" の係数の半分の2乗を両辺に加える","左辺を "+M_("("+X+" + ▲)²")+" に因数分解する","平方根の考えで "+M_(X+" + ▲ = ±"+sqH("●"))+" とする","▲ を移項して "+X+" を求める"],
+      e:"<b>移項 → 半分の2乗を加える → 因数分解 → 平方根 → 移項</b>。教科書の例の流れそのもの。",
+      w:"「半分の2乗を加える」のは<b>定数項を移項したあと</b>。平方根をとるのは<b>左辺を ( )² にしてから</b>。",sol:sol84(h,p,n,q,1,R)});
+  }
+  const {h,p,n,q,R,form}=pick84();const eq=eq84(p,q,form);
+  const add={};add[String(p)]=X+" の係数 "+N(p)+" をそのまま加えている。<b>半分にして2乗</b>する。";add[String(h)]="半分にしただけ。<b>2乗</b>して "+h*h+"。";add[String(Math.abs(h))]=add[String(h)];
+  const tpl=[],bl=[];
+  tpl.push("両辺に加える数　{0}");bl.push(B(h*h,add));
+  const hm={};hm[String(-h)]="符号に注意。"+M_(P2(1,p,0)+" + "+h*h+" = "+xm(h)+"²")+"（"+X+" の係数が "+N(p)+" なら ▲ は "+N(h)+"）。";
+  const nm={};nm[String(q)]="右辺にも "+h*h+" を加える。"+N(q)+" + "+h*h+" = "+n+"。";if(form===1)nm[String(-q+h*h)]="定数項を移項すると符号が変わる。";
+  tpl.push(M_("("+X+" + {1})² = {2}"));bl.push(B(h,hm),B(n,nm));
+  const r=tplRoots(R,3,null);tpl.push(M_(r.t));
+  return fill({q:"2次方程式 "+M_(eq)+" を、"+M_("("+X+" + ▲)² = ●")+" の形に変形して解きなさい。（▲が負なら −3 のように入力）",tpl,blanks:bl.concat(r.b),
+    e:"両辺に<b>"+X+" の係数の半分の2乗</b>を加える："+M_(P2(1,p,0)+" + "+par(h)+"² = "+xm(h)+"²")+"。",sol:sol84(h,p,n,q,form,R)});
+}
+function g84_90(){
+  const {h,p,n,q,R,form}=pick84();const eq=eq84(p,q,form);
+  const ok=[["両辺に "+par(h)+"² = "+h*h+" を加える",X+" の係数 "+N(p)+" の<b>半分の2乗</b>。"],
+            ["左辺は "+M_(xm(h)+"²")+"、右辺は "+n+" になる",M_(P2(1,p,0)+" + "+h*h+" = "+xm(h)+"²")+"、"+N(q)+" + "+h*h+" = "+n+"。"],
+            ["答えは "+M_(rH(R)),"平方根をとって "+N(h)+" を移項した。"]];
+  if(form===1)ok.push(["まず定数項 "+N(-q)+" を右辺に移項して "+M_(P2(1,p,0)+" = "+N(q)),"定数項を右辺へ。そのあとで半分の2乗を加える。"]);
+  const ng=[["両辺に "+X+" の係数の "+N(p)+" を加える","加えるのは係数そのものではなく<b>半分の2乗</b>（"+h*h+"）。"],
+            ["左辺に "+h*h+" を加えれば、右辺はそのままでよい","等式なので<b>両辺に同じ数</b>を加える。右辺は "+n+" になる。"],
+            ["答えは "+M_(X+" = "+(R.t==="irr"?N(h)+" ± "+sqrtStr(n):N(h-Math.sqrt(n))+"、"+X+" = "+N(h+Math.sqrt(n)))),"符号のまちがい。"+M_(xm(h)+"²")+" なので "+X+" = "+N(-h)+" ± …。"]];
+  return parts({q:"2次方程式 "+M_(eq)+" を "+M_("("+X+" + ▲)² = ●")+" の形に変形して解く。<b>正しい</b>説明の部品を【すべて】選びなさい。",ok,ng,
+    m:(form===1?N(-q)+" を移項して "+M_(P2(1,p,0)+" = "+N(q))+"。":"")+"両辺に "+X+" の係数の半分の2乗 "+h*h+" を加えると "+M_(xm(h)+"² = "+n)+"。よって "+M_(X+(h>0?" + "+h:" − "+(-h))+" = ±"+sqrtStr(n))+"、"+M_(rH(R))+"。",
+    sol:sol84(h,p,n,q,form,R)});
+}
+
+/* =================== 9 2次方程式の解き方 =================== */
+/* ---- 9-1 / 9-2 解の公式 ---- */
+function pick91(){
+  for(let t=0;t<500;t++){
+    const a=ri(1,5),b=rnz(-11,11),c=rnz(-8,8),D=b*b-4*a*c;
+    if(D<=0||isSq(D)||sqSimp(D)[0]!==1||D>150)continue;
+    return {a,b,c,D,R:solveQ(a,b,c)};
+  }
+}
+function pick92(){
+  for(let t=0;t<800;t++){
+    let a,b,c;
+    if(Math.random()<0.4){a=1;b=2*rnz(-6,6);c=rnz(-9,9);}else{a=ri(1,9);b=rnz(-12,12);c=rnz(-9,9);}
+    const D=b*b-4*a*c;if(D<0||D>400)continue;
+    const R=solveQ(a,b,c);
+    if(isSq(D)){if(a===1&&Math.random()<0.6)continue;return {a,b,c,D,R};}
+    if(sqSimp(D)[0]>1&&R.Q<=10)return {a,b,c,D,R};
+  }
+}
+function fDs(a,b,c,D,R){
+  const ds=[
+    ansOf(rootsFrom(-b,D,a),"分母は <b>2a</b> = 2 × "+par(a)+" = "+2*a+"。a のままにしている。"),
+    ansOf(rootsFrom(b,D,2*a),"分子の最初は <b>−b</b>。b = "+N(b)+" なので −b = <b>"+N(-b)+"</b>。"),
+  ];
+  const D2=b*b+4*a*c;if(D2>=0&&D2!==D)ds.push(ansOf(rootsFrom(-b,D2,2*a),"√の中は <b>b² − 4ac</b> = "+par(b)+"² − 4 × "+par(a)+" × "+par(c)+" = "+D+"。−4ac の符号をまちがえている。"));
+  if(R.t==="irr"&&R.Q<2*a){const g=2*a/R.Q;ds.push({h:M_(X+" = "+irrH({P:R.P,K:R.K*g,M:R.M,Q:R.Q},"±")),k:"pr",w:"約分は<b>分子のすべての項</b>（"+N(-b)+" と √の前の数）を同じ数でわる。√の前の数をわり忘れている。"});}
+  if(R.t==="rat"&&R.v.length===2)ds.push(Object.assign(onePos(R),{w:"± の<b>両方</b>を計算する。解は2つある。"}));
+  return shuffle(ds);
+}
+function gF50(pk,lead){
+  const {a,b,c,D,R}=pk();
+  return mc({q:lead+"2次方程式 "+M_(P2(a,b,c)+" = 0")+" を解きなさい。",ans:rAns(R),ds:fDs(a,b,c,D,R),fill:rootFill(R,a,b,c),
+    e:"解の公式 "+M_(X+" = "+fracH("−b ± "+sqH("b² − 4ac"),"2a"))+"。<b>符号ごと</b> a, b, c を読みとり、最後に約分できるか確かめる。",sol:solFormula(a,b,c)});
+}
+function gF70(pk){
+  const {a,b,c,D,R}=pk();
+  const mb={};mb[String(-b)]="b は "+X+" の係数を<b>符号ごと</b>読む。";const mc_={};mc_[String(-c)]="c は定数項を<b>符号ごと</b>読む。";
+  const md={};md[String(b*b+4*a*c)]="−4ac の符号に注意：−4 × "+par(a)+" × "+par(c)+" = "+N(-4*a*c)+"。";md[String(-b*b-4*a*c)]=par(b)+"² は正の数 "+b*b+"。";
+  const tpl=["a = {0}、b = {1}、c = {2}","b² − 4ac = {3}"];
+  const bl=[B(a),B(b,mb),B(c,mc_),B(D,md)];
+  const r=tplRoots(R,4,(j,v)=>{if(R.t==="irr"&&j===0){const o={};o[String(b)]="分子は <b>−b</b>。";return o;}if(R.t==="irr"&&j===bl.length){return null;}return null;});
+  if(R.t==="irr"&&R.Q!==1){const qb=r.b[r.b.length-1];qb.miss=Object.assign({},qb.miss||{});qb.miss[String(a)]="分母は <b>2a</b>。";}
+  tpl.push(M_(r.t));
+  return fill({q:"2次方程式 "+M_(P2(a,b,c)+" = 0")+" を解の公式で解きなさい。（負の数は −3、分数は 1/2 のように入力）",tpl,blanks:bl.concat(r.b),
+    e:"① a, b, c を符号ごと読む → ② b² − 4ac を先に計算 → ③ 公式に入れて、√の簡約・約分。",sol:solFormula(a,b,c)});
+}
+function gF90(pk){
+  const {a,b,c,D,R}=pk();
+  const ok=[["a = "+N(a)+"、b = "+N(b)+"、c = "+N(c)+" を解の公式に代入する",X+" の係数・定数項を<b>符号ごと</b>読みとっている。"],
+            ["√の中は "+par(b)+"² − 4 × "+par(a)+" × "+par(c)+" = "+D,"b² − 4ac を先に計算しておくとミスが減る。"],
+            ["答えは "+M_(rH(R)),"最後に√の簡約・約分まで終えた形。"]];
+  const ng=[["分母は a なので "+a,"分母は <b>2a</b> = "+2*a+"。"],
+            ["分子の最初の数は "+N(b),"分子の最初は <b>−b</b> = "+N(-b)+"。"]];
+  const D2=b*b+4*a*c;if(D2!==D)ng.push(["√の中は "+N(D2),"−4ac の符号ミス。正しくは "+D+"。"]);
+  if(R.t==="irr"&&R.Q<2*a){const g=2*a/R.Q;ng.push(["約分すると "+M_(X+" = "+irrH({P:R.P,K:R.K*g,M:R.M,Q:R.Q},"±")),"√の前の数もわる。分子の<b>すべての項</b>を "+g+" でわる。"]);}
+  return parts({q:"2次方程式 "+M_(P2(a,b,c)+" = 0")+" を解の公式で解く。<b>正しい</b>説明の部品を【すべて】選びなさい。",ok,ng,
+    m:"a = "+N(a)+"、b = "+N(b)+"、c = "+N(c)+" を解の公式に代入すると、"+M_(X+" = "+fracH(N(-b)+" ± "+sqH(D),2*a))+"。よって "+M_(rH(R))+"。",sol:solFormula(a,b,c)});
+}
+const g91_50=()=>gF50(pick91,""),g91_70=()=>gF70(pick91),g91_90=()=>gF90(pick91);
+const g92_50=()=>gF50(pick92,""),g92_70=()=>gF70(pick92),g92_90=()=>gF90(pick92);
+
+/* ---- 9-3 因数分解による解き方 ---- */
+function pick93(){
+  const ty=pick(["f1","f2","f3","f4","f4","f5","f6"]);
+  let r1,r2,eq,a=1,b,c,R;
+  if(ty==="f1"){r1=rnz(-9,9);r2=rnz(-9,9);if(r1===r2)r2=r1+ri(1,4);eq=fac(r1)+fac(r2)+" = 0";}
+  else if(ty==="f2"){r1=0;r2=rnz(-9,9);eq=X+fac(r2)+" = 0";}
+  else if(ty==="f5"){r1=0;r2=rnz(-12,12);eq=P2(1,-r2,0)+" = 0";}
+  else if(ty==="f6"){r1=r2=rnz(-9,9);eq=P2(1,-2*r1,r1*r1)+" = 0";}
+  else if(ty==="f4"){do{r1=rnz(-12,12);r2=rnz(-12,12);}while(r1===r2||Math.abs(r1*r2)>96);eq=P2(1,-(r1+r2),r1*r2)+" = 0";}
+  if(ty==="f3"){
+    const p=pick([2,3]);let q=rnz(-7,7);if(gcd(p,q)!==1)q+=1;if(q===0)q=1;if(gcd(p,q)!==1)q=1;
+    const r=rnz(-6,6);
+    eq="("+p+X+(q>0?" + "+q:" − "+(-q))+")"+fac(r)+" = 0";
+    R=ratR([Fr(-q,p),Fr(r,1)]);
+    return {ty,eq,R,p,q,r,
+      sol:["（"+p+X+(q>0?" + "+q:" − "+(-q))+"）= 0　または　"+X+(r>0?" − "+r:" + "+(-r))+" = 0",p+X+" = "+N(-q)+" より "+X+" = "+frH(Fr(-q,p))+"、"+X+" = "+N(r),"<b>答 "+rH(R)+"</b>"]};
+  }
+  R=ratR([Fr(r1,1),Fr(r2,1)]);
+  const sol=[];
+  if(ty==="f4")sol.push("かけて "+N(r1*r2)+"、たして "+N(-(r1+r2))+" になる2数は "+N(-r1)+" と "+N(-r2));
+  if(ty==="f5")sol.push(M_(P2(1,-r2,0)+" = "+X+fac(r2))+"（共通因数 "+X+" でくくる）");
+  if(ty==="f6")sol.push(M_(P2(1,-2*r1,r1*r1)+" = "+fac(r1)+"²")+"（乗法公式）");
+  return {ty,eq,R,r1,r2,sol:sol.concat(solFactor2(r1,r2)).map(s=>s.indexOf("<b>")===0?s:M_(s))};
+}
+function g93_50(){
+  const P=pick93();const R=P.R;const ds=[];
+  const neg=ratR(R.v.map(f=>Fr(-f.n,f.d)));
+  ds.push(ansOf(neg,"符号が逆。"+M_(xm(1).replace("1","a"))+" = 0 なら "+X+" = −a。<b>かっこの中の数と符号が逆</b>になる。"));
+  if(P.ty==="f2"||P.ty==="f5")ds.push({h:M_(X+" = "+N(P.r2)),k:"z",w:"<b>"+X+" = 0 も解</b>。"+X+" × (…) = 0 なので "+X+" = 0 または (…) = 0。両辺を "+X+" でわってはいけない。"});
+  if(P.ty==="f3")ds.push(ansOf(ratR([Fr(-P.q,1),Fr(P.r,1)]),P.p+X+" = "+N(-P.q)+" のあと、"+P.p+" で<b>わり忘れ</b>。"));
+  if(P.ty==="f6")ds.push(ansOf(ratR([Fr(-P.r1,1),Fr(P.r1,1)]),M_(fac(P.r1)+"² = 0")+" の解は "+X+" = "+N(P.r1)+" の<b>1つだけ</b>。"));
+  if(P.ty==="f4"){const c=P.r1*P.r2,s=P.r1+P.r2;
+    for(let u=1;u<=Math.abs(c);u++){if(c%u)continue;const v=c/u;[[u,v],[-u,-v]].forEach(([x,y])=>{if(x+y!==s&&x+y!==-s)ds.push(ansOf(ratR([Fr(x,1),Fr(y,1)]),"かけて "+N(c)+" にはなるが、たして "+N(s)+"（解の和）にならない。"+wSub(1,-s,c,ratR([Fr(x,1),Fr(y,1)]))));});}
+  }
+  if(R.v.length===2)ds.push(Object.assign(onePos(R),{w:"解は<b>2つ</b>。A × B = 0 なら A = 0 <b>または</b> B = 0。"}));
+  return mc({q:"2次方程式 "+M_(P.eq)+" を解きなさい。",ans:rAns(R),ds:[ds[0]].concat(shuffle(ds.slice(1))),fill:rootFill(R),
+    e:"<b>AB = 0 ならば A = 0 または B = 0</b>。左辺を因数分解して、それぞれのかっこを 0 にする。",sol:P.sol});
+}
+function g93_70(){
+  const P=pick93();const R=P.R;const tpl=[],bl=[];
+  if(P.ty==="f4"){
+    const fm={};fm[String(P.r1)]="かっこの中の数は解と<b>符号が逆</b>。";fm[String(P.r2)]=fm[String(P.r1)];
+    tpl.push(M_(P.eq.replace(" = 0","")+" = ("+X+" + {0})("+X+" + {1})"));bl.push(B(-P.r1,fm,"f"),B(-P.r2,fm,"f"));
+  }else if(P.ty==="f6"){
+    const fm={};fm[String(P.r1)]="かっこの中の数は解と<b>符号が逆</b>。";
+    tpl.push(M_(P.eq.replace(" = 0","")+" = ("+X+" + {0})²"));bl.push(B(-P.r1,fm));
+  }
+  const rm={};R.v.forEach(f=>{const n=Fr(-f.n,f.d);if(!R.v.some(g=>g.n===n.n&&g.d===n.d))rm[String(fv(n))]="符号が逆。かっこの中を 0 にする値を考える。";});
+  if(P.ty==="f3")rm[String(-P.q)]=P.p+" で<b>わり忘れ</b>。";
+  const r=tplRoots(R,bl.length,()=>rm);tpl.push(M_(r.t));
+  return fill({q:"2次方程式 "+M_(P.eq)+" を因数分解を利用して解きなさい。（分数は 5/2 のように入力）",tpl,blanks:bl.concat(r.b),
+    e:"左辺を因数分解 → <b>A = 0 または B = 0</b>。かっこの中の数と解は符号が逆になる。",sol:P.sol});
+}
+function g93_90(){
+  let P;do{P=pick93();}while(P.ty==="f3");
+  const R=P.R;const ok=[["答えは "+M_(rH(R)),"それぞれのかっこを 0 にした値。"]],ng=[];
+  if(P.ty==="f4"){
+    ok.push(["かけて "+N(P.r1*P.r2)+"、たして "+N(-(P.r1+P.r2))+" になる2数をさがす","因数分解の基本（"+X+"² + (a+b)"+X+" + ab = (x+a)(x+b)）。"]);
+    ok.push(["左辺は "+M_(fac(P.r1)+fac(P.r2))+" と因数分解できる","展開すると "+M_(P.eq.replace(" = 0",""))+" にもどる。"]);
+    ng.push(["かけて "+N(-(P.r1+P.r2))+"、たして "+N(P.r1*P.r2)+" になる2数をさがす","逆。<b>かけて定数項、たして "+X+" の係数</b>。"]);
+  }else if(P.ty==="f2"||P.ty==="f5"){
+    ok.push([X+" = 0 または "+M_(X+(P.r2>0?" − "+P.r2:" + "+(-P.r2))+" = 0"),"AB = 0 の性質。"+X+" = 0 も立派な解。"]);
+    ng.push(["両辺を "+X+" でわって "+M_(X+(P.r2>0?" − "+P.r2:" + "+(-P.r2))+" = 0")+" とする",X+" でわると<b>"+X+" = 0 の解が消える</b>。0 でわることになるかもしれないので、わってはいけない。"]);
+  }else if(P.ty==="f6"){
+    ok.push(["左辺は "+M_(fac(P.r1)+"²")+" と因数分解できる","乗法公式 "+M_("("+X+" − a)² = "+X+"² − 2a"+X+" + a²")+"。"]);
+    ng.push(["解は "+M_(X+" = ±"+Math.abs(P.r1))+" の2つ","( )² = 0 になるのは かっこの中 = 0 のときだけ。<b>解は1つ</b>。"]);
+  }else{
+    ok.push([M_(X+(P.r1>0?" − "+P.r1:" + "+(-P.r1))+" = 0")+" または "+M_(X+(P.r2>0?" − "+P.r2:" + "+(-P.r2))+" = 0"),"AB = 0 ならば A = 0 または B = 0。"]);
+  }
+  const neg=ratR(R.v.map(f=>Fr(-f.n,f.d)));
+  if(rKey(neg)!==rKey(R))ng.push(["答えは "+M_(rH(neg)),"符号が逆。かっこの中を 0 にする値を考える。"]);
+  ng.push(["AB = 0 ならば、A = 0 かつ B = 0 でなければならない","「かつ」ではなく<b>「または」</b>。どちらか一方が 0 なら積は 0。"]);
+  return parts({q:"2次方程式 "+M_(P.eq)+" を因数分解を利用して解く。<b>正しい</b>説明の部品を【すべて】選びなさい。",ok,ng,
+    m:P.sol.join("　"),sol:P.sol});
+}
+
+/* ---- 9-4 いろいろな2次方程式 ---- */
+function pick94(){
+  for(let t=0;t<500;t++){
+    const ty=pick(["d1","d2","d2","d3","d4","d5","d6"]);
+    let r1=rnz(-9,9),r2=rnz(-9,9);if(r1===r2)continue;
+    let B_=-(r1+r2),C=r1*r2,a=1,eq,note="";
+    if(ty==="d1"){if(B_===0||C===0)continue;eq=X+"² = "+L1(-B_,-C);}
+    else if(ty==="d2"){const u=rnz(-6,6),v=B_-u;if(v===0)continue;const k=u*v-C;if(k===0)continue;eq=xm(u)+xm(v)+" = "+N(k);note={u,v,k};}
+    else if(ty==="d3"){const u=rnz(-5,5),s=-2*u-B_,tt=u*u-C;if(s===0)continue;eq=xm(-u)+"² = "+L1(s,tt);}
+    else if(ty==="d4"){const s=r1+r2;if(s===0||C%s!==0)continue;const tt=-C/s;if(tt===0)continue;eq=X+"²"+(s>0?" − "+(s===1?"":s):" + "+(s===-1?"":-s))+xm(tt)+" = 0";}
+    else if(ty==="d5"){a=ri(1,3);B_=rnz(-9,9);C=rnz(-9,9);const D=B_*B_-4*a*C;if(D<=0||isSq(D)||D>120)continue;
+      const b1=rnz(-6,6),b2=b1-B_;if(b2===0)continue;eq=poly([[a,X+"²"],[b1,X]])+" = "+L1(b2,-C);}
+    else if(ty==="d6"){const k=rnz(-3,3);const al=rnz(-6,6);let be=rnz(-6,6);if(al===be)continue;
+      const Pp=-(al+be),Qq=al*be;
+      const A=xm(k);
+      eq=A+"²"+(Pp?(Pp>0?" + ":" − ")+(Math.abs(Pp)===1?"":Math.abs(Pp))+A:"")+(Qq?(Qq>0?" + "+Qq:" − "+(-Qq)):"")+" = 0";
+      r1=al-k;r2=be-k;B_=-(r1+r2);C=r1*r2;note={k,al,be};}
+    const R=solveQ(a,B_,C);
+    return {ty,eq,a,B:B_,C,R,note};
+  }
+}
+function sol94(P){
+  const L=[M_(P.eq)];
+  if(P.ty==="d6"){const {k,al,be}=P.note;
+    L.push(M_(X+(k>0?" + "+k:" − "+(-k)))+" = A とおくと "+M_("A² "+(-(al+be)>=0?"+ ":"− ")+Math.abs(al+be)+"A "+(al*be>=0?"+ ":"− ")+Math.abs(al*be)+" = 0"));
+    L.push(M_("(A "+(al>0?"− "+al:"+ "+(-al))+")(A "+(be>0?"− "+be:"+ "+(-be))+") = 0")+" より A = "+N(al)+"、"+N(be));
+    L.push("A を "+M_(X+(k>0?" + "+k:" − "+(-k)))+" にもどして "+M_(X+" = "+N(al)+" − "+par(k)+" = "+N(al-k))+"、"+M_(X+" = "+N(be-k)));
+    L.push("<b>答 "+M_(rH(P.R))+"</b>");return L;}
+  if(P.ty==="d2"||P.ty==="d3"||P.ty==="d4")L.push("左辺を展開して");
+  L.push(M_(P2(P.a,P.B,P.C)+" = 0")+"　←（2次式）= 0 の形に整理");
+  if(P.R.t==="rat"&&P.a===1&&P.R.v.length===2&&P.R.v[0].d===1&&P.R.v[1].d===1){
+    return L.concat(solFactor2(P.R.v[0].n,P.R.v[1].n).map(s=>s.indexOf("<b>")===0?s:M_(s)));
+  }
+  return L.concat(solFormula(P.a,P.B,P.C).map(s=>s.indexOf("<b>")===0||s.indexOf("解の公式")===0?s:M_(s)));
+}
+function g94_50(){
+  const P=pick94();const R=P.R;
+  const ds=[];
+  if(P.C!==0)ds.push(ansOf(solveQ(P.a,P.B,-P.C),"移項のときの<b>符号ミス</b>。整理すると "+M_(P2(P.a,P.B,P.C)+" = 0")+"。"));
+  if(P.B!==0)ds.push(ansOf(solveQ(P.a,-P.B,P.C),"移項のときの<b>符号ミス</b>（"+X+" の項）。整理すると "+M_(P2(P.a,P.B,P.C)+" = 0")+"。"));
+  if(P.ty==="d2"){const {u,v,k}=P.note;ds.unshift(ansOf(ratR([Fr(k-u,1),Fr(k-v,1)]),"右辺が "+N(k)+"（0 でない）のに、AB = 0 の考え方を使っている。<b>まず展開して（2次式）= 0 に</b>。"));}
+  if(P.ty==="d6"){const {al,be}=P.note;ds.unshift(ansOf(ratR([Fr(al,1),Fr(be,1)]),"それは A の値。<b>A を "+X+" にもどす</b>のを忘れている。"));}
+  return mc({q:"2次方程式 "+M_(P.eq)+" を解きなさい。",ans:rAns(R),ds,fill:rootFill(R),
+    e:"まず<b>（2次式）＝0 の形に整理</b>してから、因数分解か解の公式で解く。",sol:sol94(P)});
+}
+function g94_70(){
+  const P=pick94();const R=P.R;const tpl=[],bl=[];
+  if(P.ty==="d6"){const {k,al,be}=P.note;const am={};[-al,-be].forEach(v=>{if(v!==al&&v!==be)am[String(v)]="符号が逆。";});
+    tpl.push(M_(X+(k>0?" + "+k:" − "+(-k)))+" = A とおくと　A = {0}、A = {1}");bl.push(B(al,am,"a"),B(be,am,"a"));
+  }else{
+    const sm={};sm[String(-P.B)]="移項すると符号が変わる。";const cm={};cm[String(-P.C)]="移項すると符号が変わる。";
+    tpl.push("整理すると　"+M_((P.a===1?"":P.a)+X+"² + {0}"+X+" + {1} = 0"));bl.push(B(P.B,sm),B(P.C,cm));
+  }
+  const rm={};if(P.ty==="d6"){[P.note.al,P.note.be].forEach(v=>{if(!R.v||!R.v.some(f=>fv(f)===v))rm[String(v)]="A を "+X+" にもどす（"+X+" = A − "+par(P.note.k)+"）。";});}
+  const r=tplRoots(R,bl.length,()=>rm);tpl.push(M_(r.t));
+  return fill({q:"2次方程式 "+M_(P.eq)+" を解きなさい。（負の数は −3 のように入力。係数が 0 なら 0）",tpl,blanks:bl.concat(r.b),
+    e:"展開・移項して（2次式）＝0 → 因数分解 or 解の公式。"+(P.ty==="d6"?"同じかたまりは <b>A とおく</b>とラク。":""),sol:sol94(P)});
+}
+function g94_90(){
+  const P=pick94();const R=P.R;
+  const ok=[["答えは "+M_(rH(R)),"整理してから解いた結果。"]],ng=[];
+  if(P.ty==="d6"){const {k,al,be}=P.note;
+    ok.push([M_(X+(k>0?" + "+k:" − "+(-k)))+" = A とおくと、A についての2次方程式になる","同じかたまりは文字でおきかえると見通しがよい。"]);
+    ok.push(["A = "+N(al)+"、"+N(be)+" を求めたあと、"+X+" の値にもどす","A は "+X+" ではない。最後に "+X+" = A − "+par(k)+"。"]);
+    ng.push(["答えは "+M_(X+" = "+N(al)+"、"+X+" = "+N(be)),"それは A の値。"+X+" にもどしていない。"]);
+  }else{
+    ok.push(["まず "+M_(P2(P.a,P.B,P.C)+" = 0")+" の形に整理する","展開・移項して（2次式）= 0 に。"]);
+    ng.push(["右辺はそのままにして、左辺だけを因数分解して解く","AB = <b>0</b> の形でないと「A = 0 または B = 0」は使えない。まず右辺を 0 にする。"]);
+    ng.push(["整理しなくても、解の公式に今の式の数をそのまま代入すればよい","解の公式は <b>a"+X+"² + b"+X+" + c = 0</b> の形のときの公式。整理してから使う。"]);
+    if(P.ty==="d2"){const {u,v,k}=P.note;ng.push(["("+X+(u>0?" + "+u:" − "+(-u))+") = "+N(k)+" または ("+X+(v>0?" + "+v:" − "+(-v))+") = "+N(k)+" として解く","AB = <b>0</b> のときしか「A = 0 または B = 0」は使えない。右辺が "+N(k)+" ではダメ。"]);}
+    if(P.ty==="d1")ng.push(["両辺を "+X+" でわって 1次方程式にする",X+" でわると解が消えたり、0 でわったりする危険がある。<b>移項して（2次式）= 0</b> に。"]);
+    if(P.C!==0)ng.push(["整理すると "+M_(P2(P.a,P.B,-P.C)+" = 0"),"定数項の<b>符号ミス</b>。正しくは "+M_(P2(P.a,P.B,P.C)+" = 0")+"。"]);
+    if(P.B!==0)ng.push(["整理すると "+M_(P2(P.a,-P.B,P.C)+" = 0"),X+" の項の<b>符号ミス</b>。正しくは "+M_(P2(P.a,P.B,P.C)+" = 0")+"。"]);
+  }
+  return parts({q:"2次方程式 "+M_(P.eq)+" の解き方として<b>正しい</b>説明の部品を【すべて】選びなさい。",ok,ng,m:sol94(P).join("　"),sol:sol94(P)});
+}
+
+/* ---- 9-5 2次方程式の解と係数 ---- */
+function pick95(){let r1=rnz(-9,9),r2=rnz(-9,9);while(r1===r2)r2=rnz(-9,9);return [Math.min(r1,r2),Math.max(r1,r2)];}
+const IA='<i>a</i>',IB='<i>b</i>';
+const EQab=X+"² + "+IA+X+" + "+IB+" = 0";
+function abH(a,b){return M_(IA+" = "+N(a)+"、"+IB+" = "+N(b));}
+function sol95(r1,r2){return [M_("解が "+N(r1)+"、"+N(r2)+" の2次方程式は "+fac(r1)+fac(r2)+" = 0"),M_("展開すると "+P2(1,-(r1+r2),r1*r2)+" = 0"),"係数と定数項を比べて <b>"+abH(-(r1+r2),r1*r2)+"</b>"];}
+function g95_50(){
+  if(Math.random()<0.3){
+    let r1,r2;do{r1=-ri(2,14);r2=-ri(2,14);}while(r1===r2||r1*r2>150);
+    if(Math.random()<0.5){r1=-r1;}
+    const b=-(r1+r2),c=r1*r2;const ex=P2(1,b,c);
+    const f=(p,q)=>M_(fac(p)+fac(q));
+    return mc({q:"2次方程式 "+M_(ex+" = 0")+" を解の公式で解くと "+M_(X+" = "+N(Math.min(r1,r2))+"、"+N(Math.max(r1,r2)))+" になった。これを使って "+M_(ex)+" を因数分解すると？",
+      ans:{h:f(r1,r2),k:"ok"},ds:[{h:f(-r1,-r2),k:"n",w:"解が "+N(r1)+" なら因数は <b>("+X+" − "+par(r1)+")</b>。符号が逆になっている。"},
+        {h:f(r1,-r2),k:"m1",w:"片方だけ符号が逆。展開すると定数項が "+N(-r1*r2)+" になってしまう。"},{h:f(-r1,r2),k:"m2",w:"片方だけ符号が逆。展開して確かめよう。"}],
+      e:"解が α、β なら、左辺は <b>("+X+" − α)("+X+" − β)</b> と因数分解できる。",sol:[M_(fac(r1)+fac(r2)+" = "+ex)+"（展開して確認）"]});
+  }
+  const [r1,r2]=pick95();const a=-(r1+r2),b=r1*r2;
+  const ds=[{h:abH(-a,b),k:"1",w:IA+" は解の和の<b>符号を変えたもの</b>。"+M_(fac(r1)+fac(r2))+" を展開すると "+X+" の係数は "+N(a)+"。"},
+            {h:abH(a,-b),k:"2",w:IB+" は解の積そのもの："+par(r1)+" × "+par(r2)+" = "+N(b)+"。"},
+            {h:abH(-a,-b),k:"3",w:"展開すると "+M_(P2(1,a,b))+"。符号をよく見る。"},
+            {h:abH(b,a),k:"4",w:IA+" と "+IB+" が入れかわっている。"}];
+  return mc({q:"2次方程式 "+M_(EQab)+" の解が "+N(r1)+" と "+N(r2)+" のとき、"+IA+"、"+IB+" の値は？",ans:{h:abH(a,b),k:"ok"},ds:shuffle(ds),
+    e:"解が α、β → 左辺は ("+X+" − α)("+X+" − β)。展開して<b>係数を比べる</b>。",sol:sol95(r1,r2)});
+}
+function g95_70(){
+  const [r1,r2]=pick95();const a=-(r1+r2),b=r1*r2;
+  const fm={};fm[String(r1)]="解が "+N(r1)+" なら因数は ("+X+" − "+par(r1)+")。<b>符号が逆</b>。";fm[String(r2)]="解が "+N(r2)+" なら因数は ("+X+" − "+par(r2)+")。<b>符号が逆</b>。";
+  const am={};am[String(-a)]="符号が逆。";const bm={};bm[String(-b)]="符号に注意："+par(r1)+" × "+par(r2)+" = "+N(b)+"。";
+  return fill({q:"2次方程式 "+M_(EQab)+" の解が "+N(r1)+"、"+N(r2)+" である。",
+    tpl:["左辺は　"+M_("("+X+" + {0})("+X+" + {1})")+"　と因数分解できる",M_(IA+" = {2}、"+IB+" = {3}")],
+    blanks:[B(-r1,fm,"f"),B(-r2,fm,"f"),B(a,am),B(b,bm)],
+    e:"解が α、β → 左辺は ("+X+" − α)("+X+" − β)。展開して係数比較。",sol:sol95(r1,r2)});
+}
+function g95_90(){
+  const [r1,r2]=pick95();const a=-(r1+r2),b=r1*r2;
+  return parts({q:"2次方程式 "+M_(EQab)+" の解が "+N(r1)+"、"+N(r2)+" のとき、"+IA+"、"+IB+" の値を求める。<b>正しい</b>説明の部品を【すべて】選びなさい。",
+    ok:[["左辺は "+M_(fac(r1)+fac(r2))+" と因数分解できる","解が α、β ⇔ 左辺 = ("+X+" − α)("+X+" − β)。"],
+        ["展開すると "+M_(P2(1,a,b))+" になる","係数を比べる準備。"],
+        [M_(X+" = "+N(r1))+" と "+M_(X+" = "+N(r2))+" をそれぞれ代入して、"+IA+"・"+IB+" の連立方程式をつくってもよい","教科書の「解き方1」。どちらの方法でも同じ答え。"],
+        ["答えは "+abH(a,b),"係数・定数項を比べた結果。"]],
+    ng:[["左辺は "+M_(fac(-r1)+fac(-r2))+" と因数分解できる","符号が逆。解が "+N(r1)+" なら因数は ("+X+" − "+par(r1)+")。"],
+        [IA+" は2つの解の和だから "+IA+" = "+N(-a),IA+" は解の和の<b>符号を変えたもの</b>（"+N(a)+"）。"],
+        ["答えは "+abH(-a,-b),"展開の符号ミス。"]],
+    m:"解が "+N(r1)+"、"+N(r2)+" だから、左辺は "+M_(fac(r1)+fac(r2))+" と因数分解できる。展開すると "+M_(P2(1,a,b))+" なので、係数と定数項を比べて "+abH(a,b)+"。",sol:sol95(r1,r2)});
+}
+
+/* ---- 9-6 定数の求め方 ---- */
+function pick96(){
+  for(let t=0;t<300;t++){
+    const ty=pick(["c1","c1","c2","c3","c4"]);
+    if(ty==="c1"){const r1=rnz(-6,6),r2=rnz(-8,8);if(r1===r2)continue;const c=r1*r2,a=-(r1+r2);
+      return {ty,eq:X+"² + "+IA+X+(c>0?" + "+c:" − "+(-c))+" = 0",r:r1,a,other:r2,oH:N(r2),
+        sol:[M_(X+" = "+N(r1))+" を代入すると "+M_(par(r1)+"² + "+IA+" × "+par(r1)+(c>0?" + "+c:" − "+(-c))+" = 0"),M_(N(r1)+IA+" = "+N(-(r1*r1+c)))+" より <b>"+M_(IA+" = "+N(a))+"</b>",
+             "方程式は "+M_(P2(1,a,c)+" = 0")+"、"+M_(fac(r1)+fac(r2)+" = 0"),"もう1つの解は <b>"+M_(X+" = "+N(r2))+"</b>"]};}
+    if(ty==="c2"){const r1=rnz(-6,6),r2=rnz(-8,8);if(r1===r2)continue;const b=-(r1+r2);if(b===0)continue;const a=r1*r2;
+      return {ty,eq:X+"²"+(b>0?" + ":" − ")+(Math.abs(b)===1?"":Math.abs(b))+X+" + "+IA+" = 0",r:r1,a,other:r2,oH:N(r2),
+        sol:[M_(X+" = "+N(r1))+" を代入すると "+M_(par(r1)+"²"+(b>0?" + ":" − ")+Math.abs(b)+" × "+par(r1)+" + "+IA+" = 0"),M_(N(r1*r1+b*r1)+" + "+IA+" = 0")+" より <b>"+M_(IA+" = "+N(a))+"</b>",
+             "方程式は "+M_(P2(1,b,a)+" = 0")+"、"+M_(fac(r1)+fac(r2)+" = 0"),"もう1つの解は <b>"+M_(X+" = "+N(r2))+"</b>"]};}
+    if(ty==="c3"){const h=rnz(-4,4),m=pick([2,3,5,6,7]);const a=h*h-m;
+      return {ty,eq:X+"²"+(h>0?" − ":" + ")+(Math.abs(2*h))+X+" + "+IA+" = 0",r:null,rH:N(h)+" + "+sqH(m),h,m,a,other:null,oH:N(h)+" − "+sqH(m),
+        sol:[M_(X+" = "+N(h)+" + "+sqH(m))+" を代入すると "+M_("("+N(h)+" + "+sqH(m)+")²"+(h>0?" − ":" + ")+Math.abs(2*h)+"("+N(h)+" + "+sqH(m)+") + "+IA+" = 0"),
+             M_((h*h+m)+(h>0?" + ":" − ")+Math.abs(2*h)+sqH(m)+" − "+(2*h*h)+(h>0?" − ":" + ")+Math.abs(2*h)+sqH(m)+" + "+IA+" = 0"),
+             "√の項が消えて "+M_(N(m-h*h)+" + "+IA+" = 0")+" より <b>"+M_(IA+" = "+N(a))+"</b>",
+             "方程式 "+M_(P2(1,-2*h,a)+" = 0")+" を解くと "+M_(xm(-h)+"² = "+m)+"、"+M_(X+" = "+N(h)+" ± "+sqH(m)),"もう1つの解は <b>"+M_(X+" = "+N(h)+" − "+sqH(m))+"</b>"]};}
+    if(ty==="c4"){const r=rnz(-3,3),a=rnz(-4,4);const k=-r*r-a*(2*r+1);if(k===0||2*r+1===0)continue;const other=-2*a-r;if(other===r)continue;
+      return {ty,eq:X+"² + 2"+IA+X+" + "+IA+(k>0?" + "+k:" − "+(-k))+" = 0",r,a,other,oH:N(other),
+        sol:[M_(X+" = "+N(r))+" を代入すると "+M_(par(r)+"² + 2"+IA+" × "+par(r)+" + "+IA+(k>0?" + "+k:" − "+(-k))+" = 0"),M_(N(2*r+1)+IA+" = "+N(-r*r-k))+" より <b>"+M_(IA+" = "+N(a))+"</b>",
+             "方程式は "+M_(P2(1,2*a,a+k)+" = 0")+"、"+M_(fac(r)+fac(other)+" = 0"),"もう1つの解は <b>"+M_(X+" = "+N(other))+"</b>"]};}
+  }
+}
+function rootLabel(P){return P.ty==="c3"?P.rH:N(P.r);}
+function g96_50(){
+  const P=pick96();const L=(a,o)=>M_(IA+" = "+N(a)+"、もう1つの解 "+X+" = "+o);
+  const ds=[];
+  if(P.ty==="c3"){
+    ds.push({h:L(P.h*P.h+P.m,P.oH),k:"1",w:IA+" の計算ミス。代入して整理すると "+N(P.m-P.h*P.h)+" + "+IA+" = 0 なので "+IA+" = "+N(P.a)+"。"});
+    ds.push({h:L(P.a,N(-P.h)+" − "+sqH(P.m)),k:"2",w:"もう1つの解は "+N(P.h)+" − "+sqH(P.m)+"（"+M_(X+" = "+N(P.h)+" ± "+sqH(P.m))+"）。"});
+    ds.push({h:L(P.a,N(-P.h)+" + "+sqH(P.m)),k:"3",w:"もう1つの解の符号ミス。"});
+    ds.push({h:L(-P.a,P.oH),k:"4",w:IA+" の符号ミス。"});
+  }else{
+    ds.push({h:L(-P.a,P.oH),k:"1",w:IA+" の符号ミス。代入した式を移項するときに注意。"});
+    ds.push({h:L(P.a,N(-P.other)),k:"2",w:"もう1つの解の符号ミス。因数 "+M_(fac(P.other))+" から "+X+" = "+N(P.other)+"。"});
+    ds.push({h:L(-P.a,N(-P.other)),k:"3",w:"符号ミスが2つ。"+par(P.r)+"² は正の数。"});
+    ds.push({h:L(P.a,N(P.other+1)),k:"4",w:"もう1つの解を因数分解で確かめよう。"});
+  }
+  return mc({q:"2次方程式 "+M_(P.eq)+" の解の1つは "+M_(rootLabel(P))+" である。"+IA+" の値と、もう1つの解は？",ans:{h:L(P.a,P.oH),k:"ok"},ds:shuffle(ds),
+    e:"<b>解は代入すると式を成り立たせる値</b>。わかっている解を代入して "+IA+" を求め、方程式を完成させてから解く。",sol:P.sol});
+}
+function g96_70(){
+  const P=pick96();
+  const am={};am[String(-P.a)]=IA+" の<b>符号ミス</b>。";
+  const tpl=[M_(IA+" = {0}")],bl=[B(P.a,am)];
+  if(P.ty==="c3"){tpl.push("もう1つの解　"+M_(X+" = {1} − "+'<span class="sq">√<span class="rad">{2}</span></span>'));bl.push(B(P.h),B(P.m));}
+  else{const om={};om[String(-P.other)]="符号が逆。";om[String(P.r)]="それは問題の解。<b>もう1つ</b>の解を求める。";tpl.push("もう1つの解　"+M_(X+" = {1}"));bl.push(B(P.other,om));}
+  return fill({q:"2次方程式 "+M_(P.eq)+" の解の1つは "+M_(rootLabel(P))+" である。"+IA+" の値ともう1つの解を求めなさい。",tpl,blanks:bl,
+    e:"解を代入 → "+IA+" を求める → 方程式を完成させて解く。",sol:P.sol});
+}
+function g96_90(){
+  const P=pick96();
+  const ok=[[M_(X+" = "+rootLabel(P))+" を方程式に代入すると、"+IA+" についての方程式ができる","解は方程式を成り立たせる値なので、代入してよい。"],
+            [M_(IA+" = "+N(P.a)),"代入した式を解いた結果。"],
+            ["もう1つの解は "+M_(X+" = "+P.oH),IA+" を入れた方程式を解いて求める。"]];
+  const ng=[[IA+" の値は求めずに、"+M_(X+" = "+rootLabel(P))+" の符号を変えたものがもう1つの解になる","そんな決まりはない。"+IA+" を求めて、方程式を解く。"],
+            [M_(IA+" = "+N(-P.a)),"符号ミス。"],
+            ["もう1つの解は、"+M_(X+" = "+rootLabel(P))+" の2倍である","根拠のない思いこみ。方程式を解いて求める。"]];
+  return parts({q:"2次方程式 "+M_(P.eq)+" の解の1つが "+M_(rootLabel(P))+" のとき、"+IA+" の値ともう1つの解を求める。<b>正しい</b>説明の部品を【すべて】選びなさい。",ok,ng,
+    m:P.sol.join("　"),sol:P.sol});
+}
+
+/* =================== 10 2次方程式の利用 =================== */
+/* 文章題の共通形
+   W={q,sh,def,setup,std:[a,b,c],R,valid:[値],rej:"不適の理由",ans:"答え",ansNum:数値|null,unit,wrong:[{h,w}],ok90:[],ng90:[]} */
+function wSol(W){
+  const L=[W.def,M_(W.setup)];
+  const [a,b,c]=W.std;
+  L.push("整理すると "+M_(P2(a,b,c,VX)+" = 0"));
+  const R=W.R;
+  if(R.t==="rat"&&a===1&&R.v.length===2&&R.v[0].d===1&&R.v[1].d===1){
+    const r1=R.v[0].n,r2=R.v[1].n;
+    L.push(M_(fac(r1).replace(/<i>x<\/i>/g,VX)+fac(r2).replace(/<i>x<\/i>/g,VX)+" = 0"));
+  }else if(R.t==="irr"){
+    L.push(M_(VX+" = "+irrH(R,"±"))+"（解の公式など）");
+  }
+  L.push(M_(rH(R)));
+  L.push(W.rej?("🔎 <b>吟味</b>："+W.rej):"🔎 <b>吟味</b>：どちらの解も問題に適している。");
+  L.push("<b>答 "+W.ans+"</b>");
+  return L;
+}
+function wq50(W){
+  const ws=W.wrong.filter((d,i,a)=>d.h!==W.ans&&a.findIndex(e=>e.h===d.h)===i);
+  return mc({q:W.q,sh:W.sh,ans:{h:W.ans,k:"ok"},ds:ws.map((d,i)=>({h:d.h,k:"w"+i,w:d.w})),
+    e:"①何を "+VX+" にするか決める → ②方程式をつくる → ③解く → ④<b>解が問題に適しているか確かめる（吟味）</b>。",sol:wSol(W)});
+}
+function wq70(W){
+  const [a,b,c]=W.std;const tpl=[],bl=[];
+  const bm={};bm[String(-b)]="移項・展開の符号に注意。";const cm={};cm[String(-c)]="移項すると符号が変わる。";
+  tpl.push("方程式を整理すると　"+M_((a===1?"":a)+VX+"² + {0}"+VX+" + {1} = 0"));bl.push(B(b,bm),B(c,cm));
+  const r=tplRoots(W.R,2,null);tpl.push("解は　"+M_(r.t));bl.push(...r.b);
+  if(W.ansNum!==null){const am={};W.rejVals&&W.rejVals.forEach(v=>{am[String(v)]="その解は問題に適さない。"+W.rej;});
+    tpl.push(W.ansLbl+"　{"+bl.length+"} "+(W.unit||""));bl.push(B(W.ansNum,am));}
+  return fill({q:W.q+"<br><small>（"+W.def+"として方程式をつくる。負の数は −3 のように入力）</small>",sh:W.sh,tpl,blanks:bl,
+    e:"文章題は<b>「文字を決める → 立式 → 解く → 吟味」</b>の4ステップ。",sol:wSol(W)});
+}
+function wq90(W){
+  const ok=[[W.def+"と、"+M_(W.setup),"問題文の関係をそのまま式にした。"],
+            ["整理すると "+M_(P2(W.std[0],W.std[1],W.std[2],VX)+" = 0"),"展開・移項して（2次式）= 0 に。"]].concat(W.ok90||[]);
+  const ng=(W.ng90||[]).slice();
+  if(W.rej)ng.push(["方程式の解はどちらも、そのまま答えにしてよい","方程式の解がそのまま答えになるとは限らない。"+W.rej]);
+  else ng.push(["負の数の解は必ず答えから除く","この問題では負の数・両方の解が条件に合う。<b>条件を読んで</b>判断する。"]);
+  return parts({q:W.q+"<br>この問題の解き方として<b>正しい</b>説明の部品を【すべて】選びなさい。",sh:W.sh,ok,ng,m:wSol(W).join("　"),sol:wSol(W)});
+}
+
+/* ---------- SVG ---------- */
+function svgWrap(w,h,inner){return '<svg viewBox="0 0 '+w+' '+h+'" xmlns="http://www.w3.org/2000/svg" style="max-width:330px;margin:0 auto;" font-family="sans-serif">'+inner+'</svg>';}
+function figBox(cut,lblW,lblH){
+  const W=240,H=170,x0=20,y0=15,c=26;
+  let s='<rect x="'+x0+'" y="'+y0+'" width="'+W+'" height="'+H+'" fill="#fff" stroke="#1c3a47" stroke-width="1.5"/>';
+  [[x0,y0],[x0+W-c,y0],[x0,y0+H-c],[x0+W-c,y0+H-c]].forEach(([x,y])=>{s+='<rect x="'+x+'" y="'+y+'" width="'+c+'" height="'+c+'" fill="#cdeaf6" stroke="#1c3a47"/>';});
+  s+='<rect x="'+(x0+c)+'" y="'+(y0+c)+'" width="'+(W-2*c)+'" height="'+(H-2*c)+'" fill="none" stroke="#1491bd" stroke-dasharray="5 4"/>';
+  s+='<text x="'+(x0+c+4)+'" y="'+(y0+18)+'" font-size="13" fill="#1c3a47">'+cut+'cm</text>';
+  s+='<text x="'+(x0+W/2)+'" y="'+(y0+H+18)+'" font-size="13" text-anchor="middle" fill="#1c3a47">'+lblW+'</text>';
+  s+='<text x="'+(x0+W+6)+'" y="'+(y0+H/2)+'" font-size="13" fill="#1c3a47">'+lblH+'</text>';
+  return svgWrap(320,210,s);
+}
+function figRoad(W,H){
+  const sx=220,sy=sx*H/W,x0=20,y0=20,rw=18;
+  let s='<rect x="'+x0+'" y="'+y0+'" width="'+sx+'" height="'+sy+'" fill="#d9eef7" stroke="#1c3a47" stroke-width="1.5"/>';
+  s+='<rect x="'+(x0+sx*0.62)+'" y="'+y0+'" width="'+rw+'" height="'+sy+'" fill="#fff" stroke="#1c3a47"/>';
+  s+='<rect x="'+x0+'" y="'+(y0+sy*0.55)+'" width="'+sx+'" height="'+rw+'" fill="#fff" stroke="#1c3a47"/>';
+  s+='<text x="'+(x0+sx/2)+'" y="'+(y0-5)+'" font-size="13" text-anchor="middle" fill="#1c3a47">'+W+' m</text>';
+  s+='<text x="'+(x0-4)+'" y="'+(y0+sy/2)+'" font-size="13" text-anchor="end" fill="#1c3a47">'+H+'m</text>';
+  s+='<text x="'+(x0+sx*0.62+rw/2)+'" y="'+(y0+sy+15)+'" font-size="12" text-anchor="middle" fill="#e05d5d">x</text>';
+  return svgWrap(270,sy+45,s);
+}
+function figRect(lblW,lblH){
+  let s='<rect x="100" y="20" width="190" height="110" fill="#d9eef7" stroke="#1c3a47" stroke-width="1.5"/>';
+  s+='<text x="195" y="150" font-size="13" text-anchor="middle" fill="#1c3a47">'+lblW+'</text><text x="94" y="80" font-size="13" text-anchor="end" fill="#1c3a47">'+lblH+'</text>';
+  return svgWrap(310,165,s);
+}
+function figSquareAPQ(L){
+  const x0=40,y0=20,S=180;
+  let s='<rect x="'+x0+'" y="'+y0+'" width="'+S+'" height="'+S+'" fill="#fff" stroke="#1c3a47" stroke-width="1.5"/>';
+  const px=x0,py=y0+S*0.38,qx=x0+S*0.62,qy=y0;
+  s+='<polygon points="'+x0+','+y0+' '+px+','+py+' '+qx+','+qy+'" fill="#cdeaf6" stroke="#1491bd" stroke-width="1.5"/>';
+  s+='<text x="'+(x0-14)+'" y="'+(y0+4)+'" font-size="14">A</text><text x="'+(x0+S+4)+'" y="'+(y0+4)+'" font-size="14">D</text><text x="'+(x0-14)+'" y="'+(y0+S+6)+'" font-size="14">B</text><text x="'+(x0+S+4)+'" y="'+(y0+S+6)+'" font-size="14">C</text>';
+  s+='<circle cx="'+px+'" cy="'+py+'" r="4" fill="#e05d5d"/><text x="'+(px-16)+'" y="'+(py+5)+'" font-size="13" fill="#e05d5d">P↓</text>';
+  s+='<circle cx="'+qx+'" cy="'+qy+'" r="4" fill="#e05d5d"/><text x="'+(qx-6)+'" y="'+(qy-6)+'" font-size="13" fill="#e05d5d">←Q</text>';
+  s+='<text x="'+(x0+S/2)+'" y="'+(y0+S+20)+'" font-size="13" text-anchor="middle">'+L+' cm</text>';
+  return svgWrap(260,230,s);
+}
+function figIsoAPQC(L){
+  const Ax=40,Ay=20,Bx=40,By=200,Cx=220,Cy=200;
+  const Px=40,Py=20+180*0.4,Qx=220-180*0.4,Qy=200;
+  let s='<polygon points="'+Ax+','+Ay+' '+Bx+','+By+' '+Cx+','+Cy+'" fill="#fff" stroke="#1c3a47" stroke-width="1.5"/>';
+  s+='<polygon points="'+Ax+','+Ay+' '+Px+','+Py+' '+Qx+','+Qy+' '+Cx+','+Cy+'" fill="#cdeaf6" stroke="#1491bd" stroke-width="1.5"/>';
+  s+='<text x="'+(Ax-4)+'" y="'+(Ay-5)+'" font-size="14">A</text><text x="'+(Bx-14)+'" y="'+(By+6)+'" font-size="14">B</text><text x="'+(Cx+4)+'" y="'+(Cy+6)+'" font-size="14">C</text>';
+  s+='<circle cx="'+Px+'" cy="'+Py+'" r="4" fill="#e05d5d"/><text x="'+(Px+6)+'" y="'+(Py+4)+'" font-size="13" fill="#e05d5d">P↓</text>';
+  s+='<circle cx="'+Qx+'" cy="'+Qy+'" r="4" fill="#e05d5d"/><text x="'+(Qx-10)+'" y="'+(Qy-8)+'" font-size="13" fill="#e05d5d">Q←</text>';
+  s+='<text x="'+(Bx-6)+'" y="'+(By-90)+'" font-size="12" text-anchor="end">'+L+'cm</text><text x="130" y="'+(By+20)+'" font-size="12" text-anchor="middle">'+L+' cm</text>';
+  s+='<rect x="'+Bx+'" y="'+(By-10)+'" width="10" height="10" fill="none" stroke="#1c3a47"/>';
+  return svgWrap(260,230,s);
+}
+function figRtAPQ(h){
+  const Ax=40,Ay=170,Cx=40,Cy=40,Bx=260,By=170;
+  const Px=40,Py=170-130*0.4,Qx=40+220*0.45,Qy=170;
+  let s='<polygon points="'+Ax+','+Ay+' '+Cx+','+Cy+' '+Bx+','+By+'" fill="#fff" stroke="#1c3a47" stroke-width="1.5"/>';
+  s+='<polygon points="'+Ax+','+Ay+' '+Px+','+Py+' '+Qx+','+Qy+'" fill="#cdeaf6" stroke="#1491bd" stroke-width="1.5"/>';
+  s+='<text x="'+(Ax-14)+'" y="'+(Ay+6)+'" font-size="14">A</text><text x="'+(Cx-14)+'" y="'+(Cy+4)+'" font-size="14">C</text><text x="'+(Bx+4)+'" y="'+(By+6)+'" font-size="14">B</text>';
+  s+='<circle cx="'+Px+'" cy="'+Py+'" r="4" fill="#e05d5d"/><text x="'+(Px+6)+'" y="'+(Py)+'" font-size="13" fill="#e05d5d">P↑</text>';
+  s+='<circle cx="'+Qx+'" cy="'+Qy+'" r="4" fill="#e05d5d"/><text x="'+(Qx-6)+'" y="'+(Qy-8)+'" font-size="13" fill="#e05d5d">←Q</text>';
+  s+='<rect x="'+Ax+'" y="'+(Ay-10)+'" width="10" height="10" fill="none" stroke="#1c3a47"/>';
+  s+='<text x="'+(Ax-6)+'" y="'+(110)+'" font-size="12" text-anchor="end">'+h+'cm</text><text x="150" y="'+(Ay+20)+'" font-size="12" text-anchor="middle">'+2*h+' cm</text>';
+  return svgWrap(290,200,s);
+}
+function figGraph(kind,info){
+  /* 模式図（目盛りなし） */
+  const O={x:50,y:190};
+  let s='<line x1="20" y1="'+O.y+'" x2="300" y2="'+O.y+'" stroke="#1c3a47"/><line x1="'+O.x+'" y1="225" x2="'+O.x+'" y2="10" stroke="#1c3a47"/>';
+  s+='<text x="296" y="'+(O.y+16)+'" font-size="13" font-style="italic">x</text><text x="'+(O.x+6)+'" y="18" font-size="13" font-style="italic">y</text><text x="'+(O.x-14)+'" y="'+(O.y+16)+'" font-size="13">O</text>';
+  if(kind==="l1"){
+    s+='<line x1="'+(O.x-20)+'" y1="'+(O.y-50+12)+'" x2="290" y2="30" stroke="#1491bd" stroke-width="2"/>';
+    const R={x:O.x,y:O.y-50+12-(20*(160/260))};
+    const Rx=O.x,Ry=O.y-50;const Px=220,Py=Ry-(Px-Rx)*((Ry-30)/(290-Rx));
+    s='<line x1="20" y1="'+O.y+'" x2="300" y2="'+O.y+'" stroke="#1c3a47"/><line x1="'+O.x+'" y1="225" x2="'+O.x+'" y2="10" stroke="#1c3a47"/>'+
+      '<text x="296" y="'+(O.y+16)+'" font-size="13" font-style="italic">x</text><text x="'+(O.x+6)+'" y="18" font-size="13" font-style="italic">y</text><text x="'+(O.x-14)+'" y="'+(O.y+16)+'" font-size="13">O</text>';
+    s+='<line x1="'+(Rx-25)+'" y1="'+(Ry+25*((Ry-30)/(290-Rx)))+'" x2="290" y2="30" stroke="#1491bd" stroke-width="2"/>';
+    s+='<polygon points="'+Rx+','+Ry+' '+Px+','+Py+' '+Px+','+O.y+'" fill="#cdeaf6" stroke="#1491bd"/>';
+    s+='<circle cx="'+Px+'" cy="'+Py+'" r="4" fill="#e05d5d"/><text x="'+(Px+6)+'" y="'+(Py+2)+'" font-size="13">P</text>';
+    s+='<text x="'+(Px-4)+'" y="'+(O.y+16)+'" font-size="13">Q</text><text x="'+(Rx-16)+'" y="'+(Ry+4)+'" font-size="13">R</text>';
+    s+='<text x="200" y="40" font-size="12" fill="#1491bd">'+info+'</text>';
+  }else if(kind==="l2"){
+    const Bx=O.x,By=30,Ax=250,Ay=O.y;const Px=Bx+(Ax-Bx)*0.6,Py=By+(Ay-By)*0.6;
+    s+='<line x1="'+(Bx-10)+'" y1="'+(By-8)+'" x2="'+(Ax+20)+'" y2="'+(Ay+16)+'" stroke="#1491bd" stroke-width="2"/>';
+    s+='<polygon points="'+O.x+','+O.y+' '+Px+','+O.y+' '+Px+','+Py+' '+Bx+','+By+'" fill="#cdeaf6" stroke="#1491bd"/>';
+    s+='<circle cx="'+Px+'" cy="'+Py+'" r="4" fill="#e05d5d"/><text x="'+(Px+6)+'" y="'+(Py)+'" font-size="13">P</text>';
+    s+='<text x="'+(Px-4)+'" y="'+(O.y+16)+'" font-size="13">Q</text><text x="'+(Bx-16)+'" y="'+(By+4)+'" font-size="13">B</text><text x="'+(Ax-2)+'" y="'+(Ay+16)+'" font-size="13">A</text>';
+    s+='<text x="150" y="60" font-size="12" fill="#1491bd">'+info+'</text>';
+  }else{
+    const Ax=80,Ay=O.y;const Px=240;
+    s='<line x1="20" y1="'+O.y+'" x2="300" y2="'+O.y+'" stroke="#1c3a47"/><line x1="120" y1="225" x2="120" y2="10" stroke="#1c3a47"/>'+
+      '<text x="296" y="'+(O.y+16)+'" font-size="13" font-style="italic">x</text><text x="126" y="18" font-size="13" font-style="italic">y</text><text x="106" y="'+(O.y+16)+'" font-size="13">O</text>';
+    s+='<line x1="'+(Ax-15)+'" y1="'+(Ay+15)+'" x2="290" y2="'+(Ay-210)+'" stroke="#1491bd" stroke-width="2"/>';
+    s+='<line x1="'+(Ax-15)+'" y1="'+(Ay+7)+'" x2="290" y2="'+(Ay-105)+'" stroke="#8dc63f" stroke-width="2"/>';
+    const Py=Ay-(Px-Ax),Qy=Ay-(Px-Ax)/2;
+    s+='<polygon points="'+Ax+','+Ay+' '+Px+','+Py+' '+Px+','+Qy+'" fill="#cdeaf6" stroke="#1491bd"/>';
+    s+='<line x1="'+Px+'" y1="20" x2="'+Px+'" y2="'+O.y+'" stroke="#999" stroke-dasharray="4 3"/>';
+    s+='<circle cx="'+Px+'" cy="'+Py+'" r="4" fill="#e05d5d"/><text x="'+(Px+6)+'" y="'+(Py+4)+'" font-size="13">P</text><text x="'+(Px+6)+'" y="'+(Qy+4)+'" font-size="13">Q</text>';
+    s+='<text x="'+(Ax-12)+'" y="'+(Ay-6)+'" font-size="13">A</text><text x="'+(Ax-10)+'" y="'+(Ay+18)+'" font-size="11">'+info+'</text>';
+    s+='<text x="270" y="40" font-size="13" fill="#1491bd">ℓ</text><text x="275" y="110" font-size="13" fill="#5f9a1d">m</text>';
+  }
+  return svgWrap(310,235,s);
+}
+
+/* ---- 10-1 数に関する問題 ---- */
+function pick101(){
+  const ty=pick(["n1","n2","n3","n4","n5","n6"]);
+  if(ty==="n1"){const s=ri(2,12),d=ri(2,12),p=s*(s+d);
+    return {q:"大小2つの数がある。その差は "+d+" で、積は "+p+" である。この2つの数を求めなさい。",def:"小さいほうの数を "+X+" とする（大きいほうは "+X+" + "+d+"）",
+      setup:X+"("+X+" + "+d+") = "+p,std:[1,d,-p],R:ratR([Fr(s,1),Fr(-s-d,1)]),rej:"",ans:s+" と "+(s+d)+"、"+N(-s-d)+" と "+N(-s),ansNum:null,
+      wrong:[{h:s+" と "+(s+d),w:"<b>負の数の組も条件に合う</b>。"+N(-s-d)+" と "+N(-s)+" も差が "+d+"、積が "+p+"。問題に「正の数」とない限り両方答える。"},
+             {h:s+" と "+(s+d)+"、"+N(-s)+" と "+N(-s-d),w:N(-s-d)+" のとき、大きいほうは "+N(-s-d)+" + "+d+" = <b>"+N(-s)+"</b>。組の作り方がずれている。"},
+             {h:s+" と "+(s-d>0?s-d:s+2*d),w:"差を確かめよう。"+M_(X+"("+X+" + "+d+") = "+p)+" を解き直す。"}],
+      ok90:[["解は "+M_(X+" = "+s+"、"+N(-s-d)),"因数分解 ("+X+" − "+s+")("+X+" + "+(s+d)+") = 0。"],["答えは「"+s+" と "+(s+d)+"」と「"+N(-s-d)+" と "+N(-s)+"」の2組","どちらの組も差 "+d+"、積 "+p+" を満たす。"]],
+      ng90:[["大きいほうの数は "+d+X+" と表せる","差が "+d+" なので <b>"+X+" + "+d+"</b>。"],["方程式は "+M_(X+" + ("+X+" + "+d+") = "+p),"積なので<b>かけ算</b>。"]]};}
+  if(ty==="n2"){const s=ri(3,12),S=s*(s+1);
+    return {q:"ある数とその数の平方との和は "+S+" である。ある数を求めなさい。",def:"ある数を "+X+" とする",setup:X+" + "+X+"² = "+S,std:[1,1,-S],R:ratR([Fr(s,1),Fr(-s-1,1)]),rej:"",ans:s+"、"+N(-s-1),ansNum:null,
+      wrong:[{h:String(s),w:"<b>"+N(-s-1)+" も条件に合う</b>："+par(-s-1)+" + "+par(-s-1)+"² = "+S+"。"},{h:s+"、"+N(-s),w:N(-s)+" + "+par(-s)+"² = "+(s*s-s)+"。"+S+" にならない。"},{h:N(-s-1),w:s+" も条件に合う。"}],
+      ok90:[["解は "+M_(X+" = "+s+"、"+N(-s-1)),"("+X+" − "+s+")("+X+" + "+(s+1)+") = 0。"]],
+      ng90:[["方程式は "+M_(X+" + 2"+X+" = "+S),"平方は2乗。"+X+"² であって 2"+X+" ではない。"]]};}
+  if(ty==="n3"){const s=ri(2,9),S=s*s+(s+1)*(s+1);
+    return {q:"2つの続いた整数のそれぞれの平方の和は "+S+" になった。この2つの整数を求めなさい。",def:"小さいほうの整数を "+X+" とする（大きいほうは "+X+" + 1）",setup:X+"² + ("+X+" + 1)² = "+S,std:[1,1,-(S-1)/2],R:ratR([Fr(s,1),Fr(-s-1,1)]),rej:"",
+      ans:s+" と "+(s+1)+"、"+N(-s-1)+" と "+N(-s),ansNum:null,
+      wrong:[{h:s+" と "+(s+1),w:"<b>負の整数の組も条件に合う</b>："+par(-s-1)+"² + "+par(-s)+"² = "+S+"。「整数」なので負も OK。"},{h:s+" と "+(s+1)+"、"+N(-s)+" と "+N(-s+1),w:"小さいほうが "+N(-s-1)+" のとき、大きいほうは "+N(-s)+"。"},{h:(s-1)+" と "+s,w:par(s-1)+"² + "+s+"² = "+((s-1)*(s-1)+s*s)+"。"+S+" にならない。"}],
+      ok90:[["展開して両辺を 2 でわると "+M_(P2(1,1,-(S-1)/2)+" = 0"),"2"+X+"² + 2"+X+" + 1 = "+S+" → 2 でわる。"],["小さいほうが "+N(-s-1)+" の組も答えになる","整数には負の数もふくまれる。"]],
+      ng90:[["大きいほうの整数は 2"+X+" と表せる","続いた整数は <b>"+X+" + 1</b>。"]]};}
+  if(ty==="n4"){const k=ri(2,9);
+    return {q:"ある数 "+X+" に "+k+" を加えて2乗するところを、まちがえて "+X+" に "+k+" を加えて2倍してしまった。しかし、答えは同じになった。"+X+" の値を求めなさい。",def:"ある数を "+X+" とする",
+      setup:"("+X+" + "+k+")² = 2("+X+" + "+k+")",std:[1,2*k-2,k*k-2*k],R:ratR([Fr(-k,1),Fr(2-k,1)]),rej:"",ans:M_(X+" = "+N(-k)+"、"+N(2-k)),ansNum:null,
+      wrong:[{h:M_(X+" = "+N(2-k)),w:X+" = "+N(-k)+" でも (0)² = 2 × 0 で同じ答え。<b>両方</b>答える。"},{h:M_(X+" = "+N(k)+"、"+N(k-2)),w:"符号が逆。"+X+" + "+k+" = 0 または "+X+" + "+k+" = 2。"},{h:M_(X+" = "+N(-k)),w:X+" = "+N(2-k)+" も成り立つ。"}],
+      ok90:[[X+" + "+k+" = A とおくと "+M_("A² = 2A")+" → "+M_("A(A − 2) = 0"),"同じかたまりは A とおくとラク。"]],
+      ng90:[["両辺を ("+X+" + "+k+") でわって "+M_(X+" + "+k+" = 2"),"<b>わると "+X+" = "+N(-k)+" の解が消える</b>。0 でわることになるかもしれない。"]]};}
+  if(ty==="n5"){const k=ri(2,6),t=ri(2,5),m=t*t-1;
+    return {q:"ある数 "+X+" から "+k+" をひいて2乗するところを、まちがえて "+X+" から "+k+" をひいて2倍してしまったため、正しい答えより "+m+" 小さくなった。"+X+" の値を求めなさい。",def:"ある数を "+X+" とする",
+      setup:"("+X+" − "+k+")² − "+m+" = 2("+X+" − "+k+")",std:[1,-2*k-2,k*k+2*k-m],R:ratR([Fr(k+1-t,1),Fr(k+1+t,1)]),rej:"",ans:M_(X+" = "+N(k+1-t)+"、"+N(k+1+t)),ansNum:null,
+      wrong:[{h:M_(X+" = "+N(k+1+t)),w:X+" = "+N(k+1-t)+" も成り立つ。両方答える。"},{h:M_(X+" = "+N(1-t)+"、"+N(1+t)),w:"それは "+X+" − "+k+"（A）の値。"+X+" にもどす。"},{h:M_(X+" = "+N(k-1-t)+"、"+N(k-1+t)),w:"「"+m+" 小さくなった」→ <b>正しい答え − "+m+" = まちがえた答え</b>。式の向きを確認。"}],
+      ok90:[["「正しい答え − "+m+" = まちがえた答え」と式をつくる","小さくなった分をひくと等しくなる。"]],
+      ng90:[["方程式は "+M_("("+X+" − "+k+")² + "+m+" = 2("+X+" − "+k+")"),"小さいのは<b>まちがえた答え</b>の方。正しい答えから "+m+" をひく。"]]};}
+  const s=ri(4,15),S=s*(s+1);
+  return {q:"続いた2つの<b>正の整数</b>があり、その積は "+S+" である。この2つの整数を求めなさい。",def:"小さいほうの整数を "+X+" とする（大きいほうは "+X+" + 1）",setup:X+"("+X+" + 1) = "+S,std:[1,1,-S],R:ratR([Fr(s,1),Fr(-s-1,1)]),
+    rej:X+" は正の整数なので "+X+" = "+N(-s-1)+" は問題に適さない。",rejVals:[-s-1],ans:s+" と "+(s+1),ansNum:s,ansLbl:"小さいほうの整数",unit:"",
+    wrong:[{h:s+" と "+(s+1)+"、"+N(-s-1)+" と "+N(-s),w:"問題文に<b>「正の整数」</b>とある。負の組は答えにならない（吟味）。"},{h:(s-1)+" と "+s,w:(s-1)+" × "+s+" = "+(s*s-s)+"。"},{h:(s+1)+" と "+(s+2),w:(s+1)+" × "+(s+2)+" = "+((s+1)*(s+2))+"。"}],
+    ok90:[["解は "+M_(X+" = "+s+"、"+N(-s-1))+" だが、"+X+" > 0 なので "+M_(X+" = "+s),"<b>吟味</b>：問題の条件（正の整数）に合う解だけを答える。"]],
+    ng90:[["方程式は "+M_(X+" + ("+X+" + 1) = "+S),"積なのでかけ算。"]]};
+}
+function g101_50(){return wq50(pick101());}
+function g101_70(){return wq70(pick101());}
+function g101_90(){return wq90(pick101());}
+
+/* ---- 10-2 図形に関する問題 ---- */
+function pick102(){
+  const ty=pick(["g1","g2","g3","g4"]);
+  if(ty==="g1"){const s=ri(3,9),l=s+ri(1,8),L=2*(s+l),S=s*l;
+    return {q:"面積が "+S+" cm²で、周りの長さが "+L+" cm の長方形がある。この長方形の<b>短いほう</b>の辺の長さを求めなさい。",sh:figRect("("+(L/2)+" − x) cm","x cm"),
+      def:"一方の辺を "+X+" cm とする（もう一方は "+(L/2)+" − "+X+"）",setup:X+"("+(L/2)+" − "+X+") = "+S,std:[1,-L/2,S],R:ratR([Fr(s,1),Fr(l,1)]),
+      rej:X+" = "+l+" のとき、もう一方の辺は "+s+" cm。どちらの解でも辺は "+s+" cm と "+l+" cm なので、短いほうは "+s+" cm。",rejVals:[l],ans:s+" cm",ansNum:s,ansLbl:"短いほうの辺",unit:"cm",
+      wrong:[{h:l+" cm",w:"それは<b>長いほう</b>の辺。"},{h:(L/4)+" cm",w:"周りの長さを 4 でわると正方形の1辺になってしまう。"},{h:s+" cm と "+l+" cm",w:"聞かれているのは<b>短いほう</b>の辺だけ。"}],
+      ok90:[["縦と横の和は周りの長さの半分で "+(L/2)+" cm","周りの長さ ＝ 2 ×（縦 ＋ 横）。"]],
+      ng90:[["もう一方の辺は "+L+" − "+X+" と表せる","縦 + 横 は周りの<b>半分</b>の "+(L/2)+"。"]]};}
+  if(ty==="g2"){const a=ri(2,6),b=ri(2,8),x0=a+ri(2,8),S=(x0-a)*(x0+b);const o=-(b-a)-x0;
+    return {q:"ある正方形の縦を "+a+" cm 短くし、横を "+b+" cm 長くして長方形をつくったら、長方形の面積は "+S+" cm²になった。もとの正方形の1辺の長さを求めなさい。",sh:figRect("(x + "+b+") cm","(x − "+a+") cm"),
+      def:"もとの正方形の1辺を "+X+" cm とする",setup:"("+X+" − "+a+")("+X+" + "+b+") = "+S,std:[1,b-a,-a*b-S],R:ratR([Fr(x0,1),Fr(o,1)]),
+      rej:"縦 "+X+" − "+a+" > 0 なので "+X+" > "+a+"。"+X+" = "+N(o)+" は問題に適さない。",rejVals:[o],ans:x0+" cm",ansNum:x0,ansLbl:"もとの正方形の1辺",unit:"cm",
+      wrong:[{h:x0+" cm、"+Math.abs(o)+" cm",w:N(o)+" は負なので不適。符号をとって答えにしてはいけない。"},{h:(x0-a)+" cm",w:"それは長方形の<b>縦</b>。聞かれているのはもとの正方形。"},{h:(x0+b)+" cm",w:"それは長方形の<b>横</b>。"}],
+      ok90:[["長方形の縦は ("+X+" − "+a+") cm、横は ("+X+" + "+b+") cm","問題文のとおり。"],["解のうち "+X+" > "+a+" を満たす "+X+" = "+x0+" が答え","<b>吟味</b>：辺の長さは正。"]],
+      ng90:[["長方形の縦は ("+X+" + "+a+") cm","「短くする」のでひく。"]]};}
+  if(ty==="g3"){const d=ri(2,8),c=ri(2,5),x0=2*c+ri(3,10),V=c*(x0-2*c)*(x0+d-2*c);const o=4*c-d-x0;
+    return {q:"横が縦より "+d+" cm 長い長方形の紙がある。この紙の4すみから1辺が "+c+" cm の正方形を切り取り、直方体の容器を作ったら、容積が "+V+" cm³になった。紙の縦の長さを求めなさい。",sh:figBox(c,"(x + "+d+") cm","x cm"),
+      def:"紙の縦を "+X+" cm とする（容器の縦 "+X+" − "+2*c+"、横 "+X+" + "+d+" − "+2*c+"、高さ "+c+"）",setup:c+"("+X+" − "+2*c+")("+X+(d-2*c>=0?" + "+(d-2*c):" − "+(2*c-d))+") = "+V,
+      std:[1,d-4*c,-2*c*(d-2*c)-V/c],R:ratR([Fr(x0,1),Fr(o,1)]),rej:"容器の縦 "+X+" − "+2*c+" > 0 なので "+X+" > "+2*c+"。"+X+" = "+N(o)+" は不適。",rejVals:[o],ans:x0+" cm",ansNum:x0,ansLbl:"紙の縦",unit:"cm",
+      wrong:[{h:(x0-2*c)+" cm",w:"それは<b>容器の</b>縦。紙の縦は切り取る前の長さ。"},{h:(x0+d)+" cm",w:"それは紙の<b>横</b>。"},{h:(x0-c)+" cm",w:"切り取るのは<b>両はし</b>なので、"+c+" × 2 = "+2*c+" cm 短くなる。"}],
+      ok90:[["容器の縦は紙の縦より "+2*c+" cm 短い","両はしから "+c+" cm ずつ切り取る。"],["容積 = 縦 × 横 × 高さ（高さは "+c+" cm）","直方体の体積。"]],
+      ng90:[["容器の縦は "+X+" − "+c+" cm","切り取るのは<b>両はし</b>。2 × "+c+" = "+2*c+" cm 短くなる。"],["高さは "+2*c+" cm","高さは切り取った正方形の1辺 "+c+" cm。"]]};}
+  let W=ri(12,20),H=ri(8,W-2),x0=ri(1,4);const S=(W-x0)*(H-x0);const o=W+H-x0;
+  return {q:"縦が "+H+" m、横が "+W+" m の長方形の土地に、縦・横に同じ幅の道をつけて、残りを畑にする。畑の面積が "+S+" m²になるようにするには、道の幅を何 m にすればよいか。",sh:figRoad(W,H),
+    def:"道の幅を "+X+" m とする（道を端によせると、畑は縦 "+H+" − "+X+"、横 "+W+" − "+X+" の長方形）",setup:"("+H+" − "+X+")("+W+" − "+X+") = "+S,std:[1,-(W+H),W*H-S],R:ratR([Fr(x0,1),Fr(o,1)]),
+    rej:"0 &lt; "+X+" &lt; "+H+" なので "+X+" = "+o+" は不適。",rejVals:[o],ans:x0+" m",ansNum:x0,ansLbl:"道の幅",unit:"m",
+    wrong:[{h:o+" m",w:"道の幅が土地の縦 "+H+" m より大きくなってしまう。<b>吟味</b>で除く。"},{h:x0+" m、"+o+" m",w:o+" m は土地からはみ出すので不適。"},{h:(x0+1)+" m",w:"畑の面積は ("+H+" − "+(x0+1)+")("+W+" − "+(x0+1)+") = "+((H-x0-1)*(W-x0-1))+" m²。"}],
+    ok90:[["道を土地の端によせて考えると、畑は1つの長方形になる","面積は道の位置によらない。"],[X+" = "+o+" は土地の縦より長いので不適","<b>吟味</b>：0 &lt; "+X+" &lt; "+H+"。"]],
+    ng90:[["畑の面積は "+H+" × "+W+" − 2"+X,"道の面積は単純な 2"+X+" ではない（交差部分・長さ）。端によせて考える。"]]};
+}
+function g102_50(){return wq50(pick102());}
+function g102_70(){return wq70(pick102());}
+function g102_90(){return wq90(pick102());}
+
+/* ---- 10-3 点の移動に関する問題 ---- */
+function pick103(){
+  const ty=pick(["p1","p1","p2","p3"]);
+  if(ty==="p1"){const L=pick([6,8,10,12]);let S,R;
+    if(Math.random()<0.55){const x0=ri(1,L/2-1);S=x0*(L-x0)/2;R=ratR([Fr(x0,1),Fr(L-x0,1)]);}
+    else{for(;;){S=ri(2,Math.floor(L*L/8));const D=L*L-8*S;if(D>0&&!isSq(D))break;}R=solveQ(1,-L,2*S);}
+    const ansH=R.t==="rat"?rVals(R).join(" cm と ")+" cm":"("+irrH(R,"+")+") cm と ("+irrH(R,"−")+") cm";
+    return {q:"正方形ABCD（1辺 "+L+" cm）で、点Pは A を出発して AB 上を B まで動く。点Qは P が A を出発するのと同時に D を出発し、P と同じ速さで DA 上を A まで動く。△APQ の面積が "+S+" cm²になるのは、点Pが A から何 cm 動いたときか。",sh:figSquareAPQ(L),
+      def:"AP = DQ = "+X+" cm とする（AQ = "+L+" − "+X+"）",setup:fracH(1,2)+X+"("+L+" − "+X+") = "+S,std:[1,-L,2*S],R,rej:"",ans:M_(ansH),ansNum:null,
+      wrong:[{h:M_(R.t==="rat"?rVals(R)[0]+" cm":"("+irrH(R,"−")+") cm"),w:"もう1つの解も 0 ≦ "+X+" ≦ "+L+" を満たす。<b>両方</b>答える。"},
+             {h:M_(R.t==="rat"?(rVals(R)[0]+1)+" cm と "+(rVals(R)[1]-1)+" cm":"("+irrH(irrR(R.P,R.K,R.M+1,R.Q),"+")+") cm"),w:"面積の式 "+fracH(1,2)+" × AP × AQ を確かめよう。"},
+             {h:M_(R.t==="rat"?Math.sqrt(2*S).toFixed(0)+" cm":L/2+" cm"),w:"△APQ は直角三角形で、面積 = "+fracH(1,2)+" × AP × AQ。AQ = "+L+" − "+X+"。"}].filter((d,i,a)=>a.findIndex(e=>e.h===d.h)===i),
+      ok90:[["0 ≦ "+X+" ≦ "+L+" で、どちらの解もこれを満たす","<b>吟味</b>した結果、両方とも答え。"]],
+      ng90:[["AQ = "+X+" cm","Q は D から動くので AQ = "+L+" − "+X+"。"]]};}
+  if(ty==="p2"){const L=pick([4,6,8,10]);let S,R,x0;
+    if(Math.random()<0.6){x0=2*ri(1,L/2-1);S=(L*L-(L-x0)*(L-x0))/2;}
+    else{for(;;){S=ri(2,Math.floor(L*L/2)-1);const D=L*L-2*S;if(D>0&&!isSq(D))break;}}
+    R=solveQ(1,-2*L,2*S);
+    const vals=rVals(R);const good=R.t==="rat"?vals[0]:null;
+    const ansH=R.t==="rat"?good+" cm":"("+irrH(R,"−")+") cm";
+    return {q:"直角二等辺三角形ABC（AB = BC = "+L+" cm、∠B = 90°）で、点Pは A を出発して AB 上を B まで動く。点Qは P と同時に C を出発し、P と同じ速さで CB 上を B まで動く。四角形APQC の面積が "+S+" cm²になるのは、点Pが A から何 cm 動いたときか。",sh:figIsoAPQC(L),
+      def:"AP = CQ = "+X+" cm とする（BP = BQ = "+L+" − "+X+"）",setup:fracH(L*L,2)+" − "+fracH(1,2)+"("+L+" − "+X+")² = "+S,std:[1,-2*L,2*S],R,
+      rej:"0 ≦ "+X+" ≦ "+L+" なので、"+(R.t==="rat"?X+" = "+vals[1]:X+" = "+irrH(R,"+"))+" は不適。",rejVals:R.t==="rat"?[vals[1]]:[],ans:M_(ansH),ansNum:R.t==="rat"?good:null,ansLbl:"AP の長さ",unit:"cm",
+      wrong:[{h:M_(R.t==="rat"?vals[1]+" cm":"("+irrH(R,"+")+") cm"),w:"辺の長さ "+L+" cm をこえてしまう。<b>吟味</b>で除く。"},
+             {h:M_(R.t==="rat"?vals.join(" cm と ")+" cm":"("+irrH(R,"±")+") cm"),w:"大きいほうの解は "+L+" cm をこえるので不適。"},
+             {h:M_(R.t==="rat"?(L-good)+" cm":"("+irrH({P:0,K:R.K,M:R.M,Q:1},"+")+") cm"),w:"それは BP の長さ。聞かれているのは AP。"}],
+      ok90:[["四角形APQC = △ABC − △PBQ","全体から小さい三角形をひく。"]],
+      ng90:[["四角形APQC の面積 = "+fracH(1,2)+X+"²","△PBQ の面積を "+X+" で表し、△ABC からひく。"]]};}
+  const h=pick([4,5,6,8]);let t0=ri(1,h-1);if(2*t0===h)t0=Math.max(1,t0-1);const S=t0*(h-t0);
+  return {q:"直角三角形ABC（AC = "+h+" cm、AB = "+2*h+" cm、∠A = 90°）で、点Pは A を出発して AC 上を C まで毎秒 1 cm で動く。点Qは P と同時に B を出発し、BA 上を A まで毎秒 2 cm で動く。△APQ の面積が "+S+" cm²になるのは、出発してから何秒後か。",sh:figRtAPQ(h),
+    def:"出発して "+X+" 秒後とする（AP = "+X+"、AQ = "+2*h+" − 2"+X+"）",setup:fracH(1,2)+X+"("+2*h+" − 2"+X+") = "+S,std:[1,-h,S],R:ratR([Fr(t0,1),Fr(h-t0,1)]),rej:"",
+    ans:Math.min(t0,h-t0)+" 秒後と "+Math.max(t0,h-t0)+" 秒後",ansNum:null,
+    wrong:[{h:Math.min(t0,h-t0)+" 秒後",w:"もう1つの解も 0 ≦ "+X+" ≦ "+h+" を満たす。<b>両方</b>答える。"},{h:(2*Math.min(t0,h-t0))+" 秒後と "+(2*Math.max(t0,h-t0))+" 秒後",w:"それは Q が動いた<b>距離</b>（cm）。聞かれているのは時間。"},{h:(h-Math.min(t0,h-t0)+1)+" 秒後",w:"面積を計算して確かめよう。"}],
+    ok90:[["AQ = "+2*h+" − 2"+X+"（Q は毎秒 2 cm）","B から A に向かうので、AB から動いた分をひく。"]],
+    ng90:[["AQ = 2"+X+" cm","2"+X+" は Q が<b>動いた距離</b>（BQ）。AQ = "+2*h+" − 2"+X+"。"]]};
+}
+function g103_50(){return wq50(pick103());}
+function g103_70(){return wq70(pick103());}
+function g103_90(){return wq90(pick103());}
+
+/* ---- 10-4 1次関数のグラフと2次方程式 ---- */
+const VA='<i>a</i>';
+function pick104(){
+  for(let tt=0;tt<300;tt++){
+    const ty=pick(["l1","l1","l2","l3"]);
+    if(ty==="l1"){const m=pick([Fr(1,1),Fr(2,1),Fr(1,2)]),b=ri(1,6);let a0=ri(2,8);if(m.d===2&&a0%2)a0++;
+      const y0=m.n*a0/m.d+b;const S2=a0*y0;if(S2%2)continue;const S=S2/2;
+      const mH=m.d===1?(m.n===1?"":m.n):fracH(1,2);
+      const std=m.d===1?[m.n,b,-2*S]:[1,2*b,-4*S];
+      const R=solveQ(std[0],std[1],std[2]);const neg=rVals(R).find(v=>v<0);
+      return {q:"直線 "+M_("<i>y</i> = "+mH+X+" + "+b)+" が <i>y</i> 軸と点Rで交わっている。このグラフ上の "+X+" > 0 の部分に点Pをとり、P から "+X+" 軸に垂線をひいて "+X+" 軸との交点を Q とする。△PQR の面積が "+S+" cm²のときの点Pの座標を求めなさい。（1目もり 1 cm）",
+        sh:figGraph("l1","y = "+(m.d===1?(m.n===1?"":m.n):"½")+"x + "+b),
+        def:"点Pの "+X+" 座標を "+VA+" とする（P("+VA+", "+mH+VA+" + "+b+")、Q("+VA+", 0)）",setup:fracH(1,2)+VA+"("+mH+VA+" + "+b+") = "+S,std,R,
+        rej:VA+" > 0 なので "+VA+" = "+(neg!==undefined?N(neg):"負の解")+" は不適。",rejVals:neg!==undefined?[neg]:[],ans:"("+a0+", "+y0+")",ansNum:a0,ansLbl:"点Pの "+X+" 座標",unit:"",
+        wrong:[{h:"("+a0+", "+(m.n*a0/m.d)+")",w:"y 座標は "+(mH||"1")+" × "+a0+" + "+b+" = "+y0+"。切片 "+b+" を足し忘れ。"},{h:"("+y0+", "+a0+")",w:X+" 座標と <i>y</i> 座標が逆。"},{h:"("+a0+", "+y0+")、("+(neg!==undefined?N(neg):"?")+", …)",w:"P は "+X+" > 0 の部分。負の解は不適。"}],
+        ok90:[["△PQR の面積は "+fracH(1,2)+" × PQ × OQ","PQ を底辺とみると、高さは R から PQ までの距離 = OQ。"]],
+        ng90:[["△PQR の面積は "+fracH(1,2)+" × PQ × OR","高さは OR ではなく <b>OQ</b>（"+VA+"）。"]],vx:VA};}
+    if(ty==="l2"){const k=pick([1,2,3]),A0=ri(5,9),c=k*A0;const a0=ri(1,A0-1);const S2=a0*(2*c-k*a0);if(S2%2)continue;const S=S2/2;const o=2*A0-a0;if(o===a0)continue;
+      const kH=k===1?"":k;const std=[k,-2*c,2*S];const R=solveQ(k,-2*c,2*S);
+      return {q:"直線 "+M_("<i>y</i> = −"+kH+X+" + "+c)+" が "+X+" 軸、<i>y</i> 軸とそれぞれ点A、Bで交わっている。線分AB上に点Pをとり、Pから "+X+" 軸に垂線をひいて "+X+" 軸との交点をQとする。台形OQPBの面積が "+S+" cm²のときの点Pの座標を求めなさい。（1目もり 1 cm）",
+        sh:figGraph("l2","y = −"+kH+"x + "+c),
+        def:"点Pの "+X+" 座標を "+VA+" とする（P("+VA+", −"+kH+VA+" + "+c+")）",setup:fracH(1,2)+"{"+c+" + (−"+kH+VA+" + "+c+")} × "+VA+" = "+S,std,R,
+        rej:"P は線分AB上なので 0 &lt; "+VA+" &lt; "+A0+"。"+VA+" = "+o+" は不適。",rejVals:[o],ans:"("+a0+", "+(c-k*a0)+")",ansNum:a0,ansLbl:"点Pの "+X+" 座標",unit:"",
+        wrong:[{h:"("+o+", "+(c-k*o)+")",w:"点A（"+A0+", 0）より右で、線分AB上にない。<b>吟味</b>で除く。"},{h:"("+a0+", "+(c-k*a0)+")、("+o+", "+(c-k*o)+")",w:VA+" = "+o+" は線分AB上にないので不適。"},{h:"("+(c-k*a0)+", "+a0+")",w:"座標の順番が逆。"}],
+        ok90:[["台形の面積 = "+fracH(1,2)+" ×（OB + QP）× OQ","OB と QP が平行な2辺（上底・下底）、OQ が高さ。"],[VA+" = "+o+" は点Aより右にあるので不適","<b>吟味</b>：0 &lt; "+VA+" &lt; "+A0+"。"]],
+        ng90:[["台形の面積 = OB × QP × OQ","台形は（上底 ＋ 下底）× 高さ ÷ 2。"]],vx:VA};}
+    const n=ri(1,4);let a0=ri(2,8);if((a0+n)%2)a0++;const S=(a0+n)*(a0+n)/4;
+    const std=[1,2*n,n*n-4*S];const R=solveQ(1,2*n,n*n-4*S);const neg=-(a0+n)-n;
+    return {q:"点A("+N(-n)+", 0) で交わる2直線 ℓ、m がある。ℓ は "+M_("<i>y</i> = "+X+" + "+n)+"、m は "+M_("<i>y</i> = "+fracH(1,2)+X+" + "+frH(Fr(n,2)))+" のグラフである。ℓ上の "+X+" > 0 の部分に点Pをとり、Pを通り <i>y</i> 軸に平行な直線と m との交点をQとする。△PAQ の面積が "+S+" cm²のときの点Pの座標を求めなさい。",
+      sh:figGraph("l3","−"+n),
+      def:"点Pの "+X+" 座標を "+VA+" とする（PQ = ("+VA+" + "+n+") − ("+fracH(1,2)+VA+" + "+frH(Fr(n,2))+") = "+fracH(1,2)+"("+VA+" + "+n+")）",setup:fracH(1,2)+" × "+fracH(1,2)+"("+VA+" + "+n+") × ("+VA+" + "+n+") = "+S,std,R,
+      rej:VA+" > 0 なので "+VA+" = "+N(neg)+" は不適。",rejVals:[neg],ans:"("+a0+", "+(a0+n)+")",ansNum:a0,ansLbl:"点Pの "+X+" 座標",unit:"",
+      wrong:[{h:"("+a0+", "+(a0/2+n/2)+")",w:"それは点Qの座標。P は ℓ 上の点。"},{h:"("+N(neg)+", "+N(neg+n)+")",w:"P は "+X+" > 0 の部分。<b>吟味</b>で除く。"},{h:"("+(a0+n)+", "+(a0+2*n)+")",w:"高さは A から PQ までの距離 "+VA+" + "+n+"。P の "+X+" 座標は "+VA+"。"}],
+      ok90:[["PQ を底辺とすると、高さは "+VA+" + "+n+"（A から直線PQまでの距離）","A の "+X+" 座標は "+N(-n)+"。"]],
+      ng90:[["高さは "+VA+"（Pの "+X+" 座標）","A は原点ではない。高さは "+VA+" − ("+N(-n)+") = "+VA+" + "+n+"。"]],vx:VA};
+  }
+}
+function wrapVA(fn){return ()=>{VX=VA;try{return fn(pick104());}finally{VX=X;}};}
+const g104_50=wrapVA(wq50),g104_70=wrapVA(wq70),g104_90=wrapVA(wq90);
+
+/* =================== 単元一覧（プリントの単元名どおり） =================== */
+const CHAPTERS=[
+ {no:8,name:"2次方程式とその解き方",page:"p.68〜69",units:[
+  {id:"8-1",pt:1,name:"2次方程式とその解",sub:"2次方程式かどうか／代入して解を確かめる",g:[g81_50,g81_70,g81_90]},
+  {id:"8-2",pt:2,name:"ax² + c = 0 の解き方",sub:"x² = k の形 → x = ±√k",g:[g82_50,g82_70,g82_90]},
+  {id:"8-3",pt:3,name:"(x + m)² = n の解き方",sub:"かっこをひとまとまりとみて平方根",g:[g83_50,g83_70,g83_90]},
+  {id:"8-4",pt:4,name:"(x + m)² = n の形に変形する解き方",sub:"x の係数の半分の2乗を加える",g:[g84_50,g84_70,g84_90]}]},
+ {no:9,name:"2次方程式の解き方",page:"p.72〜77",units:[
+  {id:"9-1",pt:1,name:"解の公式(1)",sub:"a, b, c を代入して解く",g:[g91_50,g91_70,g91_90]},
+  {id:"9-2",pt:2,name:"解の公式(2)",sub:"√の簡約・約分／√がはずれる場合",g:[g92_50,g92_70,g92_90]},
+  {id:"9-3",pt:3,name:"因数分解による解き方",sub:"AB = 0 ならば A = 0 または B = 0",g:[g93_50,g93_70,g93_90]},
+  {id:"9-4",pt:4,name:"いろいろな2次方程式",sub:"（2次式）= 0 に整理してから解く",g:[g94_50,g94_70,g94_90]},
+  {id:"9-5",pt:5,name:"2次方程式の解と係数",sub:"解が α, β → (x − α)(x − β)",g:[g95_50,g95_70,g95_90]},
+  {id:"9-6",pt:6,name:"定数の求め方",sub:"解を代入して a を求め、もう1つの解へ",g:[g96_50,g96_70,g96_90]}]},
+ {no:10,name:"2次方程式の利用",page:"p.80〜83",units:[
+  {id:"10-1",pt:1,name:"数に関する問題",sub:"2数の差と積・続いた整数・まちがえた計算",g:[g101_50,g101_70,g101_90]},
+  {id:"10-2",pt:2,name:"図形に関する問題",sub:"長方形・容器の容積・道の幅",g:[g102_50,g102_70,g102_90]},
+  {id:"10-3",pt:3,name:"点の移動に関する問題",sub:"動く点と三角形・四角形の面積",g:[g103_50,g103_70,g103_90]},
+  {id:"10-4",pt:4,name:"1次関数のグラフと2次方程式",sub:"グラフ上の点と図形の面積",g:[g104_50,g104_70,g104_90]}]},
+];
+const ALL_UNITS=[].concat(...CHAPTERS.map(c=>c.units));
+function genQ(unit,ci){
+  for(let t=0;t<60;t++){try{const q=unit.g[ci]();if(q){q.unit=unit;return q;}}catch(e){if(typeof DEBUG!=="undefined"&&DEBUG)console.error(unit.id,ci,e);}}
+  throw new Error("gen fail "+unit.id);
+}
+
+/* ================= エンジン ================= */
+const COURSE_INFO={
+  "50":{label:"50点コース｜答えを選ぶ",cls:"c50",pts:10,ci:0},
+  "70":{label:"70点コース｜途中式を書く",cls:"c70",pts:15,ci:1},
+  "90":{label:"90点コース｜解き方を説明",cls:"c90",pts:20,ci:2},
+};
+const NQ=10;const LS="niji3-best-";
+let S=null,curCourse=null;
+function el(id){return document.getElementById(id);}
+function show(id){el(id).classList.remove("hidden");}
+function hide(id){el(id).classList.add("hidden");}
+
+function buildQs(units){
+  const qs=[],seen=new Set();let t=0;
+  while(qs.length<NQ&&t++<300){
+    const u=units.length===1?units[0]:units[(qs.length+Math.floor(Math.random()*units.length))%units.length];
+    const q=genQ(u,COURSE_INFO[curCourse].ci);
+    const key=q.q+"|"+(q.c?q.c.join():"")+(q.tpl?q.tpl.join():"");
+    if(seen.has(key)&&t<250)continue;seen.add(key);qs.push(q);
+  }
+  return qs;
+}
+function setDefs(){
+  const L=[];
+  CHAPTERS.forEach(ch=>{
+    L.push({head:true,ch});
+    ch.units.forEach(u=>L.push({key:u.id,name:"ポイント"+u.pt+"　"+u.name,sub:u.sub,units:[u],ch}));
+    L.push({key:"ch"+ch.no,name:"🔀 "+ch.no+"「"+ch.name+"」まとめ",sub:"この章の全ポイントからランダム10問",units:ch.units,ch,mix:true});
+  });
+  L.push({head:true,ch:null});
+  L.push({key:"all",name:"🔀 3章 全範囲ミックス",sub:"8〜10の全14ポイントからランダム10問。仕上げの腕試し！",units:ALL_UNITS,mix:true});
+  return L;
+}
+function startCourse(course){
+  curCourse=course;hide("home");hide("result");hide("quiz");hide("sets");
+  if(course==="90"){show("intro90");window.scrollTo(0,0);return;}
+  renderSets();show("sets");window.scrollTo(0,0);
+}
+function ackIntro90(){hide("intro90");renderSets();show("sets");window.scrollTo(0,0);}
+function renderSets(){
+  const info=COURSE_INFO[curCourse];
+  el("sets-lead").innerHTML="<b>"+info.label+"</b><br>プリントの<b>単元名</b>から選んでスタート！全単元制覇で3章マスターだ💪";
+  const list=el("set-list");list.innerHTML="";
+  setDefs().forEach(st=>{
+    if(st.head){
+      const h=document.createElement("div");h.className="ch-head";
+      h.innerHTML=st.ch?'<span class="ch-no">'+st.ch.no+'</span><span class="ch-nm">'+st.ch.name+'</span><span class="ch-pg">'+st.ch.page+'</span>':'<span class="ch-no all">3章</span><span class="ch-nm">2次方程式 総まとめ</span>';
+      list.appendChild(h);return;
+    }
+    const best=localStorage.getItem(LS+curCourse+"-"+st.key);
+    const b=document.createElement("button");b.className="setbtn"+(st.mix?" mix":"");
+    b.innerHTML='<span><span class="sn">'+st.name+'</span><br><span class="sd">'+st.sub+'</span></span><span class="sb">'+(best?"ベスト "+best+"pt":"未挑戦")+'</span>';
+    b.onclick=()=>startSet(st);list.appendChild(b);
+  });
+}
+function startSet(st){
+  S={course:curCourse,set:st,qs:buildQs(st.units),idx:0,correct:0,streak:0,score:0,wrongs:[],results:[]};
+  hide("sets");hide("result");show("quiz");
+  const info=COURSE_INFO[curCourse];const tag=el("course-tag");
+  tag.textContent=info.label.split("｜")[0]+"｜"+st.name.replace("🔀 ","").replace("ポイント","P");
+  tag.className=info.cls;
+  renderQ();window.scrollTo(0,0);
+}
+function renderDots(){
+  const d=el("dots");d.innerHTML="";
+  for(let i=0;i<NQ;i++){const sp=document.createElement("span");sp.className="dot";
+    if(i<S.idx)sp.classList.add(S.results[i]?"done":"miss");else if(i===S.idx)sp.classList.add("now");d.appendChild(sp);}
+}
+const MARKS=["ア","イ","ウ","エ","オ","カ"];
+function renderQ(){
+  const q=S.qs[S.idx];
+  renderDots();el("score-box").textContent="スコア "+S.score;
+  const tlabel={mc:"",fill:'<span id="q-type">✏️ 途中式の穴うめ</span>',order:'<span id="q-type">🔀 並べ替え</span>',parts:'<span id="q-type">すべて選べ</span>'}[q.kind];
+  el("q-num").innerHTML="第"+(S.idx+1)+"問 / "+NQ+tlabel;
+  el("q-unit").innerHTML='<span class="unit-chip">'+q.unit.id.replace("-","｜P")+"　"+q.unit.name+'</span>';
+  el("shiryo").innerHTML=q.sh?'<div class="shiryo-box">'+q.sh+'</div>':"";
+  let qt=q.q.replace("【すべて】",'<span class="wrong-word">【すべて】</span>');
+  if(q.kind==="parts")qt+='<br><small>（いくつ正解があるかはヒミツ。選び終わったら「決定する！」）</small>';
+  if(q.kind==="order")qt+='<br><small>（タップした順に番号がつくよ。もう一度タップで取り消し）</small>';
+  el("q-text").innerHTML=qt;
+  hide("feedback");
+  if(q.kind==="mc")renderMC(q);else if(q.kind==="fill")renderFill(q);else if(q.kind==="order")renderOrder(q);else renderParts(q);
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function renderMC(q){
+  const box=el("choices");box.innerHTML="";
+  q.c.forEach((h,i)=>{const b=document.createElement("button");b.className="choice";
+    b.innerHTML='<span class="mark">'+MARKS[i]+'</span><span>'+h+'</span>';b.onclick=()=>answerMC(i);box.appendChild(b);});
+}
+function renderParts(q){
+  const box=el("choices");box.innerHTML="";
+  q.c.forEach((c,i)=>{const b=document.createElement("button");b.className="choice";
+    b.innerHTML='<span class="mark">'+MARKS[i]+'</span><span>'+c.t+'</span>';b.onclick=()=>{b.classList.toggle("sel");el("decide-btn").disabled=!box.querySelector(".choice.sel");};box.appendChild(b);});
+  const d=document.createElement("button");d.id="decide-btn";d.textContent="決定する！";d.disabled=true;d.onclick=decideParts;box.appendChild(d);
+}
+/* ---- 穴うめ ---- */
+let lastInp=null;
+function tplHTML(q,fn){return q.tpl.map(line=>'<div class="tpl-line">'+line.replace(/\{(\d+)\}/g,(m,i)=>fn(+i))+'</div>').join("");}
+function renderFill(q){
+  const box=el("choices");box.innerHTML="";
+  const w=document.createElement("div");w.className="tpl-box";
+  w.innerHTML=tplHTML(q,i=>'<input class="fin" id="fin'+i+'" autocomplete="off" autocapitalize="off" spellcheck="false">');
+  box.appendChild(w);
+  const kp=document.createElement("div");kp.className="keypad";
+  kp.innerHTML='<span class="kp-l">入力補助：</span><button type="button" data-k="−">−（マイナス）</button><button type="button" data-k="/">／（分数）</button><button type="button" data-k="BS">⌫</button>';
+  box.appendChild(kp);
+  const d=document.createElement("button");d.id="decide-btn";d.textContent="答える！";d.disabled=true;d.onclick=judgeFill;box.appendChild(d);
+  const inps=[...w.querySelectorAll("input")];lastInp=inps[0];
+  const upd=()=>{d.disabled=inps.some(x=>x.value.trim()==="");};
+  inps.forEach((inp,k)=>{inp.addEventListener("focus",()=>{lastInp=inp;});inp.addEventListener("input",upd);
+    inp.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();if(k<inps.length-1)inps[k+1].focus();else if(!d.disabled)judgeFill();}});});
+  kp.querySelectorAll("button").forEach(b=>{b.addEventListener("mousedown",e=>e.preventDefault());b.onclick=()=>{if(!lastInp||lastInp.disabled)return;
+    if(b.dataset.k==="BS")lastInp.value=lastInp.value.slice(0,-1);else lastInp.value+=b.dataset.k;upd();lastInp.focus();};});
+}
+function parseVal(s){
+  s=String(s).replace(/[０-９]/g,c=>String.fromCharCode(c.charCodeAt(0)-0xFEE0)).replace(/[−ー－‐―]/g,"-").replace(/[＋]/g,"+").replace(/[／÷]/g,"/").replace(/[．。]/g,".").replace(/\s/g,"");
+  const m=s.match(/^([+-]?\d+(?:\.\d+)?)(?:\/([+-]?\d+(?:\.\d+)?))?$/);if(!m)return NaN;
+  const v=m[2]?parseFloat(m[1])/parseFloat(m[2]):parseFloat(m[1]);return isFinite(v)?v:NaN;
+}
+const EQ=(a,b)=>Math.abs(a-b)<1e-9;
+function gradeFill(q,vals){
+  const res=q.blanks.map(()=>false);const used={};
+  q.blanks.forEach((b,i)=>{
+    const v=parseVal(vals[i]);if(isNaN(v))return;
+    if(b.g){const cand=q.blanks.map((c,j)=>j).filter(j=>q.blanks[j].g===b.g&&!(used[j])&&EQ(q.blanks[j].a,v));
+      if(cand.length){used[cand[0]]=true;res[i]=true;}}
+    else res[i]=EQ(b.a,v);
+  });
+  return res;
+}
+function missWhy(b,raw){const v=parseVal(raw);if(isNaN(v))return "数として読めない入力。分数は 5/4、負の数は −3 のように。";
+  if(!b.miss)return "";const k=Object.keys(b.miss).find(k=>EQ(parseFloat(k),v));return k?b.miss[k]:"";}
+function judgeFill(){
+  const q=S.qs[S.idx];const inps=q.blanks.map((b,i)=>el("fin"+i));const vals=inps.map(x=>x.value);
+  const res=gradeFill(q,vals);const allOk=res.every(x=>x);
+  inps.forEach((x,i)=>{x.disabled=true;x.classList.add(res[i]?"ok":"ng");});
+  el("decide-btn").remove();const kp=el("choices").querySelector(".keypad");if(kp)kp.remove();
+  const lines=[];
+  q.blanks.forEach((b,i)=>{if(res[i])return;const why=missWhy(b,vals[i]);
+    lines.push('<div class="fb-item">❌ 第'+(i+1)+'の□：あなた <b>'+(vals[i]||"（空）")+'</b>'+(why?'<div class="rv-why">🤔 '+why+'</div>':'')+'</div>');});
+  const right='<div class="fb-item"><b>⭕ 正しくは</b>'+tplHTML(q,i=>'<span class="ansfill">'+q.blanks[i].h+'</span>')+'</div>';
+  finish(allOk,{vals},(allOk?"":lines.join("")+right)+'<div style="margin-top:6px;">💡 '+q.e+'</div>');
+}
+/* ---- 並べ替え ---- */
+function renderOrder(q){
+  const box=el("choices");box.innerHTML="";S.ordSel=[];
+  const ord=shuffle([...Array(q.items.length).keys()]);
+  ord.forEach(oi=>{const b=document.createElement("button");b.className="choice ord-item";b.dataset.oi=oi;
+    b.innerHTML='<span class="ono"></span><span>'+q.items[oi]+'</span>';b.onclick=()=>{const k=S.ordSel.indexOf(oi);if(k>=0)S.ordSel.splice(k,1);else S.ordSel.push(oi);paintOrd();};box.appendChild(b);});
+  const row=document.createElement("div");row.className="ord-btns";row.innerHTML='<button class="ord-reset" onclick="S.ordSel=[];paintOrd()">↺ やり直す</button>';
+  const d=document.createElement("button");d.id="decide-btn";d.textContent="決定する！";d.disabled=true;d.onclick=judgeOrder;box.appendChild(row);box.appendChild(d);
+}
+function paintOrd(){el("choices").querySelectorAll(".ord-item").forEach(b=>{const k=S.ordSel.indexOf(+b.dataset.oi);b.classList.toggle("sel",k>=0);b.querySelector(".ono").textContent=k>=0?String(k+1):"";});
+  el("decide-btn").disabled=S.ordSel.length!==S.qs[S.idx].items.length;}
+function judgeOrder(){
+  const q=S.qs[S.idx];const sel=S.ordSel.slice();const okPos=sel.filter((oi,i)=>oi===i).length;const allOk=okPos===q.items.length;
+  el("choices").querySelectorAll(".ord-item").forEach(b=>{const oi=+b.dataset.oi,k=sel.indexOf(oi);b.disabled=true;b.classList.remove("sel");b.classList.add(k===oi?"correct":"wrongpick");});
+  el("choices").querySelector(".ord-btns").remove();el("decide-btn").remove();
+  const right='<div class="fb-item"><b>⭕ 正しい順番</b>'+q.items.map((t,i)=>'<div>'+(i+1)+". "+t+'</div>').join("")+'</div>';
+  finish(allOk,{ord:sel},(allOk?"":'<div style="margin-bottom:6px;">'+okPos+"/"+q.items.length+" か所が正しい位置。</div>")+right+'<div style="margin-top:6px;">💡 '+q.e+'</div>'+(allOk||!q.w?"":'<div style="margin-top:6px;">🤔 '+q.w+'</div>'));
+}
+/* ---- 共通の判定後処理 ---- */
+function solBox(q){return q.sol&&q.sol.length?'<div class="sol-box"><div class="sol-title">📝 解き方（途中式）</div>'+q.sol.map(s=>'<div class="sol-line">'+s+'</div>').join("")+'</div>':"";}
+function finish(ok,rec,html){
+  const q=S.qs[S.idx];S.results.push(ok);let got=0;
+  if(ok){S.correct++;S.streak++;got=COURSE_INFO[S.course].pts+(S.streak>=2?(S.streak-1)*5:0);S.score+=got;}
+  else{S.streak=0;S.wrongs.push(Object.assign({no:S.idx+1,q},rec));}
+  el("score-box").textContent="スコア "+S.score;
+  el("verdict").textContent=ok?"⭕ 正解！":"❌ ざんねん…";el("verdict").className="verdict "+(ok?"ok":"ng");
+  el("gotpt").textContent=ok?"+"+got+"pt"+(S.streak>=2?"（"+S.streak+"連続正解ボーナス！）":""):"";
+  el("expl").innerHTML=html;el("model-wrap").innerHTML=solBox(q);
+  el("next-btn").textContent=S.idx===NQ-1?"結果を見る ▶":"次へ ▶";show("feedback");renderDotsAfter();
+}
+function answerMC(di){
+  const q=S.qs[S.idx];const ok=di===q.a;
+  el("choices").querySelectorAll(".choice").forEach((b,i)=>{b.disabled=true;if(i===q.a)b.classList.add("correct");else if(i===di)b.classList.add("wrongpick");else b.classList.add("dim");});
+  finish(ok,{picked:di},(ok?"":'<div class="fb-item">🤔 <b>なぜ違う？</b> '+q.w[di]+'</div>')+"💡 "+q.e);
+  if(!ok)el("gotpt").textContent="正解は緑の選択肢だよ";
+}
+function decideParts(){
+  const q=S.qs[S.idx];const btns=[...el("choices").querySelectorAll(".choice")];
+  const totalOk=q.c.filter(x=>x.ok).length;let hits=0,fp=0;const lines=[],sel=[];
+  btns.forEach((b,i)=>{const ch=q.c[i];const s=b.classList.contains("sel");if(s)sel.push(i);b.disabled=true;b.classList.remove("sel");let icon,head;
+    if(ch.ok&&s){hits++;b.classList.add("correct");icon="✅";head=MARKS[i]+"：正しい部品（選べた！）";}
+    else if(ch.ok){b.classList.add("missed");icon="😮";head=MARKS[i]+"：これも正しい部品だった（選び忘れ）";}
+    else if(s){fp++;b.classList.add("wrongpick");icon="❌";head=MARKS[i]+"：これは誤り";}
+    else{b.classList.add("dim");icon="🚫";head=MARKS[i]+"：誤りの部品（選ばなくて正解）";}
+    lines.push('<div class="fb-item"><b>'+icon+" "+head+'</b><br>'+ch.fb+'</div>');});
+  el("decide-btn").remove();
+  let got=Math.max(0,7*hits-4*fp);const perfect=hits===totalOk&&fp===0;S.results.push(perfect);
+  if(perfect){S.correct++;S.streak++;got+=10+(S.streak>=2?(S.streak-1)*5:0);}else{S.streak=0;S.wrongs.push({no:S.idx+1,q,sel});}
+  S.score+=got;el("score-box").textContent="スコア "+S.score;
+  el("verdict").textContent=perfect?"⭕ 完答！すばらしい！":(hits>0?"🔺 おしい！正しい部品 "+hits+"/"+totalOk+" を発見":"❌ ざんねん…");
+  el("verdict").className="verdict "+(perfect?"ok":(hits>0?"part":"ng"));
+  el("gotpt").textContent="+"+got+"pt（正しい部品 +7／誤り選択 −4"+(perfect?"／完答ボーナス +10":"")+"）";
+  el("expl").innerHTML='<div class="fb-title">🔎 全部品の解説</div>'+lines.join("");
+  el("model-wrap").innerHTML='<div class="model-box"><div class="mb-title">🧩 正しい部品をつなげると…（解き方の模範解答）</div><div class="mb-text">'+q.m+'</div></div>'+
+    '<div class="ondoku"><span class="spk">✍️</span><span>模範解答をノートに写してから「次へ」</span></div>';
+  el("next-btn").textContent=S.idx===NQ-1?"結果を見る ▶":"次へ ▶";show("feedback");renderDotsAfter();
+}
+function renderDotsAfter(){el("dots").children[S.idx].className="dot "+(S.results[S.idx]?"done":"miss");}
+function nextQ(){S.idx++;if(S.idx>=NQ)showResult();else renderQ();}
+function showResult(){
+  hide("quiz");show("result");const c=S.correct;let rank,msg;
+  if(c===10){rank="S";msg="パーフェクト！この単元はマスターだ！";}else if(c>=8){rank="A";msg="すばらしい！あと少しで満点！";}
+  else if(c>=6){rank="B";msg="いい調子！まちがえた問題の解き方を読もう";}else{rank="C";msg="ここからが本番！解き方を読んでもう一度";}
+  const rk=el("rank");rk.textContent=rank;rk.className=rank;
+  const st=Math.max(1,Math.ceil(c/2));el("stars").textContent="★".repeat(st)+"☆".repeat(5-st);
+  el("result-msg").textContent=msg;
+  el("result-score").textContent=S.set.name.replace("🔀 ","")+"｜"+(S.course==="90"?"完答 ":"正解 ")+c+" / "+NQ+"問　｜　スコア "+S.score+"pt";
+  const key=LS+S.course+"-"+S.set.key;const prev=Number(localStorage.getItem(key)||0);
+  if(S.score>prev){localStorage.setItem(key,String(S.score));el("result-best").textContent="🎉 ベストスコア更新！（"+prev+" → "+S.score+"）";}
+  else el("result-best").textContent="ベストスコア："+Math.max(prev,S.score)+"pt";
+  const rv=el("review");
+  rv.innerHTML=S.wrongs.length?'<h3>📒 まちがえた問題の徹底復習（'+S.wrongs.length+'問）</h3><p class="rv-lead">「なぜ違うのか」と「解き方の途中式」まで読むのが、点数が伸びる一番の近道！</p>'+S.wrongs.map(reviewCard).join("")
+    :'<div class="rv-perfect">🎉 まちがえた問題はなし！次の単元・コースへ進もう！</div>';
+  window.scrollTo(0,0);
+}
+function reviewCard(w){
+  const q=w.q;let h='<div class="rv-card"><div class="rv-no">第'+w.no+'問｜'+q.unit.id+" "+q.unit.name+'</div><div class="rv-q">'+q.q+'</div>';
+  if(q.sh)h+='<details class="rv-sh"><summary>📊 図をもう一度見る</summary>'+q.sh+'</details>';
+  if(q.kind==="mc"){
+    h+='<div class="rv-sec rv-you"><div class="rv-lbl">❌ あなたの答え</div><div class="rv-line"><b>'+q.c[w.picked]+'</b></div><div class="rv-why">🤔 <b>なぜ違う？</b> '+q.w[w.picked]+'</div></div>';
+    h+='<div class="rv-sec rv-right"><div class="rv-lbl">⭕ 正しくは</div><div class="rv-line"><b>'+q.c[q.a]+'</b></div><div class="rv-why">💡 '+q.e+'</div></div>';
+    const others=q.c.map((c,i)=>i).filter(i=>i!==q.a&&i!==w.picked);
+    if(others.length)h+='<details class="rv-more"><summary>🔍 ほかの選択肢もチェック（ミス対策）</summary>'+others.map(i=>'<div class="rv-line"><b>'+q.c[i]+'</b><div class="rv-why">→ '+q.w[i]+'</div></div>').join("")+'</details>';
+  }else if(q.kind==="fill"){
+    const res=gradeFill(q,w.vals);
+    h+='<div class="rv-sec rv-you"><div class="rv-lbl">❌ あなたの答え</div>'+tplHTML(q,i=>'<span class="ansfill '+(res[i]?"ok":"ng")+'">'+(w.vals[i]||"空")+'</span>')+
+      q.blanks.map((b,i)=>{if(res[i])return "";const why=missWhy(b,w.vals[i]);return why?'<div class="rv-why">🤔 第'+(i+1)+'の□：'+why+'</div>':"";}).join("")+'</div>';
+    h+='<div class="rv-sec rv-right"><div class="rv-lbl">⭕ 正しくは</div>'+tplHTML(q,i=>'<span class="ansfill">'+q.blanks[i].h+'</span>')+'<div class="rv-why">💡 '+q.e+'</div></div>';
+  }else if(q.kind==="order"){
+    h+='<div class="rv-sec rv-you"><div class="rv-lbl">❌ あなたの順番</div>'+w.ord.map((oi,i)=>'<div class="rv-line">'+(oi===i?"✅":"❌")+" "+(i+1)+". "+q.items[oi]+'</div>').join("")+(q.w?'<div class="rv-why">🤔 '+q.w+'</div>':'')+'</div>';
+    h+='<div class="rv-sec rv-right"><div class="rv-lbl">⭕ 正しい順番</div>'+q.items.map((t,i)=>'<div class="rv-line">'+(i+1)+". "+t+'</div>').join("")+'</div>';
+  }else{
+    const wrongSel=w.sel.filter(i=>!q.c[i].ok),missed=q.c.map((c,i)=>i).filter(i=>q.c[i].ok&&w.sel.indexOf(i)<0),okSel=w.sel.filter(i=>q.c[i].ok);
+    if(okSel.length)h+='<div class="rv-sec rv-good"><div class="rv-lbl">✅ 選べた正しい部品</div>'+okSel.map(i=>'<div class="rv-line">「'+q.c[i].t+'」</div>').join("")+'</div>';
+    if(wrongSel.length)h+='<div class="rv-sec rv-you"><div class="rv-lbl">❌ 選んだ「まちがいの部品」― なぜ違う？</div>'+wrongSel.map(i=>'<div class="rv-line"><b>「'+q.c[i].t+'」</b><div class="rv-why">→ '+q.c[i].fb+'</div></div>').join("")+'</div>';
+    if(missed.length)h+='<div class="rv-sec rv-miss"><div class="rv-lbl">😮 選び忘れた正しい部品</div>'+missed.map(i=>'<div class="rv-line"><b>「'+q.c[i].t+'」</b><div class="rv-why">→ '+q.c[i].fb+'</div></div>').join("")+'</div>';
+    h+='<div class="rv-sec rv-model"><div class="rv-lbl">🧩 解き方の模範解答</div><div class="rv-mtext">'+q.m+'</div></div>';
+  }
+  if(q.kind!=="parts")h+=solBox(q);
+  return h+'</div>';
+}
+function closeWelcome(){hide("welcome");show("home");window.scrollTo(0,0);}
+function openWelcome(){hide("home");show("welcome");window.scrollTo(0,0);}
+function retry(){startSet(S.set);}
+function goHome(){hide("lab");hide("quiz");hide("result");hide("sets");hide("intro90");hide("welcome");show("home");window.scrollTo(0,0);}
+function backToSets(){hide("quiz");hide("result");renderSets();show("sets");window.scrollTo(0,0);}
+
+/* ================= 🧪 インタラクティブ教材 ================= */
+const LABS=[
+ {t:"🟦 平方完成タイル",d:"8-4｜「x の係数の半分の2乗」を加えると、正方形が完成する",f:labTile},
+ {t:"🧮 解の公式マシン",d:"9-1・9-2｜a, b, c を動かすと、代入の式と解がすぐ出る",f:labFormula},
+ {t:"📐 点の移動と面積",d:"10-3｜点を動かして面積の変化を見る。解が2つになる理由",f:labMove},
+ {t:"🛣️ 道の幅シミュレーター",d:"10-2｜道の幅を変えると畑の面積は？ 不適な解の意味",f:labRoad},
+];
+function openLab(){hide("home");hide("welcome");show("lab");renderLabMenu();window.scrollTo(0,0);}
+function renderLabMenu(){
+  el("lab-body").innerHTML='<div class="lab-head">🧪 インタラクティブ教材</div><div class="set-grid">'+LABS.map((l,i)=>'<button class="setbtn" onclick="labOpen('+i+')"><span><span class="sn">'+l.t+'</span><br><span class="sd">'+l.d+'</span></span><span class="sb">ひらく</span></button>').join("")+
+    '</div><div class="btn-row"><button class="btn home" onclick="goHome()">ホームにもどる</button></div>';
+}
+function labOpen(i){el("lab-body").innerHTML='<div class="lab-head">'+LABS[i].t+'</div><div class="lab-card" id="lab-card"></div><div class="btn-row"><button class="btn home" onclick="renderLabMenu()">教材一覧にもどる</button></div>';LABS[i].f();window.scrollTo(0,0);}
+function rng(id,min,max,step,val,lbl){return '<div class="lab-lbl">'+lbl+'：<b id="'+id+'-v">'+val+'</b></div><input type="range" class="lab-range" id="'+id+'" min="'+min+'" max="'+max+'" step="'+step+'" value="'+val+'">';}
+function onR(ids,f){ids.forEach(id=>el(id).addEventListener("input",f));f();}
+function fmt(v){return (Math.round(v*100)/100).toString().replace("-","−");}
+
+/* 平方完成タイル */
+function labTile(){
+  el("lab-card").innerHTML='<div class="lab-note">'+X+"² + p"+X+" の形を、正方形（"+X+"²）と長方形2枚に分けて並べる。欠けた角に <b>(p/2)²</b> を加えると、大きな正方形 ("+X+" + p/2)² が完成する！</div>"+
+    rng("tp",2,12,2,6,"x の係数 p")+rng("tq",-8,20,1,5,"右辺 q（"+X+"² + p"+X+" = q）")+
+    '<label class="lab-chk"><input type="checkbox" id="tf" checked> 欠けた角をうめる（(p/2)² を加える）</label><svg class="lab-svg" id="tsvg" viewBox="0 0 300 300"></svg><div class="lab-res" id="tres"></div>';
+  onR(["tp","tq","tf"],()=>{
+    const p=+el("tp").value,q=+el("tq").value,h=p/2,fillc=el("tf").checked;el("tp-v").textContent=p;el("tq-v").textContent=N(q);
+    const xs=150,u=xs/7,hs=h*u,o=20;
+    let s='<rect x="'+o+'" y="'+o+'" width="'+xs+'" height="'+xs+'" fill="#bfe6f5" stroke="#1c3a47"/><text x="'+(o+xs/2)+'" y="'+(o+xs/2+6)+'" text-anchor="middle" font-size="18" font-style="italic">x²</text>';
+    s+='<rect x="'+(o+xs)+'" y="'+o+'" width="'+hs+'" height="'+xs+'" fill="#d6edb7" stroke="#1c3a47"/><text x="'+(o+xs+hs/2)+'" y="'+(o+xs/2+5)+'" text-anchor="middle" font-size="13">'+h+'x</text>';
+    s+='<rect x="'+o+'" y="'+(o+xs)+'" width="'+xs+'" height="'+hs+'" fill="#d6edb7" stroke="#1c3a47"/><text x="'+(o+xs/2)+'" y="'+(o+xs+hs/2+5)+'" text-anchor="middle" font-size="13">'+h+'x</text>';
+    s+='<rect x="'+(o+xs)+'" y="'+(o+xs)+'" width="'+hs+'" height="'+hs+'" fill="'+(fillc?"#ffe680":"none")+'" stroke="'+(fillc?"#c9a400":"#e05d5d")+'" stroke-dasharray="'+(fillc?"0":"5 4")+'"/>';
+    s+='<text x="'+(o+xs+hs/2)+'" y="'+(o+xs+hs/2+5)+'" text-anchor="middle" font-size="12" fill="'+(fillc?"#7a5f00":"#e05d5d")+'">'+(fillc?h*h:"?")+'</text>';
+    s+='<text x="'+(o+xs/2)+'" y="'+(o-5)+'" text-anchor="middle" font-size="12" font-style="italic">x</text><text x="'+(o+xs+hs/2)+'" y="'+(o-5)+'" text-anchor="middle" font-size="12">'+h+'</text>';
+    if(fillc)s+='<rect x="'+o+'" y="'+o+'" width="'+(xs+hs)+'" height="'+(xs+hs)+'" fill="none" stroke="#e05d5d" stroke-width="3"/>';
+    el("tsvg").innerHTML=s;
+    const n=q+h*h;
+    let r='<div>'+M_(P2(1,p,0)+" = "+X+"² + 2 × "+h+X)+'（長方形 '+h+X+' が2枚）</div>';
+    if(fillc){r+='<div>'+M_(P2(1,p,0)+" + <b>"+h*h+"</b> = "+xm(h)+"²")+' ← 赤わくの大きな正方形！</div>';
+      r+='<div style="margin-top:6px">方程式 '+M_(P2(1,p,0)+" = "+N(q))+' なら、両辺に '+h*h+' を加えて '+M_(xm(h)+"² = "+N(n))+'</div>';
+      r+=n>0?'<div>→ '+M_(rH(solveQ(1,p,-q)))+'</div>':n===0?'<div>→ '+M_(X+" = "+N(-h))+'（解は1つ）</div>':'<div>→ 右辺が負なので解なし</div>';}
+    else r+='<div style="color:#e05d5d">右下の角が欠けている！ここに (p/2)² = '+h*h+' を加えると正方形になる。</div>';
+    el("tres").innerHTML=r;
+  });
+}
+/* 解の公式マシン */
+function labFormula(){
+  el("lab-card").innerHTML=rng("fa",1,6,1,2,"a")+rng("fb",-12,12,1,7,"b")+rng("fc",-12,12,1,4,"c")+'<div class="lab-big" id="feq"></div><div class="lab-res" id="fres"></div><svg class="lab-svg" id="fsvg" viewBox="0 0 320 60"></svg>';
+  onR(["fa","fb","fc"],()=>{
+    const a=+el("fa").value,b=+el("fb").value,c=+el("fc").value;el("fa-v").textContent=a;el("fb-v").textContent=N(b);el("fc-v").textContent=N(c);
+    el("feq").innerHTML=M_(P2(a,b,c)+" = 0");const D=b*b-4*a*c;
+    let r='<div>b² − 4ac = '+par(b)+'² − 4 × '+par(a)+' × '+par(c)+' = <b style="color:'+(D>0?"#1491bd":D===0?"#d4a900":"#e05d5d")+'">'+N(D)+'</b>'+(D>0?"（正 → 解は2つ）":D===0?"（0 → 解は1つ）":"（負 → √ができないので、中学の範囲では解なし）")+'</div>';
+    let pts=[];
+    if(D>=0){r+=solFormula(a,b,c).map(s=>'<div class="sol-line">'+(s.indexOf("<b>")===0||s.indexOf("解の公式")===0?s:M_(s))+'</div>').join("");pts=[(-b-Math.sqrt(D))/(2*a),(-b+Math.sqrt(D))/(2*a)];}
+    el("fres").innerHTML=r;
+    let s='<line x1="10" y1="30" x2="310" y2="30" stroke="#1c3a47"/>';
+    for(let v=-10;v<=10;v++){const x=160+v*14;s+='<line x1="'+x+'" y1="'+(v%5?27:24)+'" x2="'+x+'" y2="'+(v%5?33:36)+'" stroke="#1c3a47"/>';if(v%5===0)s+='<text x="'+x+'" y="52" font-size="11" text-anchor="middle">'+N(v)+'</text>';}
+    pts.forEach(v=>{if(Math.abs(v)<=11){const x=160+v*14;s+='<circle cx="'+x+'" cy="30" r="6" fill="#e05d5d"/><text x="'+x+'" y="16" font-size="11" text-anchor="middle" fill="#e05d5d">'+fmt(v)+'</text>';}});
+    el("fsvg").innerHTML=s;
+  });
+}
+/* 点の移動と面積 */
+function labMove(){
+  el("lab-card").innerHTML='<div class="lab-note">1辺 10 cm の正方形ABCD。P は A→B、Q は D→A を同じ速さで動く（AP = DQ = '+X+'）。</div>'+rng("mx",0,10,0.1,3,"AP = "+X+"（cm）")+rng("ms",1,12.5,0.5,10,"目標の面積 S（cm²）")+
+    '<svg class="lab-svg" id="msvg" viewBox="0 0 340 200"></svg><div class="lab-res" id="mres"></div>';
+  onR(["mx","ms"],()=>{
+    const x=+el("mx").value,S0=+el("ms").value;el("mx-v").textContent=fmt(x);el("ms-v").textContent=fmt(S0);
+    const area=x*(10-x)/2;const u=15,o=15;
+    let s='<rect x="'+o+'" y="'+o+'" width="150" height="150" fill="#fff" stroke="#1c3a47"/>';
+    const Px=o,Py=o+x*u,Qx=o+(10-x)*u,Qy=o;
+    s+='<polygon points="'+o+','+o+' '+Px+','+Py+' '+Qx+','+Qy+'" fill="'+(Math.abs(area-S0)<0.13?"#ffe680":"#cdeaf6")+'" stroke="#1491bd" stroke-width="2"/>';
+    s+='<circle cx="'+Px+'" cy="'+Py+'" r="5" fill="#e05d5d"/><circle cx="'+Qx+'" cy="'+Qy+'" r="5" fill="#e05d5d"/><text x="'+(o-12)+'" y="'+(o+4)+'" font-size="12">A</text><text x="'+(Px+6)+'" y="'+(Py+4)+'" font-size="12">P</text><text x="'+(Qx-4)+'" y="'+(Qy+16)+'" font-size="12">Q</text>';
+    /* グラフ */
+    const gx=190,gy=170,gw=140,gh=150;
+    s+='<line x1="'+gx+'" y1="'+gy+'" x2="'+(gx+gw)+'" y2="'+gy+'" stroke="#1c3a47"/><line x1="'+gx+'" y1="'+gy+'" x2="'+gx+'" y2="'+(gy-gh)+'" stroke="#1c3a47"/>';
+    let path="";for(let t=0;t<=10;t+=0.25){path+=(t?"L":"M")+(gx+t*gw/10)+","+(gy-(t*(10-t)/2)*gh/13);}
+    s+='<path d="'+path+'" fill="none" stroke="#1491bd" stroke-width="2"/>';
+    const yS=gy-S0*gh/13;s+='<line x1="'+gx+'" y1="'+yS+'" x2="'+(gx+gw)+'" y2="'+yS+'" stroke="#d4a900" stroke-dasharray="5 3"/><text x="'+(gx+gw)+'" y="'+(yS-3)+'" font-size="10" text-anchor="end" fill="#9c7c00">S</text>';
+    s+='<circle cx="'+(gx+x*gw/10)+'" cy="'+(gy-area*gh/13)+'" r="5" fill="#e05d5d"/>';
+    const D=100-8*S0;let roots=[];if(D>=0){roots=[(10-Math.sqrt(D))/2,(10+Math.sqrt(D))/2];roots.forEach(r=>{s+='<line x1="'+(gx+r*gw/10)+'" y1="'+yS+'" x2="'+(gx+r*gw/10)+'" y2="'+gy+'" stroke="#d4a900"/>';});}
+    s+='<text x="'+(gx+gw)+'" y="'+(gy+14)+'" font-size="11" text-anchor="end" font-style="italic">x</text><text x="'+(gx+4)+'" y="'+(gy-gh-4+14)+'" font-size="10">面積</text>';
+    el("msvg").innerHTML=s;
+    let r='<div>△APQ = '+fracH(1,2)+' × '+fmt(x)+' × '+fmt(10-x)+' = <b>'+fmt(area)+' cm²</b>'+(Math.abs(area-S0)<0.13?' 🎯 目標の面積！':'')+'</div>';
+    r+='<div style="margin-top:4px">方程式 '+M_(fracH(1,2)+X+"(10 − "+X+") = "+fmt(S0))+' の解は ';
+    if(D<0)r+='なし（面積は最大 12.5 cm²）</div>';else if(D===0)r+=M_(X+" = 5")+' の1つ</div>';else r+=M_(X+" = "+fmt(roots[0])+"、"+fmt(roots[1]))+'</div><div class="lab-tip">💡 グラフの山の左右で、同じ面積になる場所が<b>2か所</b>ある。どちらも 0 ≦ '+X+' ≦ 10 なので<b>両方とも答え</b>！</div>';
+    el("mres").innerHTML=r;
+  });
+}
+/* 道の幅 */
+function labRoad(){
+  el("lab-card").innerHTML='<div class="lab-note">縦 12 m、横 16 m の土地に、縦・横に同じ幅 '+X+' m の道をつける。</div>'+rng("rx",0,12,0.5,2,"道の幅 "+X+"（m）")+
+    '<label class="lab-chk"><input type="checkbox" id="rf"> 道を端によせて考える</label><svg class="lab-svg" id="rsvg" viewBox="0 0 340 260"></svg><div class="lab-res" id="rres"></div>';
+  onR(["rx","rf"],()=>{
+    const x=+el("rx").value,sl=el("rf").checked;el("rx-v").textContent=fmt(x);
+    const u=18,o=20,W=16*u,H=12*u,xw=x*u;
+    let s='<rect x="'+o+'" y="'+o+'" width="'+W+'" height="'+H+'" fill="#bfe3a0" stroke="#1c3a47"/>';
+    if(sl){s+='<rect x="'+(o+W-xw)+'" y="'+o+'" width="'+xw+'" height="'+H+'" fill="#eee" stroke="#1c3a47"/><rect x="'+o+'" y="'+(o+H-xw)+'" width="'+W+'" height="'+xw+'" fill="#eee" stroke="#1c3a47"/>';
+      s+='<text x="'+(o+(W-xw)/2)+'" y="'+(o+(H-xw)/2+5)+'" text-anchor="middle" font-size="13">畑 ('+fmt(16-x)+' × '+fmt(12-x)+')</text>';}
+    else{const cx=o+W*0.6,cy=o+H*0.5;s+='<rect x="'+(cx-xw/2)+'" y="'+o+'" width="'+xw+'" height="'+H+'" fill="#eee" stroke="#1c3a47"/><rect x="'+o+'" y="'+(cy-xw/2)+'" width="'+W+'" height="'+xw+'" fill="#eee" stroke="#1c3a47"/>';}
+    s+='<text x="'+(o+W/2)+'" y="'+(o-5)+'" text-anchor="middle" font-size="12">16 m</text><text x="'+(o+W+4)+'" y="'+(o+H/2)+'" font-size="12">12 m</text>';
+    el("rsvg").innerHTML=s;
+    const A=(16-x)*(12-x);
+    let r='<div>畑の面積 = ('+'16 − '+fmt(x)+')(12 − '+fmt(x)+') = <b>'+fmt(A)+' m²</b></div>';
+    if(x>=12)r+='<div class="lab-tip" style="background:#fdeaea;border-color:#f1a9a9">⚠️ 道の幅が土地の縦（12 m）以上！土地が全部道になってしまう。式の上では '+M_("(16 − "+X+")(12 − "+X+")")+' が正になる '+X+' > 16 もあるけど、<b>現実にはありえない</b>。これが「不適」な解。</div>';
+    else r+='<div class="lab-tip">💡 「端によせる」をONにすると、道をずらしても畑の面積は変わらないことが分かる。たとえば畑を 140 m² にしたいなら '+M_("(16 − "+X+")(12 − "+X+") = 140")+' → '+M_(X+" = 2、26")+'。26 m は土地より広いので<b>不適</b>、答えは 2 m。</div>';
+    el("rres").innerHTML=r;
+  });
+}
+
+</script>
+</body>
+</html>
