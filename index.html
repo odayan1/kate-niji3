@@ -175,6 +175,8 @@ main{max-width:760px;margin:0 auto;padding:16px 14px 50px;}
 .btn-row{display:grid;gap:10px;margin-top:18px;}
 .btn{width:100%;border:none;border-radius:12px;padding:13px;font-size:15px;font-weight:800;font-family:inherit;cursor:pointer;}
 .btn.retry{background:var(--green);color:#fff;box-shadow:0 3px 0 #74a82c;}
+.btn.labgo{background:linear-gradient(135deg,#7b5fd6,#5a8fe0);color:#fff;box-shadow:0 3px 0 #4e3aa0;}
+.rv-lab{background:#f6f1ff;border:2px dashed #b9a3ef;border-radius:12px;padding:9px 11px;margin-top:10px;font-size:13.5px;line-height:1.7;color:#3b2d6b;}
 .btn.home{background:#e4eef3;color:var(--ink);box-shadow:0 3px 0 #c3d4dc;}
 .btn:active{transform:translateY(2px);box-shadow:none;}
 
@@ -211,6 +213,12 @@ footer b{color:var(--blue);}
 .lab-entry b{font-size:16px;color:#6a4fc4;}
 .lab-entry small{font-size:11.5px;color:#48616d;}
 .lab-entry .le-go{margin-left:auto;color:#6a4fc4;font-weight:900;}
+.lab-hint{margin-top:10px;background:#f6f1ff;border:2px dashed #b9a3ef;border-radius:14px;padding:10px 12px;font-size:13.5px;line-height:1.7;color:#3b2d6b;}
+.lab-entry{position:relative;}
+.lab-entry.has-new{border-color:#8f6ce0;animation:labpulse 1.6s ease-in-out infinite;}
+@keyframes labpulse{0%,100%{box-shadow:0 2px 8px rgba(110,80,200,.12);}50%{box-shadow:0 0 0 7px rgba(143,108,224,.30);}}
+.new-badge{position:absolute;top:-10px;right:12px;background:#e8467c;color:#fff;font-size:11px;font-weight:900;border-radius:999px;padding:2px 10px;box-shadow:0 2px 6px rgba(232,70,124,.35);}
+.hint-tag{display:inline-block;margin-top:5px;background:#fff3c4;color:#8a5a00;border:1.5px solid #f2cf5b;border-radius:999px;font-size:11px;font-weight:800;padding:1px 9px;}
 .lab-head{font-size:17px;font-weight:900;color:#6a4fc4;margin:2px 0 10px;}
 .lab-card{background:#fff;border-radius:16px;padding:14px;box-shadow:0 2px 8px rgba(31,120,150,.10);}
 .lab-lbl{font-size:12px;font-weight:800;color:#1491bd;margin:10px 0 4px;}
@@ -420,6 +428,7 @@ body.inapp .brand-txt p{display:none;}
       <div id="review" class="review"></div>
       <div class="btn-row">
         <button class="btn retry" id="retry-btn" onclick="retry()">同じ単元をもう一度（新しい問題）</button>
+        <button class="btn labgo" onclick="openLabFromResult()">🧪 インタラクティブ教材</button>
         <button class="btn home" onclick="backToSets()">単元選択にもどる</button>
       </div>
     </div>
@@ -1737,6 +1746,7 @@ function showResult(){
   const key=LS+S.course+"-"+S.set.key;const prev=Number(localStorage.getItem(key)||0);
   if(S.score>prev){localStorage.setItem(key,String(S.score));el("result-best").textContent="🎉 ベストスコア更新！（"+prev+" → "+S.score+"）";}
   else el("result-best").textContent="ベストスコア："+Math.max(prev,S.score)+"pt";
+  if(S.course==="70"){S.wrongs.forEach(w=>{const L=labOf(w.q);if(L!=null){if(!LH.labs.includes(L))LH.labs.push(L);LH.isNew=true;}});lhSave();paintLabEntry();}
   const rv=el("review");
   rv.innerHTML=S.wrongs.length?'<h3>📒 まちがえた問題の徹底復習（'+S.wrongs.length+'問）</h3><p class="rv-lead">「なぜ違うのか」と「解き方の途中式」まで読むのが、点数が伸びる一番の近道！</p>'+S.wrongs.map(reviewCard).join("")
     :'<div class="rv-perfect">🎉 まちがえた問題はなし！次の単元・コースへ進もう！</div>';
@@ -1766,6 +1776,8 @@ function reviewCard(w){
     h+='<div class="rv-sec rv-model"><div class="rv-lbl">🧩 解き方の模範解答</div><div class="rv-mtext">'+q.m+'</div></div>';
   }
   if(q.kind!=="parts")h+=solBox(q);
+  const L=S.course==="70"?labOf(q):null;
+  if(L!=null)h+='<div class="rv-lab">🧪 <b>動かして確かめよう！</b>この問題は、インタラクティブ教材<b>「'+LABS[L].t+'」</b>で実際に動かして確認できるよ。<br>👉 いちばん下の<b>「🧪 インタラクティブ教材」</b>ボタンから開こう（関係する教材には💡の札が付いているよ）。</div>';
   return h+'</div>';
 }
 function goHomeBtn(){
@@ -1777,7 +1789,7 @@ function syncHomeBtn(){const atHome=!el("home").classList.contains("hidden")||!e
 function closeWelcome(){hide("welcome");show("home");window.scrollTo(0,0);}
 function openWelcome(){hide("home");show("welcome");window.scrollTo(0,0);}
 function retry(){startSet(S.set);}
-function goHome(){hide("lab");hide("quiz");hide("result");hide("sets");hide("intro90");hide("welcome");show("home");window.scrollTo(0,0);}
+function goHome(){LAB_FROM_RESULT=false;hide("lab");hide("quiz");hide("result");hide("sets");hide("intro90");hide("welcome");show("home");window.scrollTo(0,0);}
 function backToSets(){hide("quiz");hide("result");renderSets();show("sets");window.scrollTo(0,0);}
 
 /* ================= 🧪 インタラクティブ教材 ================= */
@@ -1787,12 +1799,29 @@ const LABS=[
  {t:"📐 点の移動と面積",d:"10-3｜点を動かして面積の変化を見る。解が2つになる理由",f:labMove},
  {t:"🛣️ 道の幅シミュレーター",d:"10-2｜道の幅を変えると畑の面積は？ 不適な解の意味",f:labRoad},
 ];
-function openLab(){hide("home");hide("welcome");show("lab");renderLabMenu();window.scrollTo(0,0);}
-function renderLabMenu(){
-  el("lab-body").innerHTML='<div class="lab-head">🧪 インタラクティブ教材</div><div class="set-grid">'+LABS.map((l,i)=>'<button class="setbtn" onclick="labOpen('+i+')"><span><span class="sn">'+l.t+'</span><br><span class="sd">'+l.d+'</span></span><span class="sb">ひらく</span></button>').join("")+
-    '</div><div class="btn-row"><button class="btn home" onclick="goHome()">ホームにもどる</button></div>';
+/* ---- 教材への誘導（結果画面から）・NEW!バッジ・「さっきの問題のヒント」札（2026-10-16） ---- */
+const LAB_OF_UNIT={"8-4":0,"9-1":1,"9-2":1,"10-2":3,"10-3":2};
+function labOf(q){const id=q&&q.unit&&q.unit.id;return id in LAB_OF_UNIT?LAB_OF_UNIT[id]:null;}
+const LH_KEY="kateLabHint:"+location.pathname;
+let LH=(()=>{try{const v=JSON.parse(localStorage.getItem(LH_KEY));if(v&&Array.isArray(v.labs))return v;}catch(e){}return {isNew:false,labs:[]};})();
+function lhSave(){try{localStorage.setItem(LH_KEY,JSON.stringify(LH));}catch(e){}}
+function paintLabEntry(){
+  document.querySelectorAll(".lab-entry").forEach(b=>{
+    b.classList.toggle("has-new",!!LH.isNew);
+    let bd=b.querySelector(".new-badge");
+    if(LH.isNew&&!bd){bd=document.createElement("span");bd.className="new-badge";bd.textContent="🔓 NEW!";b.appendChild(bd);}
+    if(!LH.isNew&&bd)bd.remove();
+  });
 }
-function labOpen(i){el("lab-body").innerHTML='<div class="lab-head">'+LABS[i].t+'</div><div class="lab-card" id="lab-card"></div><div class="btn-row"><button class="btn home" onclick="renderLabMenu()">教材一覧にもどる</button></div>';LABS[i].f();window.scrollTo(0,0);}
+let LAB_FROM_RESULT=false;
+function openLabFromResult(){LAB_FROM_RESULT=true;hide("result");openLab();}
+function backToResult(){LAB_FROM_RESULT=false;hide("lab");show("result");window.scrollTo(0,0);}
+function openLab(){LH.isNew=false;lhSave();paintLabEntry();hide("home");hide("welcome");show("lab");renderLabMenu();window.scrollTo(0,0);}
+function renderLabMenu(){
+  el("lab-body").innerHTML='<div class="lab-head">🧪 インタラクティブ教材</div><div class="set-grid">'+LABS.map((l,i)=>'<button class="setbtn" onclick="labOpen('+i+')"><span><span class="sn">'+l.t+'</span><br><span class="sd">'+l.d+'</span>'+(LH.labs.includes(i)?'<br><span class="hint-tag">💡 さっきまちがえた問題のヒントがここに！</span>':'')+'</span><span class="sb">ひらく</span></button>').join("")+
+    '</div><div class="btn-row">'+(LAB_FROM_RESULT?'<button class="btn retry" onclick="backToResult()">📒 結果・復習にもどる</button>':'')+'<button class="btn home" onclick="goHome()">ホームにもどる</button></div>';
+}
+function labOpen(i){LH.labs=LH.labs.filter(x=>x!==i);lhSave();el("lab-body").innerHTML='<div class="lab-head">'+LABS[i].t+'</div><div class="lab-card" id="lab-card"></div><div class="btn-row"><button class="btn home" onclick="renderLabMenu()">教材一覧にもどる</button></div>';LABS[i].f();window.scrollTo(0,0);}
 function rng(id,min,max,step,val,lbl){return '<div class="lab-lbl">'+lbl+'：<b id="'+id+'-v">'+val+'</b></div><input type="range" class="lab-range" id="'+id+'" min="'+min+'" max="'+max+'" step="'+step+'" value="'+val+'">';}
 function onR(ids,f){ids.forEach(id=>el(id).addEventListener("input",f));f();}
 function fmt(v){return (Math.round(v*100)/100).toString().replace("-","−");}
@@ -1885,6 +1914,8 @@ function labRoad(){
     el("rres").innerHTML=r;
   });
 }
+
+paintLabEntry();
 
 </script>
 </body>
